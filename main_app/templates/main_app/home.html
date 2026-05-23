@@ -1,0 +1,47 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="relative h-[75vh] flex items-center justify-center overflow-hidden">
+    <img src="{% static 'main_app/images/jump.jpg' %}" class="absolute w-full h-full object-cover" alt="CG Motorsports Jump">
+    <div class="absolute inset-0 hero-overlay"></div>
+    
+    <div class="relative text-center px-4 z-10">
+        <h2 class="text-5xl md:text-8xl font-black italic tracking-tighter uppercase mb-4">PUSHING <span class="text-cg-blue">LIMITS</span></h2>
+        <p class="text-lg text-gray-300 max-w-xl mx-auto font-light">Equipo oficial de carreras Off-Road. Adrenalina, desierto y potencia en cada milla.</p>
+        <div class="mt-8">
+            <a href="#patrocinadores" class="border-2 border-cg-blue text-cg-blue px-6 py-3 font-bold uppercase tracking-widest hover:bg-cg-blue hover:text-black transition">Ser Patrocinador</a>
+        </div>
+    </div>
+</section>
+
+<section id="eventos" class="max-w-7xl mx-auto px-4 py-16">
+    <div class="mb-10">
+        <h3 class="text-3xl font-black uppercase italic">Próximas <span class="text-cg-blue">Carreras</span></h3>
+        <p class="text-gray-500 uppercase tracking-widest text-xs">Calendario Estructurado 2026</p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white/5 p-6 border-l-4 border-cg-blue rounded-r-md">
+            <span class="text-cg-blue font-bold text-sm">25 MAY 2026</span>
+            <h4 class="text-xl font-bold mt-1">Baja 500</h4>
+            <p class="text-gray-400 text-sm">Ensenada, B.C. México</p>
+        </div>
+        <div class="bg-white/5 p-6 border-l-4 border-gray-700 rounded-r-md opacity-40">
+            <span class="text-gray-500 font-bold text-sm">15 JUN 2026</span>
+            <h4 class="text-xl font-bold mt-1">San Felipe 250</h4>
+            <p class="text-gray-400 text-sm">San Felipe, B.C.</p>
+        </div>
+    </div>
+</section>
+
+<section id="patrocinadores" class="bg-white/5 py-16">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+        <h3 class="text-xl font-bold uppercase tracking-widest mb-8 text-gray-400">Patrocinadores Oficiales</h3>
+        <div class="flex flex-wrap justify-center gap-8 opacity-70">
+            <div class="h-12 w-28 bg-white/10 flex items-center justify-center font-bold text-xs rounded-sm">BG TRUCKING</div>
+            <div class="h-12 w-28 bg-white/10 flex items-center justify-center font-bold text-xs rounded-sm">MIRAGE</div>
+        </div>
+    </div>
+</section>
+{% endblock %}
