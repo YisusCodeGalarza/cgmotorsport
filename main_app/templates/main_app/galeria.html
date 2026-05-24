@@ -1,0 +1,82 @@
+{# Extendemos el diseño de base.html #}
+{% extends 'main_app/base.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans "Media & Acción" %} | CG Motorsports{% endblock %}
+
+{# Inyectamos FontAwesome solo en esta página para los iconos de la red social #}
+{% block extra_head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="relative min-h-screen pt-32 pb-20 px-4 flex flex-col items-center bg-cover bg-center bg-fixed" style="background-image: url('{% static 'main_app/images/sf-4.bmp' %}');">
+    
+    {# Overlay Oscuro para ganar legibilidad #}
+    <div class="absolute inset-0 bg-black/85 z-0"></div>
+    
+    {# Encabezado de la Galería #}
+    <div class="relative z-10 max-w-7xl w-full mb-12 text-center md:text-left">
+        <h1 class="font-display text-4xl md:text-5xl font-black text-white tracking-wide uppercase">{% trans "Media" %} <span class="text-[#4781B3]">{% trans "& Acción" %}</span></h1>
+        <p class="text-gray-400 text-sm mt-2">{% trans "Sigue de cerca nuestro recorrido. Tomas oficiales desde las entrañas del desierto." %}</p>
+    </div>
+
+    {# Contenedor Masonry (Mampostería) para que los posts se acomoden sin espacios huecos #}
+    <div class="relative z-10 max-w-7xl w-full columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
+
+        {# MAGIA DE DJANGO: Un bucle del 1 al 9 para generar los 9 posts automáticamente #}
+        {% for i in "123456789"|make_list %}
+            
+            {# Construimos dinámicamente la ruta: main_app/images/sf-1.bmp, sf-2.bmp, etc. #}
+            {% with image_path="main_app/images/sf-"|add:i|add:".bmp" %}
+            
+            {# Tarjeta del Post (Diseño Glassmorphism Moderno) #}
+            <article class="break-inside-avoid bg-[#111315]/90 backdrop-blur-md border border-white/5 rounded-[2rem] overflow-hidden shadow-2xl hover:border-[#4781B3]/40 transition-all duration-300 group">
+                
+                {# Cabecera del Post (Avatar y Usuario) #}
+                <div class="p-5 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <img src="{% static 'main_app/images/logo.png' %}" alt="CG" class="w-11 h-11 rounded-full bg-black border border-gray-700 object-contain p-1.5">
+                        <div>
+                            <h3 class="font-bold text-white text-sm flex items-center gap-1">
+                                CG Motorsports
+                                <svg class="w-4 h-4 text-[#4781B3]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg>
+                            </h3>
+                            <p class="text-xs text-gray-400">{% trans "San Felipe, Baja California" %}</p>
+                        </div>
+                    </div>
+                    <button class="text-gray-600 hover:text-white transition-colors">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </button>
+                </div>
+
+                {# Imagen a lo ancho total (Sin bordes como Instagram) #}
+                <div class="w-full bg-black relative cursor-pointer overflow-hidden">
+                    <img src="{% static image_path %}" alt="Toma de acción {{ i }}" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
+                </div>
+
+                {# Footer del Post (Interacciones y Descripción) #}
+                <div class="p-5">
+                    <div class="flex items-center justify-between mb-4 text-gray-400 text-[1.35rem]">
+                        <div class="flex gap-5">
+                            <i class="far fa-heart hover:text-red-500 hover:scale-110 cursor-pointer transition-all"></i>
+                            <i class="far fa-comment hover:text-[#4781B3] hover:scale-110 cursor-pointer transition-all"></i>
+                            <i class="far fa-paper-plane hover:text-white hover:scale-110 cursor-pointer transition-all"></i>
+                        </div>
+                        <i class="far fa-bookmark hover:text-white hover:scale-110 cursor-pointer transition-all"></i>
+                    </div>
+                    <p class="text-white text-sm font-bold mb-2">1,{{ i }}42 {% trans "Me gusta" %}</p>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        <span class="font-bold text-white mr-1">cgmotorsports</span>
+                        {% if i in "147" %}{% trans "Domando las dunas a fondo. No hay terreno que nos detenga. 🏜️💨 AWD Power!" %}
+                        {% elif i in "258" %}{% trans "Precisión, suspensión y pura adrenalina en la Baja. 🏁🔥 #cgmotorsport" %}
+                        {% else %}{% trans "El monstruo haciendo lo que mejor sabe hacer: volar sobre el desierto. 🦅💥" %}
+                        {% endif %}
+                    </p>
+                </div>
+            </article>
+            {% endwith %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

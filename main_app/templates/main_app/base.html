@@ -1,57 +1,117 @@
+{# Etiqueta de Django: Carga las rutas estáticas para poder usar archivos CSS, JS e imágenes del proyecto. #}
 {% load static %}
+{# Carga la librería de traducciones (i18n) de Django #}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}CG Motorsports | Off-Road Team{% endblock %}</title>
+    
+    {# block title: Define un espacio que home.html puede reemplazar con su propio título. #}
+    <title>{% block title %}CG Motorsports 2026{% endblock %}</title>
+    
+    {# block extra_head: Hueco para inyectar CSS extra desde otras vistas si fuera necesario. #}
+    {% block extra_head %}{% endblock %}
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        body { font-family: 'Urbanist', sans-serif; background-color: #0b0f1a; color: #ffffff; }
-        .text-cg-blue { color: #5bb3e5; }
-        .border-cg-blue { border-color: #5bb3e5; }
-        .bg-cg-blue { background-color: #5bb3e5; }
-        .hero-overlay { background: linear-gradient(0deg, rgba(11,15,26,1) 0%, rgba(11,15,26,0.3) 100%); }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #0a0a0a;
+        }
+        .font-display { font-family: 'Oswald', sans-serif; }
     </style>
-    {% block extra_css %}{% endblock %}
 </head>
-<body class="antialiased">
+<body class="antialiased text-white overflow-x-hidden">
 
-    <nav class="fixed w-full z-50 bg-black/90 backdrop-blur-md border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                
-                <div class="flex items-center gap-3">
-                    <img src="{% static 'main_app/images/logo.png' %}" class="h-14 w-auto object-contain" alt="CG Motorsports Logo">
-                    <span class="text-xl font-black tracking-tighter italic hidden sm:block">CG <span class="text-cg-blue">MOTORSPORTS</span></span>
-                </div>
-
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8 font-bold uppercase text-sm tracking-widest">
-                        <a href="/" class="hover:text-cg-blue transition">Inicio</a>
-                        <a href="#eventos" class="hover:text-cg-blue transition">Calendario</a>
-                        <a href="#galeria" class="hover:text-cg-blue transition">Galería</a>
-                        <a href="#patrocinadores" class="hover:text-cg-blue transition">Sponsors</a>
-                        <a href="/admin" class="bg-cg-blue text-black px-4 py-2 rounded-sm font-bold hover:bg-white transition">Dashboard</a>
-                    </div>
-                </div>
+    {# CAPA Z-INDEX 50: Header superpuesto sobre el contenido para efecto inmersivo #}
+    <header class="absolute top-0 left-0 w-full z-50 bg-black/40 backdrop-blur-sm border-b border-white/5">
+        <div class="flex items-center justify-between px-6 py-4 max-w-[1440px] mx-auto">
+            
+            {# Extremo Izquierdo: Logo #}
+            <div class="flex-shrink-0">
+                <a href="/" class="flex items-center gap-3 group">
+                    <img src="{% static 'main_app/images/logo.png' %}" alt="CG Motorsports Logo" class="h-12 md:h-16 w-auto object-contain transition-transform group-hover:scale-105">
+                    <span class="font-display font-black text-xl md:text-2xl tracking-widest text-white uppercase group-hover:text-[#4781B3] transition-colors mt-1">CGMOTORSPORT</span>
+                </a>
             </div>
+
+            {# Centro: Menú Navegación Desktop #}
+            <nav class="hidden md:flex space-x-4 lg:space-x-6 xl:space-x-8 text-white text-[10px] lg:text-xs xl:text-sm font-semibold tracking-wider uppercase items-center whitespace-nowrap">
+                <a href="{% url 'calendario' %}" class="relative group cursor-pointer flex items-center hover:text-[#4781B3] transition-colors">
+                    {% trans "CARRERAS" %}
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </a>
+                <a href="{% url 'equipo' %}" class="hover:text-[#4781B3] transition-colors">{% trans "EL EQUIPO" %}</a>
+                <a href="{% url 'galeria' %}" class="hover:text-[#4781B3] transition-colors">{% trans "MEDIA" %}</a>
+                <a href="{% url 'patrocinadores' %}" class="hover:text-[#4781B3] transition-colors">{% trans "PATROCINADORES" %}</a>
+                <a href="{% url 'todoterreno' %}" class="hover:text-[#4781B3] transition-colors">{% trans "EQUIPO TODOTERRENO" %}</a>
+                <a href="{% url 'contacto' %}" class="hover:text-[#4781B3] transition-colors">{% trans "CONTACTO" %}</a>
+            </nav>
+
+            {# Extremo Derecho: Autenticación #}
+            <div class="hidden lg:flex items-center gap-4 flex-shrink-0 whitespace-nowrap">
+                <a href="{% url 'login' %}" class="text-white hover:text-[#4781B3] text-[10px] xl:text-xs font-bold uppercase tracking-wide transition-colors">{% trans "Iniciar Sesión" %}</a>
+                <a href="{% url 'registro' %}" class="bg-[#4781B3] px-4 xl:px-6 py-2 rounded-full text-white text-[10px] xl:text-xs font-bold uppercase tracking-wide hover:bg-white hover:text-black transition-colors shadow-lg shadow-[#4781B3]/30">{% trans "Registrarse" %}</a>
+                
+                {# Toggle Inteligente de Idiomas (ES / EN) #}
+                <form action="{% url 'set_language' %}" method="post" class="flex items-center ml-2 border-l border-white/20 pl-4">
+                    {% csrf_token %}
+                    <input name="next" type="hidden" value="{{ request.path }}">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    
+                    {% if LANGUAGE_CODE == 'es' %}
+                        <input type="hidden" name="language" value="en">
+                        <button type="submit" class="text-white font-bold text-[10px] xl:text-xs tracking-widest hover:text-[#4781B3] transition-colors">ES <span class="text-gray-600 font-normal mx-1">/</span> <span class="text-gray-400 hover:text-white">EN</span></button>
+                    {% else %}
+                        <input type="hidden" name="language" value="es">
+                        <button type="submit" class="text-white font-bold text-[10px] xl:text-xs tracking-widest hover:text-[#4781B3] transition-colors"><span class="text-gray-400 hover:text-white">ES</span> <span class="text-gray-600 font-normal mx-1">/</span> EN</button>
+                    {% endif %}
+                </form>
+            </div>
+
+            {# Menú Móvil Hamburguesa #}
+            <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none hover:text-[#4781B3] transition-colors">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
         </div>
-    </nav>
+        
+        {# Contenedor del Menú Móvil (Oculto por defecto) #}
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-[#0a0a0a]/95 backdrop-blur-xl border-b border-white/10 flex-col items-center py-8 space-y-6 shadow-2xl transition-all">
+            <a href="/" class="text-white hover:text-[#4781B3] font-bold tracking-widest uppercase transition-colors">{% trans "INICIO" %}</a>
+            <a href="{% url 'calendario' %}" class="text-white hover:text-[#4781B3] font-bold tracking-widest uppercase transition-colors">{% trans "CARRERAS" %}</a>
+            <a href="{% url 'equipo' %}" class="text-white hover:text-[#4781B3] font-bold tracking-widest uppercase transition-colors">{% trans "EL EQUIPO" %}</a>
+            <a href="{% url 'galeria' %}" class="text-white hover:text-[#4781B3] font-bold tracking-widest uppercase transition-colors">{% trans "MEDIA" %}</a>
+            <a href="{% url 'patrocinadores' %}" class="text-white hover:text-[#4781B3] font-bold tracking-widest uppercase transition-colors">{% trans "PATROCINADORES" %}</a>
+            <a href="{% url 'todoterreno' %}" class="text-white hover:text-[#4781B3] font-bold tracking-widest uppercase transition-colors">{% trans "EQUIPO TODOTERRENO" %}</a>
+            <a href="{% url 'contacto' %}" class="text-white hover:text-[#4781B3] font-bold tracking-widest uppercase transition-colors">{% trans "CONTACTO" %}</a>
+        </div>
+    </header>
 
-    <div class="h-20"></div>
-
+    {# Contenedor Principal #}
     <main>
+        {# block content: EL BLOQUE MÁS IMPORTANTE. Aquí es donde home.html inyectará todo su diseño visual. #}
         {% block content %}
         {% endblock %}
     </main>
 
-    <footer class="bg-black py-8 border-t border-white/5 text-center text-gray-500 text-sm tracking-widest uppercase">
-        © 2026 CG Motorsports Team.
-    </footer>
-
+    {# block extra_js: Hueco para inyectar código JavaScript antes de cerrar el body. #}
     {% block extra_js %}{% endblock %}
+    
+    {# Script para el Menú Móvil #}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+                menu.classList.toggle('flex');
+            });
+        });
+    </script>
 </body>
 </html>

@@ -1,47 +1,98 @@
+{# {% extends %}: Le dice a Django "copia todo el código de base.html y úsalo como base". #}
+{# Se conecta con: main_app/templates/main_app/base.html #}
 {% extends 'main_app/base.html' %}
-{% load static %}
+{% load static i18n %}
 
+{# Todo lo que esté dentro de {% block content %} reemplazará el hueco vacío que dejamos en base.html #}
 {% block content %}
-<section class="relative h-[75vh] flex items-center justify-center overflow-hidden">
-    <img src="{% static 'main_app/images/jump.jpg' %}" class="absolute w-full h-full object-cover" alt="CG Motorsports Jump">
-    <div class="absolute inset-0 hero-overlay"></div>
+{# SECCIÓN HERO: Estilo King of the Hammers con clip-path diagonal #}
+<section class="relative min-h-screen md:h-screen flex items-center justify-center overflow-hidden" style="clip-path: polygon(0 0, 100% 0, 100% 96%, 0 100%);">
     
-    <div class="relative text-center px-4 z-10">
-        <h2 class="text-5xl md:text-8xl font-black italic tracking-tighter uppercase mb-4">PUSHING <span class="text-cg-blue">LIMITS</span></h2>
-        <p class="text-lg text-gray-300 max-w-xl mx-auto font-light">Equipo oficial de carreras Off-Road. Adrenalina, desierto y potencia en cada milla.</p>
-        <div class="mt-8">
-            <a href="#patrocinadores" class="border-2 border-cg-blue text-cg-blue px-6 py-3 font-bold uppercase tracking-widest hover:bg-cg-blue hover:text-black transition">Ser Patrocinador</a>
-        </div>
+    {# Video de fondo a pantalla completa #}
+    <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0">
+        <source src="{% static 'main_app/videos/cg-trailer.mp4' %}" type="video/mp4">
+    </video>
+    
+    {# Overlay Oscuro para ganar legibilidad sobre el video #}
+    <div class="absolute inset-0 bg-black/50 z-10"></div>
+    
+    {# Contenedor del texto central #}
+    <div class="relative z-20 text-center flex flex-col items-center px-4 mt-16 md:mt-0">
+        <p class="text-xs md:text-sm font-bold tracking-[0.25em] uppercase text-white mb-2">
+            {% translate "EQUIPO OFICIAL DE EQUIPOS TODOTERRENO AWD" %}
+        </p>
+        
+        <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-black uppercase text-center text-white mt-1 drop-shadow-lg tracking-wide">
+            {% translate "BUILT IN THE" %} <span class="text-[#4781B3]">{% translate "DESERT" %}</span>
+        </h1>
+        
+        <a href="{% url 'calendario' %}" class="group mt-8 rounded-full border border-white text-white px-8 py-3.5 text-sm font-bold uppercase flex items-center justify-center space-x-3 transition-all hover:bg-white hover:text-black">
+            {# Icono SVG de un rayo (velocidad/poder) #}
+            <svg class="w-5 h-5 group-hover:text-black transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            <span>{% translate "VER CALENDARIO" %}</span>
+        </a>
     </div>
 </section>
 
-<section id="eventos" class="max-w-7xl mx-auto px-4 py-16">
-    <div class="mb-10">
-        <h3 class="text-3xl font-black uppercase italic">Próximas <span class="text-cg-blue">Carreras</span></h3>
-        <p class="text-gray-500 uppercase tracking-widest text-xs">Calendario Estructurado 2026</p>
+{# SECCIÓN EVENTOS: Tarjetas oscuras, bordes gruesos y acentos azules #}
+<section id="eventos" class="relative py-20 bg-cover bg-center bg-fixed" style="background-image: url('{% static 'main_app/images/sf-5.bmp' %}');">
+    <div class="absolute inset-0 bg-black/90 z-0"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4">
+        <div class="mb-12 border-l-4 border-[#4781B3] pl-4">
+        <h3 class="font-oswald text-4xl font-black uppercase tracking-tight text-white mb-1">{% trans "Carreras" %} <span class="text-[#4781B3]">2023</span></h3>
+        <p class="text-gray-400 uppercase tracking-[0.2em] text-xs font-bold">{% trans "Resumen de Temporada" %}</p>
     </div>
     
-    <div class="grid md:grid-cols-2 gap-6">
-        <div class="bg-white/5 p-6 border-l-4 border-cg-blue rounded-r-md">
-            <span class="text-cg-blue font-bold text-sm">25 MAY 2026</span>
-            <h4 class="text-xl font-bold mt-1">Baja 500</h4>
-            <p class="text-gray-400 text-sm">Ensenada, B.C. México</p>
+    <div class="grid md:grid-cols-2 gap-8">
+        {# Tarjeta Evento 1 (Baja 500) #}
+        <div class="group bg-[#111] border border-white/5 hover:border-[#4781B3]/50 transition-colors duration-300 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-1 h-full bg-gray-600"></div>
+            <div class="p-8">
+                <span class="text-gray-400 font-bold tracking-widest text-sm uppercase">{% trans "31 Mayo - 4 Junio 2023" %}</span>
+                <h4 class="font-oswald text-3xl font-bold uppercase text-white mt-2 mb-2 group-hover:text-[#4781B3] transition-colors">{% trans "55th SCORE Baja 500" %}</h4>
+                <p class="text-gray-400 text-sm flex items-center gap-2"><i class="fas fa-map-marker-alt text-gray-500"></i> {% trans "Ensenada, B.C. México" %}</p>
+            </div>
         </div>
-        <div class="bg-white/5 p-6 border-l-4 border-gray-700 rounded-r-md opacity-40">
-            <span class="text-gray-500 font-bold text-sm">15 JUN 2026</span>
-            <h4 class="text-xl font-bold mt-1">San Felipe 250</h4>
-            <p class="text-gray-400 text-sm">San Felipe, B.C.</p>
+        
+        {# Tarjeta Evento 2 (Baja 400) #}
+        <div class="group bg-[#111] border border-white/5 hover:border-white/20 transition-colors duration-300 relative overflow-hidden opacity-60 hover:opacity-100">
+            <div class="absolute top-0 left-0 w-1 h-full bg-gray-600"></div>
+            <div class="p-8">
+                <span class="text-gray-400 font-bold tracking-widest text-sm uppercase">{% trans "12 - 17 Septiembre 2023" %}</span>
+                <h4 class="font-oswald text-3xl font-bold uppercase text-white mt-2 mb-2">{% trans "4th SCORE Baja 400" %}</h4>
+                <p class="text-gray-500 text-sm flex items-center gap-2"><i class="fas fa-map-marker-alt text-gray-600"></i> {% trans "Ensenada, B.C. México" %}</p>
+            </div>
         </div>
+    </div>
     </div>
 </section>
 
-<section id="patrocinadores" class="bg-white/5 py-16">
-    <div class="max-w-7xl mx-auto px-4 text-center">
-        <h3 class="text-xl font-bold uppercase tracking-widest mb-8 text-gray-400">Patrocinadores Oficiales</h3>
-        <div class="flex flex-wrap justify-center gap-8 opacity-70">
-            <div class="h-12 w-28 bg-white/10 flex items-center justify-center font-bold text-xs rounded-sm">BG TRUCKING</div>
-            <div class="h-12 w-28 bg-white/10 flex items-center justify-center font-bold text-xs rounded-sm">MIRAGE</div>
+{# SECCIÓN PATROCINADORES #}
+<section id="patrocinadores" class="relative py-20 border-t border-white/5 bg-cover bg-center bg-fixed" style="background-image: url('{% static 'main_app/images/sf-6.bmp' %}');">
+    <div class="absolute inset-0 bg-black/90 z-0"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 text-center">
+        <h3 class="font-oswald text-2xl font-bold uppercase tracking-[0.2em] mb-12 text-gray-300">Sponsors <span class="text-[#4781B3]">Official</span></h3>
+        
+        <div class="flex flex-wrap justify-center gap-6 opacity-80">
+            {% for patrocinador in patrocinadores %}
+                <a {% if patrocinador.sitio_web %}href="{{ patrocinador.sitio_web }}" target="_blank"{% endif %} class="h-24 w-48 bg-white border border-white/10 flex items-center justify-center p-4 hover:border-[#4781B3]/50 transition-all duration-300 cursor-pointer group rounded-lg">
+                    {% if patrocinador.logo %}
+                        <img src="{{ patrocinador.logo.url }}" alt="{{ patrocinador.nombre }}" class="max-h-full max-w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300">
+                    {% else %}
+                        <span class="font-oswald text-xl uppercase tracking-widest text-gray-500 group-hover:text-[#4781B3] transition-colors">{{ patrocinador.nombre }}</span>
+                    {% endif %}
+                </a>
+            {% empty %}
+                <p class="text-gray-500 text-sm tracking-widest uppercase">Aún no hay patrocinadores registrados.</p>
+            {% endfor %}
         </div>
+        
+        <div class="mt-12 text-center">
+            <a href="{% url 'patrocinadores' %}" class="inline-block border border-[#4781B3] text-[#4781B3] hover:bg-[#4781B3] hover:text-white px-8 py-3 text-sm font-bold uppercase tracking-widest transition-colors duration-300">
+                Ver todos los patrocinadores
+            </a>
+        </div>
+    </div>
     </div>
 </section>
 {% endblock %}

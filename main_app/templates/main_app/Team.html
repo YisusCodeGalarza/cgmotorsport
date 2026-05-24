@@ -1,0 +1,71 @@
+{# Extendemos el diseño de base.html #}
+{% extends 'main_app/base.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans "El Equipo" %} | CG Motorsports{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="relative min-h-screen pt-32 pb-20 px-4 flex flex-col items-center bg-cover bg-center bg-fixed" style="background-image: url('{% static 'main_app/images/sf-5.bmp' %}');">
+    
+    {# Overlay Oscuro #}
+    <div class="absolute inset-0 bg-black/85 z-0"></div>
+    
+    {# Encabezado #}
+    <div class="relative z-10 max-w-[680px] w-full mb-8 text-center md:text-left">
+        <h1 class="font-display text-4xl md:text-5xl font-black text-white tracking-wide uppercase">{% trans "El" %} <span class="text-[#4781B3]">{% trans "Equipo" %}</span></h1>
+        <p class="text-gray-400 text-sm mt-2 uppercase tracking-widest">{% trans "La familia detrás del Equipo todoterreno." %}</p>
+    </div>
+
+    {# Contenedor del Post (Estilo Facebook Dark Mode) #}
+    <div class="relative z-10 max-w-[680px] w-full">
+        
+        <article class="bg-[#242526] border border-gray-800 rounded-xl overflow-hidden shadow-2xl">
+            
+            {# Cabecera del Post (Perfil y Fecha) #}
+            <div class="p-4 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <img src="{% static 'main_app/images/logo.png' %}" alt="CG Motorsports" class="w-10 h-10 rounded-full bg-black border border-gray-700 object-contain p-1">
+                    <div class="leading-tight">
+                        <h3 class="font-bold text-white text-[15px] flex items-center gap-1 hover:underline cursor-pointer">
+                            CG Motorsports
+                            <svg class="w-3.5 h-3.5 text-[#4781B3]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg>
+                        </h3>
+                        <p class="text-[13px] text-gray-400">tdoorSpesnl3hfa0m 210be6i6196igih0ifa0g2f7056d0 723d1 er9 1t · Tijuana · <i class="fas fa-globe-americas text-xs ml-0.5"></i></p>
+                    </div>
+                </div>
+                <button class="text-gray-400 hover:text-gray-200 transition-colors w-9 h-9 rounded-full hover:bg-white/10 flex items-center justify-center">
+                    <i class="fas fa-ellipsis-h"></i>
+                </button>
+            </div>
+
+            {# Cuerpo del Texto #}
+            <div class="px-4 pb-3 space-y-4 text-gray-200 text-[15px] leading-snug">
+                <p>{% trans "The CG Motorsports Team" %}</p>
+                <p>{% trans "“Alone we can do so little, together we can do so much”" %}</p>
+                <p class="text-[#4781B3] hover:underline cursor-pointer break-words">#allumicraft #mirageraceprep #airsupport #baja #offroad #class10 #baja250 #cgm1020 #family #teamwork</p>
+            </div>
+
+            {# Imagen Full Width #}
+            <div class="w-full bg-black border-y border-gray-800">
+                <img src="{% static 'main_app/images/equipo.jpg' %}" alt="El equipo CG Motorsports" class="w-full h-auto object-cover max-h-[600px]">
+            </div>
+
+            {# Ubicación (Check-in) y Botones #}
+            <div class="px-4 py-3 border-b border-gray-800 flex items-center text-[15px] text-gray-300">
+                <i class="fas fa-map-marker-alt text-red-500 mr-2"></i> — {% trans "en" %} <span class="font-bold ml-1 hover:underline cursor-pointer">San Felipe, B.C.S.</span>
+            </div>
+
+            {# Botones de Interacción #}
+            <div class="px-4 py-1.5 flex justify-between items-center text-gray-400 font-semibold text-[15px]">
+                <button class="flex-1 flex items-center justify-center gap-2 py-2 hover:bg-white/10 rounded-md transition-colors"><i class="far fa-thumbs-up text-[18px]"></i> {% trans "Me gusta" %}</button>
+                <button class="flex-1 flex items-center justify-center gap-2 py-2 hover:bg-white/10 rounded-md transition-colors"><i class="far fa-comment-alt text-[18px]"></i> {% trans "Comentar" %}</button>
+                <button class="flex-1 flex items-center justify-center gap-2 py-2 hover:bg-white/10 rounded-md transition-colors"><i class="fas fa-share text-[18px]"></i> {% trans "Compartir" %}</button>
+            </div>
+        </article>
+    </div>
+</div>
+{% endblock %}

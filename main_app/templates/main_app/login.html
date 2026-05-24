@@ -1,0 +1,43 @@
+{# Extendemos el diseño de base.html #}
+{% extends 'main_app/base.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans "Iniciar Sesión" %} | CG Motorsports{% endblock %}
+
+{% block content %}
+<div class="relative min-h-screen flex flex-col items-center justify-center bg-cover bg-center" style="background-image: url('{% static 'main_app/images/sf-1.bmp' %}');">
+    
+    {# Overlay Oscuro #}
+    <div class="absolute inset-0 bg-black/80 z-0"></div>
+    
+    {# Contenedor del Formulario (Glassmorphism) #}
+    <div class="relative z-10 w-full max-w-md bg-[#111]/90 backdrop-blur-xl border border-white/10 rounded-3xl p-10 shadow-2xl mt-20 md:mt-0">
+        
+        <div class="text-center mb-8">
+            <img src="{% static 'main_app/images/logo.png' %}" alt="Logo" class="h-12 mx-auto mb-4 object-contain">
+            <h1 class="font-display text-3xl font-black text-white uppercase tracking-wider">{% trans "Bienvenido" %} <span class="text-[#4781B3]">{% trans "Piloto" %}</span></h1>
+            <p class="text-gray-400 text-sm mt-2">{% trans "Ingresa tus credenciales para acceder al Paddock." %}</p>
+        </div>
+
+        <form class="space-y-6">
+            <div>
+                <label class="block text-gray-400 text-xs font-bold uppercase tracking-widest mb-2">{% trans "Usuario o Correo" %}</label>
+                <input type="text" class="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#4781B3] transition-colors" placeholder="{% trans 'piloto@ejemplo.com' %}">
+            </div>
+            
+            <div>
+                <label class="block text-gray-400 text-xs font-bold uppercase tracking-widest mb-2">{% trans "Contraseña" %}</label>
+                <input type="password" class="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#4781B3] transition-colors" placeholder="{% trans '••••••••' %}">
+            </div>
+
+            <button type="button" class="w-full bg-[#4781B3] text-white font-bold uppercase tracking-widest py-3 rounded-lg hover:bg-white hover:text-black transition-colors shadow-lg shadow-[#4781B3]/30 mt-4">
+                {% trans "Entrar a la cuenta" %}
+            </button>
+        </form>
+        
+        <p class="text-center text-gray-500 text-sm mt-8">
+            {% trans "¿No tienes cuenta?" %} <a href="{% url 'registro' %}" class="text-white hover:text-[#4781B3] font-bold transition-colors">{% trans "Regístrate aquí" %}</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

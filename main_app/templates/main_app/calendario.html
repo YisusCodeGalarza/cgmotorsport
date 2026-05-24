@@ -1,0 +1,73 @@
+{# Extendemos el diseño de base.html #}
+{% extends 'main_app/base.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans "Calendario SCORE" %} | CG Motorsports{% endblock %}
+
+{% block content %}
+<div class="relative min-h-screen pt-32 pb-20 px-4 flex flex-col items-center bg-cover bg-center bg-fixed" style="background-image: url('{% static 'main_app/images/sf-2.bmp' %}');">
+    
+    {# Overlay Oscuro para que el texto resalte sobre la imagen #}
+    <div class="absolute inset-0 bg-black/85 z-0"></div>
+    
+    {# Encabezado #}
+    <div class="relative z-10 max-w-[1000px] w-full mb-12 text-center md:text-left">
+        <h1 class="font-display text-4xl md:text-5xl font-black text-white tracking-wide uppercase">{% trans "Temporada" %} <span class="text-[#4781B3]">2023</span></h1>
+        <p class="text-gray-400 text-sm mt-2 uppercase tracking-widest">{% trans "Fechas oficiales de SCORE International Off-Road Racing." %}</p>
+    </div>
+
+    {# Contenedor de las Carreras (Lista de Tarjetas Horizontales) #}
+    <div class="relative z-10 max-w-[1000px] w-full flex flex-col gap-10">
+        
+        {# CARRERA 1: BAJA 500 #}
+        <article class="bg-[#111] border border-white/5 rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row group hover:border-[#4781B3]/50 transition-colors">
+            <div class="w-full md:w-2/5 aspect-video md:aspect-auto overflow-hidden relative">
+                <img src="{% static 'main_app/images/baja_500.webp' %}" alt="Baja 500" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                <div class="absolute top-4 left-4 bg-gray-700 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">{% trans "Completada" %}</div>
+            </div>
+            <div class="w-full md:w-3/5 p-6 md:p-10 flex flex-col justify-center">
+                <div class="text-gray-500 font-bold tracking-widest text-sm uppercase mb-2">{% trans "31 Mayo - 4 Junio 2023" %}</div>
+                <h2 class="font-display text-3xl md:text-4xl font-black text-white uppercase tracking-wide mb-3">{% trans "55th SCORE Baja 500" %}</h2>
+                <p class="text-gray-400 text-sm leading-relaxed mb-6">{% trans "La clásica y brutal carrera de verano. Temperaturas extremas y rutas que castigan el vehículo. Una guerra de desgaste donde el equipo todoterreno demuestra de qué está hecho." %}</p>
+                <div class="mt-auto">
+                    <span class="text-gray-500 text-sm flex items-center gap-2"><i class="fas fa-map-marker-alt"></i> {% trans "Ensenada, B.C. México" %}</span>
+                </div>
+            </div>
+        </article>
+
+        {# CARRERA 2: BAJA 400 #}
+        <article class="bg-[#111] border border-white/5 rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row group hover:border-[#4781B3]/50 transition-colors">
+            <div class="w-full md:w-2/5 aspect-video md:aspect-auto overflow-hidden relative">
+                <img src="{% static 'main_app/images/baja_400.webp' %}" alt="Baja 400" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                <div class="absolute top-4 left-4 bg-gray-700 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">{% trans "Completada" %}</div>
+            </div>
+            <div class="w-full md:w-3/5 p-6 md:p-10 flex flex-col justify-center">
+                <div class="text-gray-500 font-bold tracking-widest text-sm uppercase mb-2">{% trans "12 - 17 Septiembre 2023" %}</div>
+                <h2 class="font-display text-3xl md:text-4xl font-black text-white uppercase tracking-wide mb-3">{% trans "4th SCORE Baja 400" %}</h2>
+                <p class="text-gray-400 text-sm leading-relaxed mb-6">{% trans "El desafío perfecto de media distancia. 400 millas de terreno súper técnico que pondrán a prueba la estrategia del equipo y prepararán el terreno para la gran final." %}</p>
+                <div class="mt-auto">
+                    <span class="text-gray-500 text-sm flex items-center gap-2"><i class="fas fa-map-marker-alt"></i> {% trans "Ensenada, B.C. México" %}</span>
+                </div>
+            </div>
+        </article>
+
+        {# CARRERA 3: BAJA 1000 #}
+        <article class="bg-[#111] border border-white/5 rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row group hover:border-red-600/50 transition-colors relative">
+            <div class="absolute top-0 right-0 w-2 h-full bg-red-600/80"></div>
+            <div class="w-full md:w-2/5 aspect-video md:aspect-auto overflow-hidden relative">
+                <img src="{% static 'main_app/images/baja_1000.webp' %}" alt="Baja 1000" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                <div class="absolute top-4 left-4 bg-gray-700 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">{% trans "Completada" %}</div>
+            </div>
+            <div class="w-full md:w-3/5 p-6 md:p-10 flex flex-col justify-center">
+                <div class="text-gray-500 font-bold tracking-widest text-sm uppercase mb-2">{% trans "13 - 18 Noviembre 2023" %}</div>
+                <h2 class="font-display text-3xl md:text-4xl font-black text-white uppercase tracking-wide mb-3">{% trans "56th SCORE Baja 1000" %}</h2>
+                <p class="text-gray-400 text-sm leading-relaxed mb-6">{% trans "La madre de todas las batallas off-road. Mil millas de polvo, oscuridad, fatiga extrema y adrenalina pura cruzando toda la península. Aquí nacen las verdaderas leyendas." %}</p>
+                <div class="mt-auto">
+                    <span class="text-gray-500 text-sm flex items-center gap-2"><i class="fas fa-map-marker-alt"></i> {% trans "Ensenada - La Paz, B.C.S." %}</span>
+                </div>
+            </div>
+        </article>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,3 +1,7 @@
+# settings.py: La "Configuración Maestra" del proyecto.
+# Controla bases de datos, seguridad, aplicaciones instaladas y archivos estáticos (imágenes/CSS).
+# Afecta absolutamente a todo el proyecto 'core_project'.
+
 """
 Django settings for core_project project.
 
@@ -25,7 +29,7 @@ SECRET_KEY = 'django-insecure-37$z5^tc)z+e_+b5-r1&*hhjuq-%uox&o$q5@op8!683u2qa9m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,13 +41,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #Nuestra aplicacion
+    # Nuestra aplicacion: Para que Django sepa que main_app existe, debe estar declarada aquí.
+    # Esto permite leer sus models.py, templates y carpetas static/.
     'main_app',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # 1. Agregamos LocaleMiddleware para que Django entienda múltiples idiomas
+    # IMPORTANTE: Debe ir justo después de SessionMiddleware y antes de CommonMiddleware
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -104,16 +112,33 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Mexico_City'
 
 USE_I18N = True
 
 USE_TZ = True
 
+# 2. Configuración de idiomas soportados
+from django.utils.translation import gettext_lazy as _
+
+LANGUAGES = [
+    ('es', _('Español')),
+    ('en', _('English')),
+]
+
+# 3. Carpeta donde se guardarán nuestros archivos de diccionario
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
+# Configuración de Archivos Estáticos (CSS, JS, Logos de la web)
 STATIC_URL = 'static/'
+
+# Configuración de Archivos Multimedia (Imágenes que el usuario sube desde el panel admin)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

@@ -1,0 +1,324 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-24 03:22-0700\n"
+"PO-Revision-Date: 2026-05-24 03:30-0700\n"
+"Last-Translator: YisusCode <piloto@ejemplo.com>\n"
+"Language-Team: English <en@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\core_project\settings.py:127
+msgid "Español"
+msgstr "Spanish"
+
+#: .\core_project\settings.py:128
+msgid "English"
+msgstr "English"
+
+#: .\main_app\templates\main_app\base.html:45
+#: .\main_app\templates\main_app\base.html:85
+msgid "CARRERAS"
+msgstr "RACES"
+
+#: .\main_app\templates\main_app\base.html:48
+#: .\main_app\templates\main_app\base.html:86
+msgid "EL EQUIPO"
+msgstr "THE TEAM"
+
+#: .\main_app\templates\main_app\base.html:49
+#: .\main_app\templates\main_app\base.html:87
+msgid "MEDIA"
+msgstr "MEDIA"
+
+#: .\main_app\templates\main_app\base.html:50
+#: .\main_app\templates\main_app\base.html:88
+msgid "PATROCINADORES"
+msgstr "SPONSORS"
+
+#: .\main_app\templates\main_app\base.html:51
+#: .\main_app\templates\main_app\base.html:89
+msgid "EQUIPO TODOTERRENO"
+msgstr "OFF-ROAD TEAM"
+
+#: .\main_app\templates\main_app\base.html:52
+#: .\main_app\templates\main_app\base.html:90
+msgid "CONTACTO"
+msgstr "CONTACT"
+
+#: .\main_app\templates\main_app\base.html:57
+#: .\main_app\templates\main_app\login.html:5
+msgid "Iniciar Sesión"
+msgstr "Log In"
+
+#: .\main_app\templates\main_app\base.html:58
+msgid "Registrarse"
+msgstr "Sign Up"
+
+#: .\main_app\templates\main_app\base.html:84
+msgid "INICIO"
+msgstr "HOME"
+
+#: .\main_app\templates\main_app\calendario.html:5
+msgid "Calendario SCORE"
+msgstr "SCORE Schedule"
+
+#: .\main_app\templates\main_app\calendario.html:15
+msgid "Temporada"
+msgstr "Season"
+
+#: .\main_app\templates\main_app\calendario.html:16
+msgid "Fechas oficiales de SCORE International Off-Road Racing."
+msgstr "Official race dates for SCORE International Off-Road Racing."
+
+#: .\main_app\templates\main_app\calendario.html:26
+#: .\main_app\templates\main_app\calendario.html:42
+#: .\main_app\templates\main_app\calendario.html:59
+msgid "Completada"
+msgstr "Completed"
+
+#: .\main_app\templates\main_app\calendario.html:29
+#: .\main_app\templates\main_app\home.html:51
+msgid "31 Mayo - 4 Junio 2023"
+msgstr "May 31 - June 4, 2023"
+
+#: .\main_app\templates\main_app\calendario.html:30
+#: .\main_app\templates\main_app\home.html:52
+msgid "55th SCORE Baja 500"
+msgstr "55th SCORE Baja 500"
+
+#: .\main_app\templates\main_app\calendario.html:31
+msgid ""
+"La clásica y brutal carrera de verano. Temperaturas extremas y rutas que "
+"castigan el vehículo. Una guerra de desgaste donde el equipo todoterreno "
+"demuestra de qué está hecho."
+msgstr ""
+"The classic and brutal summer race. Extreme temperatures and punishing tracks. "
+"A war of attrition where the off-road team shows what they are made of."
+
+#: .\main_app\templates\main_app\calendario.html:33
+#: .\main_app\templates\main_app\calendario.html:49
+#: .\main_app\templates\main_app\home.html:53
+#: .\main_app\templates\main_app\home.html:63
+msgid "Ensenada, B.C. México"
+msgstr "Ensenada, B.C. Mexico"
+
+#: .\main_app\templates\main_app\calendario.html:45
+#: .\main_app\templates\main_app\home.html:61
+msgid "12 - 17 Septiembre 2023"
+msgstr "September 12 - 17, 2023"
+
+#: .\main_app\templates\main_app\calendario.html:46
+#: .\main_app\templates\main_app\home.html:62
+msgid "4th SCORE Baja 400"
+msgstr "4th SCORE Baja 400"
+
+#: .\main_app\templates\main_app\calendario.html:47
+msgid ""
+"El desafío perfecto de media distancia. 400 millas de terreno súper técnico "
+"que pondrán a prueba la estrategia del equipo y prepararán el terreno para "
+"la gran final."
+msgstr ""
+"The perfect mid-distance challenge. 400 miles of highly technical terrain "
+"that will test the team's strategy and set the stage for the grand finale."
+
+#: .\main_app\templates\main_app\calendario.html:62
+msgid "13 - 18 Noviembre 2023"
+msgstr "November 13 - 18, 2023"
+
+#: .\main_app\templates\main_app\calendario.html:63
+msgid "56th SCORE Baja 1000"
+msgstr "56th SCORE Baja 1000"
+
+#: .\main_app\templates\main_app\calendario.html:64
+msgid ""
+"La madre de todas las batallas off-road. Mil millas de polvo, oscuridad, "
+"fatiga extrema y adrenalina pura cruzando toda la península. Aquí nacen las "
+"verdaderas leyendas."
+msgstr ""
+"The mother of all off-road battles. A thousand miles of dust, darkness, "
+"extreme fatigue, and pure adrenaline across the peninsula. True legends are born here."
+
+#: .\main_app\templates\main_app\calendario.html:66
+msgid "Ensenada - La Paz, B.C.S."
+msgstr "Ensenada - La Paz, B.C.S."
+
+#: .\main_app\templates\main_app\home.html:22
+msgid "EQUIPO OFICIAL DE EQUIPOS TODOTERRENO AWD"
+msgstr "OFFICIAL AWD OFF-ROAD RACING TEAM"
+
+#: .\main_app\templates\main_app\home.html:26
+msgid "BUILT IN THE"
+msgstr "BUILT IN THE"
+
+#: .\main_app\templates\main_app\home.html:26
+msgid "DESERT"
+msgstr "DESERT"
+
+#: .\main_app\templates\main_app\home.html:32
+msgid "VER CALENDARIO"
+msgstr "VIEW SCHEDULE"
+
+#: .\main_app\templates\main_app\home.html:42
+msgid "Carreras"
+msgstr "Races"
+
+#: .\main_app\templates\main_app\home.html:43
+msgid "Resumen de Temporada"
+msgstr "Season Overview"
+
+#: .\main_app\templates\main_app\home.html:74
+msgid "Patrocinadores"
+msgstr "Sponsors"
+
+#: .\main_app\templates\main_app\home.html:74
+msgid "Oficiales"
+msgstr "Official"
+
+#: .\main_app\templates\main_app\login.html:18
+msgid "Bienvenido"
+msgstr "Welcome"
+
+#: .\main_app\templates\main_app\login.html:18
+msgid "Piloto"
+msgstr "Racer"
+
+#: .\main_app\templates\main_app\login.html:19
+msgid "Ingresa tus credenciales para acceder al Paddock."
+msgstr "Enter your credentials to access the Paddock."
+
+#: .\main_app\templates\main_app\login.html:24
+msgid "Usuario o Correo"
+msgstr "Username or Email"
+
+#: .\main_app\templates\main_app\login.html:25
+#: .\main_app\templates\main_app\registro.html:27
+msgid "piloto@ejemplo.com"
+msgstr "racer@example.com"
+
+#: .\main_app\templates\main_app\login.html:29
+#: .\main_app\templates\main_app\registro.html:31
+msgid "Contraseña"
+msgstr "Password"
+
+#: .\main_app\templates\main_app\login.html:30
+#: .\main_app\templates\main_app\registro.html:32
+msgid "••••••••"
+msgstr "••••••••"
+
+#: .\main_app\templates\main_app\login.html:34
+msgid "Entrar a la cuenta"
+msgstr "Sign In to Account"
+
+#: .\main_app\templates\main_app\login.html:39
+msgid "¿No tienes cuenta?"
+msgstr "Don't have an account?"
+
+#: .\main_app\templates\main_app\login.html:39
+msgid "Regístrate aquí"
+msgstr "Register here"
+
+#: .\main_app\templates\main_app\registro.html:5
+msgid "Registro"
+msgstr "Registration"
+
+#: .\main_app\templates\main_app\registro.html:15
+msgid "Únete al"
+msgstr "Join the"
+
+#: .\main_app\templates\main_app\registro.html:15
+msgid "Equipo"
+msgstr "Team"
+
+#: .\main_app\templates\main_app\registro.html:16
+msgid "Crea tu cuenta y accede a contenido exclusivo."
+msgstr "Create your account and unlock exclusive content."
+
+#: .\main_app\templates\main_app\registro.html:21
+msgid "Nombre Completo"
+msgstr "Full Name"
+
+#: .\main_app\templates\main_app\registro.html:22
+msgid "Tu nombre"
+msgstr "Your name"
+
+#: .\main_app\templates\main_app\registro.html:26
+msgid "Correo Electrónico"
+msgstr "Email Address"
+
+#: .\main_app\templates\main_app\registro.html:36
+msgid "Crear Cuenta"
+msgstr "Create Account"
+
+#: .\main_app\templates\main_app\registro.html:41
+msgid "¿Ya tienes cuenta?"
+msgstr "Already have an account?"
+
+#: .\main_app\templates\main_app\registro.html:41
+msgid "Inicia sesión"
+msgstr "Log in"
+
+#: .\main_app\templates\main_app\todoterreno.html:5
+msgid "Equipo Todoterreno"
+msgstr "Off-Road Truck / Vehicle"
+
+#: .\main_app\templates\main_app\todoterreno.html:19
+msgid "El"
+msgstr "The"
+
+#: .\main_app\templates\main_app\todoterreno.html:19
+msgid "Monstruo"
+msgstr "Monster"
+
+#: .\main_app\templates\main_app\todoterreno.html:20
+msgid "Ingeniería pura diseñada para dominar la Baja."
+msgstr "Pure engineering built to conquer Baja."
+
+#: .\main_app\templates\main_app\todoterreno.html:29
+msgid "Poder Absoluto"
+msgstr "Absolute Power"
+
+#: .\main_app\templates\main_app\todoterreno.html:30
+msgid "Especificaciones"
+msgstr "Specifications"
+
+#: .\main_app\templates\main_app\todoterreno.html:32
+msgid "Motor:"
+msgstr "Engine:"
+
+#: .\main_app\templates\main_app\todoterreno.html:32
+msgid "V8 de Alto Rendimiento, afinado para resistencia en calor extremo."
+msgstr "High-Performance V8, tuned for endurance in extreme heat."
+
+#: .\main_app\templates\main_app\todoterreno.html:33
+msgid "Tracción:"
+msgstr "Drivetrain:"
+
+#: .\main_app\templates\main_app\todoterreno.html:33
+msgid "AWD (All-Wheel Drive) para tracción máxima en dunas y terreno suelto."
+msgstr "AWD (All-Wheel Drive) for maximum traction over dunes and loose terrain."
+
+#: .\main_app\templates\main_app\todoterreno.html:34
+msgid "Suspensión:"
+msgstr "Suspension:"
+
+#: .\main_app\templates\main_app\todoterreno.html:34
+msgid "Amortiguadores de carrera con recorrido ultra-largo."
+msgstr "Race-spec shocks with ultra-long travel."
+
+#: .\main_app\templates\main_app\todoterreno.html:35
+msgid "Chasis:"
+msgstr "Chassis:"
+
+#: .\main_app\templates\main_app\todoterreno.html:35
+msgid "Estructura tubular diseñada para impactos severos a más de 120 mph."
+msgstr "Tubular frame engineered for high impacts at speeds over 120 mph."

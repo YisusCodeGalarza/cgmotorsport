@@ -1,0 +1,72 @@
+{# Extendemos el diseño de base.html #}
+{% extends 'main_app/base.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans "Equipo Todoterreno" %} | CG Motorsports{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+<div id="bg-container" class="relative min-h-screen pt-32 pb-20 px-4 flex flex-col items-center bg-cover bg-center bg-fixed transition-all duration-1000" style="background-image: url('{% static 'main_app/images/todoterreno1.jpg' %}');">
+    
+    {# Overlay Oscuro para asegurar que las letras brillen #}
+    <div class="absolute inset-0 bg-black/85 z-0"></div>
+    
+    {# Encabezado #}
+    <div class="relative z-10 max-w-[1000px] w-full mb-12 text-center md:text-left">
+        <h1 class="font-display text-4xl md:text-5xl font-black text-white tracking-wide uppercase">{% trans "El" %} <span class="text-[#4781B3]">{% trans "Monstruo" %}</span> AWD</h1>
+        <p class="text-gray-400 text-sm mt-2 uppercase tracking-widest">{% trans "Ingeniería pura diseñada para dominar la Baja." %}</p>
+    </div>
+
+    {# Contenedor de Especificaciones (Tarjeta Dividida) #}
+    <div class="relative z-10 max-w-[1000px] w-full flex flex-col gap-10">
+        <article class="bg-[#111] border border-white/5 rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row group hover:border-[#4781B3]/50 transition-colors">
+            
+            {# Lado Izquierdo: Ficha Técnica #}
+            <div class="w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center">
+                <div class="text-[#4781B3] font-bold tracking-widest text-sm uppercase mb-2">{% trans "Poder Absoluto" %}</div>
+                <h2 class="font-display text-3xl md:text-4xl font-black text-white uppercase tracking-wide mb-4">{% trans "Especificaciones" %}</h2>
+                <ul class="text-gray-400 text-sm leading-relaxed mb-6 space-y-3">
+                    <li><strong class="text-white">{% trans "Motor:" %}</strong> {% trans "V8 de Alto Rendimiento, afinado para resistencia en calor extremo." %}</li>
+                    <li><strong class="text-white">{% trans "Tracción:" %}</strong> {% trans "AWD (All-Wheel Drive) para tracción máxima en dunas y terreno suelto." %}</li>
+                    <li><strong class="text-white">{% trans "Suspensión:" %}</strong> {% trans "Amortiguadores de carrera con recorrido ultra-largo." %}</li>
+                    <li><strong class="text-white">{% trans "Chasis:" %}</strong> {% trans "Estructura tubular diseñada para impactos severos a más de 120 mph." %}</li>
+                </ul>
+            </div>
+            
+            {# Lado Derecho: Imagen de exhibición #}
+            <div class="w-full md:w-1/2 bg-black overflow-hidden relative aspect-square md:aspect-auto">
+                <img id="card-image" src="{% static 'main_app/images/todoterreno2.jpg' %}" alt="El Equipo Todoterreno" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-700">
+            </div>
+        </article>
+    </div>
+</div>
+{% endblock %}
+
+{# Bloque para inyectar código JavaScript dinámico al final de la página #}
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const bgContainer = document.getElementById('bg-container');
+        const cardImage = document.getElementById('card-image');
+        
+        // Guardamos las rutas resueltas por Django en variables de JavaScript
+        const img1 = "{% static 'main_app/images/todoterreno1.jpg' %}";
+        const img2 = "{% static 'main_app/images/todoterreno2.jpg' %}";
+        
+        let isPrimaryState = true;
+        
+        // Ejecutar la función cíclicamente cada 6000 milisegundos (6 segundos)
+        setInterval(() => {
+            isPrimaryState = !isPrimaryState;
+            
+            // Intercambiamos las imágenes para darle dinamismo a la página
+            bgContainer.style.backgroundImage = isPrimaryState ? `url('${img1}')` : `url('${img2}')`;
+            cardImage.src = isPrimaryState ? img2 : img1;
+            
+        }, 6000);
+    });
+</script>
+{% endblock %}

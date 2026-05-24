@@ -1,0 +1,6 @@
+1.El usuario escribe tu dirección web (URL).
+2.urls.py escucha y envía al usuario hacia views.py.
+3.views.py recibe la orden, y si necesita cargar carreras, pediría ayuda a models.py (esto lo programaremos más adelante).
+4.views.py junta los datos con home.html.
+5.home.html ve que tiene un {% extends 'base.html' %}, así que agarra el esqueleto visual de base.html y le pega encima su propio hero y 6.galerías.
+7.El HTML resultante final se entrega a la pantalla del usuario.
