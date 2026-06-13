@@ -19,9 +19,6 @@ urlpatterns = [
     # Nueva ruta para la página de patrocinadores
     path('patrocinadores/', views.patrocinadores_view, name='patrocinadores'),
     
-    # Nueva ruta para la Galería de Fotos (Media)
-    path('galeria/', views.galeria_view, name='galeria'),
-    
     # Nueva ruta para el Calendario de Carreras
     path('calendario/', views.calendario_view, name='calendario'),
     
@@ -37,6 +34,21 @@ urlpatterns = [
     # Rutas para el Acceso de Usuarios (Autenticación)
     path('login/', views.login_view, name='login'),
     path('registro/', views.registro_view, name='registro'),
+    path('logout/', views.logout_view, name='logout'),
+    path('perfil/', views.perfil_view, name='perfil'),
+    
+    # Rutas de la Galería Multimedia
+    path('galeria/', views.galeria_view, name='galeria'),
+    path('galeria/foto/<int:id>/like/', views.like_foto, name='like_foto'),
+    path('galeria/foto/<int:id>/comentar/', views.comentar_foto, name='comentar_foto'),
+    
+    # Interacciones universales
+    path('patrocinadores/<int:id>/like/', views.like_patrocinador, name='like_patrocinador'),
+    path('patrocinadores/<int:id>/comentar/', views.comentar_patrocinador, name='comentar_patrocinador'),
+    path('patrocinadores/comentario/<int:id>/eliminar/', views.eliminar_comentario_patrocinador, name='eliminar_comentario_patrocinador'),
+    path('seccion/<str:nombre>/like/', views.like_seccion, name='like_seccion'),
+    path('seccion/<str:nombre>/comentar/', views.comentar_seccion, name='comentar_seccion'),
+    path('seccion/comentario/<int:id>/eliminar/', views.eliminar_comentario_seccion, name='eliminar_comentario_seccion'),
 ]
 
 # Configuramos Django para que pueda servir los archivos multimedia (imágenes subidas) durante el desarrollo

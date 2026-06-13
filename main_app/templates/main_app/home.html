@@ -13,57 +13,98 @@
         <source src="{% static 'main_app/videos/cg-trailer.mp4' %}" type="video/mp4">
     </video>
     
-    {# Overlay Oscuro para ganar legibilidad sobre el video #}
-    <div class="absolute inset-0 bg-black/50 z-10"></div>
+    {# Overlay Oscuro con efecto viñeta (más transparente en el centro) #}
+    <div class="absolute inset-0 bg-[radial-gradient(circle,rgba(0,0,0,0.2)_0%,rgba(0,0,0,0.8)_100%)] z-10"></div>
     
     {# Contenedor del texto central #}
     <div class="relative z-20 text-center flex flex-col items-center px-4 mt-16 md:mt-0">
         <p class="text-xs md:text-sm font-bold tracking-[0.25em] uppercase text-white mb-2">
-            {% translate "EQUIPO OFICIAL DE EQUIPOS TODOTERRENO AWD" %}
+            {% translate "" %}
         </p>
         
         <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-black uppercase text-center text-white mt-1 drop-shadow-lg tracking-wide">
-            {% translate "BUILT IN THE" %} <span class="text-[#4781B3]">{% translate "DESERT" %}</span>
+            {% translate "" %} <span class="text-[#4781B3]">{% translate "" %}</span>
         </h1>
-        
-        <a href="{% url 'calendario' %}" class="group mt-8 rounded-full border border-white text-white px-8 py-3.5 text-sm font-bold uppercase flex items-center justify-center space-x-3 transition-all hover:bg-white hover:text-black">
-            {# Icono SVG de un rayo (velocidad/poder) #}
+    </div>
+
+    {# Botón Ver Calendario al pie del video #}
+    <div class="absolute bottom-24 z-20 flex justify-center w-full">
+        <a href="{% url 'calendario' %}" class="group rounded-full border border-white text-white px-8 py-3.5 text-sm font-bold uppercase flex items-center justify-center space-x-3 transition-all hover:bg-white hover:text-black bg-black/40 backdrop-blur-md shadow-2xl">
             <svg class="w-5 h-5 group-hover:text-black transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
             <span>{% translate "VER CALENDARIO" %}</span>
         </a>
     </div>
 </section>
 
-{# SECCIÓN EVENTOS: Tarjetas oscuras, bordes gruesos y acentos azules #}
-<section id="eventos" class="relative py-20 bg-cover bg-center bg-fixed" style="background-image: url('{% static 'main_app/images/sf-5.bmp' %}');">
-    <div class="absolute inset-0 bg-black/90 z-0"></div>
-    <div class="relative z-10 max-w-7xl mx-auto px-4">
-        <div class="mb-12 border-l-4 border-[#4781B3] pl-4">
-        <h3 class="font-oswald text-4xl font-black uppercase tracking-tight text-white mb-1">{% trans "Carreras" %} <span class="text-[#4781B3]">2023</span></h3>
-        <p class="text-gray-400 uppercase tracking-[0.2em] text-xs font-bold">{% trans "Resumen de Temporada" %}</p>
+{# SECCIÓN EVENTOS DINÁMICA #}
+<section id="eventos" class="relative py-24 bg-[#0a0a0a] overflow-hidden">
+    {# Decoración de fondo abstracta tipo Neón #}
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+        <div class="absolute -top-40 -right-40 w-[500px] h-[500px] bg-[#4781B3] rounded-full mix-blend-screen filter blur-[150px] opacity-20"></div>
+        <div class="absolute top-40 -left-40 w-[500px] h-[500px] bg-gray-600 rounded-full mix-blend-screen filter blur-[150px] opacity-10"></div>
     </div>
-    
-    <div class="grid md:grid-cols-2 gap-8">
-        {# Tarjeta Evento 1 (Baja 500) #}
-        <div class="group bg-[#111] border border-white/5 hover:border-[#4781B3]/50 transition-colors duration-300 relative overflow-hidden">
-            <div class="absolute top-0 left-0 w-1 h-full bg-gray-600"></div>
-            <div class="p-8">
-                <span class="text-gray-400 font-bold tracking-widest text-sm uppercase">{% trans "31 Mayo - 4 Junio 2023" %}</span>
-                <h4 class="font-oswald text-3xl font-bold uppercase text-white mt-2 mb-2 group-hover:text-[#4781B3] transition-colors">{% trans "55th SCORE Baja 500" %}</h4>
-                <p class="text-gray-400 text-sm flex items-center gap-2"><i class="fas fa-map-marker-alt text-gray-500"></i> {% trans "Ensenada, B.C. México" %}</p>
-            </div>
-        </div>
+
+    <div class="relative z-10 max-w-[1440px] mx-auto px-4 md:px-8">
         
-        {# Tarjeta Evento 2 (Baja 400) #}
-        <div class="group bg-[#111] border border-white/5 hover:border-white/20 transition-colors duration-300 relative overflow-hidden opacity-60 hover:opacity-100">
-            <div class="absolute top-0 left-0 w-1 h-full bg-gray-600"></div>
-            <div class="p-8">
-                <span class="text-gray-400 font-bold tracking-widest text-sm uppercase">{% trans "12 - 17 Septiembre 2023" %}</span>
-                <h4 class="font-oswald text-3xl font-bold uppercase text-white mt-2 mb-2">{% trans "4th SCORE Baja 400" %}</h4>
-                <p class="text-gray-500 text-sm flex items-center gap-2"><i class="fas fa-map-marker-alt text-gray-600"></i> {% trans "Ensenada, B.C. México" %}</p>
+        {# Cabecera de la Sección #}
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 border-b border-white/10 pb-8">
+            <div>
+                <p class="text-[#4781B3] font-bold tracking-[0.2em] uppercase text-xs md:text-sm mb-2">{% trans "Calendario Oficial SCORE" %}</p>
+                <h2 class="font-display text-4xl md:text-5xl font-black text-white uppercase tracking-wide">
+                    {% trans "Próximas" %} <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">{% trans "Carreras" %}</span>
+                </h2>
             </div>
+            <a href="{% url 'calendario' %}" class="group hidden md:flex items-center gap-3 text-sm font-bold tracking-widest text-white hover:text-[#4781B3] uppercase transition-colors">
+                {% trans "Ver todo el calendario" %} 
+                <svg class="w-5 h-5 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </a>
         </div>
-    </div>
+
+        {# Grid de Carreras Dinámico #}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for evento in eventos %}
+                <div class="group relative bg-[#111]/80 backdrop-blur-sm border border-white/5 rounded-3xl p-8 hover:bg-[#16181C] hover:border-[#4781B3]/50 transition-all duration-500 hover:-translate-y-2 shadow-2xl flex flex-col">
+                    {# Efecto Glow en Hover #}
+                    <div class="absolute inset-0 bg-gradient-to-br from-[#4781B3]/0 via-transparent to-[#4781B3]/0 group-hover:from-[#4781B3]/10 group-hover:to-transparent rounded-3xl transition-all duration-500 pointer-events-none"></div>
+                    
+                    <div class="relative z-10 flex flex-col flex-grow">
+                        <div class="flex items-start justify-between mb-8">
+                            <div class="bg-black/50 border border-white/10 rounded-2xl px-5 py-3 text-center group-hover:border-[#4781B3]/50 transition-colors shadow-inner">
+                                <span class="block text-[#4781B3] font-black text-2xl leading-none mb-1">{{ evento.fecha|date:"d" }}</span>
+                                <span class="block text-gray-400 text-xs font-bold uppercase tracking-widest">{{ evento.fecha|date:"M" }}</span>
+                            </div>
+                            <div class="bg-white/5 px-4 py-1.5 rounded-full border border-white/5">
+                                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{{ evento.fecha|date:"Y" }}</span>
+                            </div>
+                        </div>
+                        
+                        <h3 class="font-display text-2xl md:text-3xl font-bold text-white uppercase mb-6 group-hover:text-[#4781B3] transition-colors line-clamp-2">
+                            {{ evento.titulo }}
+                        </h3>
+                        
+                        <div class="flex items-center gap-3 text-gray-400 text-sm mt-auto pt-6 border-t border-white/5">
+                            <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#4781B3]/20 transition-colors flex-shrink-0">
+                                <svg class="w-4 h-4 group-hover:text-[#4781B3] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            </div>
+                            <span class="tracking-wide line-clamp-1">{{ evento.ubicacion }}</span>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-span-full py-16 text-center border-2 border-dashed border-white/10 rounded-3xl bg-white/5">
+                    <svg class="w-12 h-12 text-gray-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    <p class="text-gray-400 uppercase tracking-widest font-bold text-sm">{% trans "Aún no hay carreras publicadas para esta temporada." %}</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        {# Botón Móvil #}
+        <div class="mt-12 text-center md:hidden">
+            <a href="{% url 'calendario' %}" class="inline-flex items-center gap-3 text-xs font-bold tracking-widest text-white bg-[#4781B3] px-8 py-4 rounded-full uppercase hover:bg-white hover:text-black transition-colors shadow-lg">
+                {% trans "Ver todo el calendario" %} 
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </a>
+        </div>
     </div>
 </section>
 

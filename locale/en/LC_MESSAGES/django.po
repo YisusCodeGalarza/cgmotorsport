@@ -1,29 +1,73 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2026 THE PACKAGE'S COPYRIGHT HOLDER
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-24 03:22-0700\n"
-"PO-Revision-Date: 2026-05-24 03:30-0700\n"
-"Last-Translator: YisusCode <piloto@ejemplo.com>\n"
-"Language-Team: English <en@li.org>\n"
+"POT-Creation-Date: 2026-05-24 20:41-0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\core_project\settings.py:127
+#: .\core_project\settings.py:129
 msgid "Español"
 msgstr "Spanish"
 
-#: .\core_project\settings.py:128
+#: .\core_project\settings.py:130
 msgid "English"
 msgstr "English"
+
+#: .\main_app\templates\main_app\Team.html:5
+msgid "El Equipo"
+msgstr "The Team"
+
+#: .\main_app\templates\main_app\Team.html:19
+#: .\main_app\templates\main_app\todoterreno.html:19
+msgid "El"
+msgstr "The"
+
+#: .\main_app\templates\main_app\Team.html:19
+#: .\main_app\templates\main_app\registro.html:15
+msgid "Equipo"
+msgstr "Team"
+
+#: .\main_app\templates\main_app\Team.html:20
+msgid "La familia detrás del Equipo todoterreno."
+msgstr "The family behind the Off-Road Team."
+
+#: .\main_app\templates\main_app\Team.html:47
+msgid "The CG Motorsports Team"
+msgstr "The CG Motorsports Team"
+
+#: .\main_app\templates\main_app\Team.html:48
+msgid "“Alone we can do so little, together we can do so much”"
+msgstr "“Alone we can do so little, together we can do so much”"
+
+#: .\main_app\templates\main_app\Team.html:59
+msgid "en"
+msgstr "in"
+
+#: .\main_app\templates\main_app\Team.html:64
+#: .\main_app\templates\main_app\galeria.html:68
+msgid "Me gusta"
+msgstr "Like"
+
+#: .\main_app\templates\main_app\Team.html:65
+msgid "Comentar"
+msgstr "Comment"
+
+#: .\main_app\templates\main_app\Team.html:66
+msgid "Compartir"
+msgstr "Share"
 
 #: .\main_app\templates\main_app\base.html:45
 #: .\main_app\templates\main_app\base.html:85
@@ -78,7 +122,7 @@ msgstr "Season"
 
 #: .\main_app\templates\main_app\calendario.html:16
 msgid "Fechas oficiales de SCORE International Off-Road Racing."
-msgstr "Official race dates for SCORE International Off-Road Racing."
+msgstr "Official dates of SCORE International Off-Road Racing."
 
 #: .\main_app\templates\main_app\calendario.html:26
 #: .\main_app\templates\main_app\calendario.html:42
@@ -102,8 +146,9 @@ msgid ""
 "castigan el vehículo. Una guerra de desgaste donde el equipo todoterreno "
 "demuestra de qué está hecho."
 msgstr ""
-"The classic and brutal summer race. Extreme temperatures and punishing tracks. "
-"A war of attrition where the off-road team shows what they are made of."
+"The classic and brutal summer race. Extreme temperatures and routes that "
+"punish the vehicle. A war of attrition where the off-road team shows "
+"what they are made of."
 
 #: .\main_app\templates\main_app\calendario.html:33
 #: .\main_app\templates\main_app\calendario.html:49
@@ -146,15 +191,77 @@ msgid ""
 "verdaderas leyendas."
 msgstr ""
 "The mother of all off-road battles. A thousand miles of dust, darkness, "
-"extreme fatigue, and pure adrenaline across the peninsula. True legends are born here."
+"extreme fatigue, and pure adrenaline crossing the entire peninsula. This "
+"is where true legends are born."
 
 #: .\main_app\templates\main_app\calendario.html:66
 msgid "Ensenada - La Paz, B.C.S."
 msgstr "Ensenada - La Paz, B.C.S."
 
+#: .\main_app\templates\main_app\contacto.html:5
+#: .\main_app\templates\main_app\contacto.html:20
+msgid "Contacto"
+msgstr "Contact"
+
+#: .\main_app\templates\main_app\contacto.html:21
+msgid "Conéctate con el equipo"
+msgstr "Connect with the team"
+
+#: .\main_app\templates\main_app\contacto.html:23
+msgid "Síguenos"
+msgstr "Follow Us"
+
+#: .\main_app\templates\main_app\contacto.html:40
+msgid ""
+"¿Dudas, patrocinios o medios? Escríbenos por mensaje directo en nuestras "
+"redes sociales y te responderemos a la brevedad."
+msgstr ""
+"Questions, sponsorships, or media? Send us a direct message on our "
+"social networks and we will respond as soon as possible."
+
+#: .\main_app\templates\main_app\galeria.html:5
+msgid "Media & Acción"
+msgstr "Media & Action"
+
+#: .\main_app\templates\main_app\galeria.html:20
+msgid "Media"
+msgstr "Media"
+
+#: .\main_app\templates\main_app\galeria.html:20
+msgid "& Acción"
+msgstr "& Action"
+
+#: .\main_app\templates\main_app\galeria.html:21
+msgid ""
+"Sigue de cerca nuestro recorrido. Tomas oficiales desde las entrañas del "
+"desierto."
+msgstr ""
+"Follow our journey closely. Official shots from the heart of the desert."
+
+#: .\main_app\templates\main_app\galeria.html:45
+msgid "San Felipe, Baja California"
+msgstr "San Felipe, Baja California"
+
+#: .\main_app\templates\main_app\galeria.html:71
+msgid ""
+"Domando las dunas a fondo. No hay terreno que nos detenga. 🏜️💨 AWD Power!"
+msgstr ""
+"Taming the dunes at full throttle. No terrain can stop us. 🏜️💨 AWD Power!"
+
+#: .\main_app\templates\main_app\galeria.html:72
+msgid "Precisión, suspensión y pura adrenalina en la Baja. 🏁🔥 #cgmotorsport"
+msgstr ""
+"Precision, suspension, and pure adrenaline in Baja. 🏁🔥 #cgmotorsport"
+
+#: .\main_app\templates\main_app\galeria.html:73
+msgid ""
+"El monstruo haciendo lo que mejor sabe hacer: volar sobre el desierto. 🦅💥"
+msgstr ""
+"The monster doing what it does best: flying over the desert. 🦅💥"
+
 #: .\main_app\templates\main_app\home.html:22
 msgid "EQUIPO OFICIAL DE EQUIPOS TODOTERRENO AWD"
-msgstr "OFFICIAL AWD OFF-ROAD RACING TEAM"
+msgstr "OFFICIAL TEAM OF AWD OFF-ROAD TEAMS"
 
 #: .\main_app\templates\main_app\home.html:26
 msgid "BUILT IN THE"
@@ -174,15 +281,7 @@ msgstr "Races"
 
 #: .\main_app\templates\main_app\home.html:43
 msgid "Resumen de Temporada"
-msgstr "Season Overview"
-
-#: .\main_app\templates\main_app\home.html:74
-msgid "Patrocinadores"
-msgstr "Sponsors"
-
-#: .\main_app\templates\main_app\home.html:74
-msgid "Oficiales"
-msgstr "Official"
+msgstr "Season Summary"
 
 #: .\main_app\templates\main_app\login.html:18
 msgid "Bienvenido"
@@ -190,7 +289,7 @@ msgstr "Welcome"
 
 #: .\main_app\templates\main_app\login.html:18
 msgid "Piloto"
-msgstr "Racer"
+msgstr "Driver"
 
 #: .\main_app\templates\main_app\login.html:19
 msgid "Ingresa tus credenciales para acceder al Paddock."
@@ -203,7 +302,7 @@ msgstr "Username or Email"
 #: .\main_app\templates\main_app\login.html:25
 #: .\main_app\templates\main_app\registro.html:27
 msgid "piloto@ejemplo.com"
-msgstr "racer@example.com"
+msgstr "driver@example.com"
 
 #: .\main_app\templates\main_app\login.html:29
 #: .\main_app\templates\main_app\registro.html:31
@@ -217,7 +316,7 @@ msgstr "••••••••"
 
 #: .\main_app\templates\main_app\login.html:34
 msgid "Entrar a la cuenta"
-msgstr "Sign In to Account"
+msgstr "Log Into Account"
 
 #: .\main_app\templates\main_app\login.html:39
 msgid "¿No tienes cuenta?"
@@ -227,6 +326,30 @@ msgstr "Don't have an account?"
 msgid "Regístrate aquí"
 msgstr "Register here"
 
+#: .\main_app\templates\main_app\patrocinadores.html:5
+msgid "Patrocinadores"
+msgstr "Sponsors"
+
+#: .\main_app\templates\main_app\patrocinadores.html:15
+msgid "Partners"
+msgstr "Partners"
+
+#: .\main_app\templates\main_app\patrocinadores.html:15
+msgid "Oficiales"
+msgstr "Official"
+
+#: .\main_app\templates\main_app\patrocinadores.html:16
+msgid "Conoce a las marcas que hacen posible cada kilómetro en el desierto."
+msgstr "Meet the brands that make every kilometer in the desert possible."
+
+#: .\main_app\templates\main_app\patrocinadores.html:64
+msgid "Ver Sitio"
+msgstr "Visit Site"
+
+#: .\main_app\templates\main_app\patrocinadores.html:70
+msgid "Aún no hay patrocinadores registrados."
+msgstr "There are no registered sponsors yet."
+
 #: .\main_app\templates\main_app\registro.html:5
 msgid "Registro"
 msgstr "Registration"
@@ -235,13 +358,9 @@ msgstr "Registration"
 msgid "Únete al"
 msgstr "Join the"
 
-#: .\main_app\templates\main_app\registro.html:15
-msgid "Equipo"
-msgstr "Team"
-
 #: .\main_app\templates\main_app\registro.html:16
 msgid "Crea tu cuenta y accede a contenido exclusivo."
-msgstr "Create your account and unlock exclusive content."
+msgstr "Create your account and access exclusive content."
 
 #: .\main_app\templates\main_app\registro.html:21
 msgid "Nombre Completo"
@@ -269,11 +388,7 @@ msgstr "Log in"
 
 #: .\main_app\templates\main_app\todoterreno.html:5
 msgid "Equipo Todoterreno"
-msgstr "Off-Road Truck / Vehicle"
-
-#: .\main_app\templates\main_app\todoterreno.html:19
-msgid "El"
-msgstr "The"
+msgstr "Off-Road Team"
 
 #: .\main_app\templates\main_app\todoterreno.html:19
 msgid "Monstruo"
@@ -281,7 +396,7 @@ msgstr "Monster"
 
 #: .\main_app\templates\main_app\todoterreno.html:20
 msgid "Ingeniería pura diseñada para dominar la Baja."
-msgstr "Pure engineering built to conquer Baja."
+msgstr "Pure engineering designed to dominate Baja."
 
 #: .\main_app\templates\main_app\todoterreno.html:29
 msgid "Poder Absoluto"
@@ -305,7 +420,7 @@ msgstr "Drivetrain:"
 
 #: .\main_app\templates\main_app\todoterreno.html:33
 msgid "AWD (All-Wheel Drive) para tracción máxima en dunas y terreno suelto."
-msgstr "AWD (All-Wheel Drive) for maximum traction over dunes and loose terrain."
+msgstr "AWD (All-Wheel Drive) for maximum traction on dunes and loose terrain."
 
 #: .\main_app\templates\main_app\todoterreno.html:34
 msgid "Suspensión:"
@@ -313,7 +428,7 @@ msgstr "Suspension:"
 
 #: .\main_app\templates\main_app\todoterreno.html:34
 msgid "Amortiguadores de carrera con recorrido ultra-largo."
-msgstr "Race-spec shocks with ultra-long travel."
+msgstr "Race shocks with ultra-long travel."
 
 #: .\main_app\templates\main_app\todoterreno.html:35
 msgid "Chasis:"
@@ -321,4 +436,4 @@ msgstr "Chassis:"
 
 #: .\main_app\templates\main_app\todoterreno.html:35
 msgid "Estructura tubular diseñada para impactos severos a más de 120 mph."
-msgstr "Tubular frame engineered for high impacts at speeds over 120 mph."
+msgstr "Tubular structure designed for severe impacts at over 120 mph."

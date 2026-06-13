@@ -29,7 +29,14 @@ SECRET_KEY = 'django-insecure-37$z5^tc)z+e_+b5-r1&*hhjuq-%uox&o$q5@op8!683u2qa9m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+# core_project/settings.py
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '*']
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://dividable-ambiance-unexpired.ngrok-free.dev',
+    'https://*.ngrok-free.dev',
+]
+
 
 
 # Application definition
@@ -71,6 +78,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n',
             ],
         },
     },
@@ -117,8 +125,13 @@ LANGUAGE_CODE = 'es'
 TIME_ZONE = 'America/Mexico_City'
 
 USE_I18N = True
+USE_L10N = True
 
 USE_TZ = True
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
 
 # 2. Configuración de idiomas soportados
 from django.utils.translation import gettext_lazy as _

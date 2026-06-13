@@ -1,0 +1,196 @@
+{% extends 'main_app/base.html' %}
+{% load static i18n %}
+
+{% block title %}{{ foto.titulo|default:"Media" }} | CG Motorsports{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="min-h-screen pt-24 pb-12 px-4 bg-[#0a0a0a] flex items-center justify-center">
+    
+    {# Contenedor principal estilo modal gigante #}
+    <div class="max-w-[1200px] w-full bg-[#111] rounded-2xl overflow-hidden shadow-2xl border border-white/10 flex flex-col md:flex-row">
+        
+        {# Sección Izquierda: LA IMAGEN GIGANTE #}
+        <div class="w-full md:w-2/3 bg-black flex items-center justify-center p-4">
+            <img src="{{ foto.imagen.url }}" alt="{{ foto.titulo }}" class="max-h-[80vh] object-contain">
+        </div>
+
+        {# Sección Derecha: LA INFORMACIÓN Y COMENTARIOS #}
+        <div class="w-full md:w-1/3 flex flex-col bg-[#16181C]">
+            
+            {# Cabecera del autor #}
+            <div class="p-5 border-b border-white/5 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <img src="{% static 'main_app/images/LogoCGMS-1.png' %}" alt="CG" class="w-40 h-40 rounded-full bg-black border border-gray-700 object-contain p-1">
+                    <div>
+                        <h3 class="font-bold text-white text-sm">CG Motorsports <i class="fas fa-check-circle text-[#4781B3] ml-1"></i></h3>
+                        <p class="text-xs text-gray-500">{{ foto.fecha_subida|date:"d M Y" }}</p>
+                    </div>
+                </div>
+            </div>
+
+            {# Descripción de la imagen #}
+            <div class="p-5 flex-grow overflow-y-auto">
+                <h1 class="text-white font-display text-2xl uppercase tracking-wide font-bold mb-3">{{ foto.titulo }}</h1>
+                <p class="text-gray-300 text-sm leading-relaxed mb-6">{{ foto.descripcion|default:"Sin descripción." }}</p>
+                
+                {# Área de comentarios #}
+                <div class="space-y-4">
+                    <p class="text-xs font-bold text-gray-500 uppercase tracking-widest border-b border-white/5 pb-2">{% trans "Comentarios" %}</p>
+                    
+                    {# Bucle que lee los comentarios guardados en la BD #}
+                    {% for comentario in foto.comentarios.all %}
+                        <div class="mb-3 group relative">
+                            <div class="flex items-start justify-between">
+                                <div class="w-full pr-4 flex gap-3">
+                                    {# Imagen de Avatar del usuario que comentó #}
+                                    <div class="flex-shrink-0 mt-1">
+                                        {% if comentario.usuario.perfil.avatar %}
+                                            <img src="{{ comentario.usuario.perfil.avatar.url }}" alt="Avatar" class="w-8 h-8 rounded-full object-cover border border-white/10">
+                                        {% else %}
+                                            <div class="w-8 h-8 rounded-full bg-[#1A1C20] flex items-center justify-center border border-white/10">
+                                                <i class="fas fa-user text-xs text-gray-400"></i>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    
+                                    {# Textos del comentario #}
+                                    <div class="flex-grow">
+                                        <p class="text-xs font-bold text-white mb-1">{{ comentario.usuario.first_name|default:comentario.usuario.username }} <span class="text-gray-500 font-normal ml-2">{{ comentario.fecha_creacion|date:"d M Y" }}</span></p>
+                                        <p id="text-{{ comentario.id }}" class="text-sm text-gray-300 leading-relaxed">{{ comentario.texto }}</p>
+                                        
+                                        {# Formulario de edición (oculto por defecto) #}
+                                        <form id="edit-form-{{ comentario.id }}" action="{% url 'editar_comentario' comentario.id %}" method="POST" class="hidden mt-2 flex flex-col gap-2">
+                                            {% csrf_token %}
+                                            <textarea name="texto" class="w-full bg-black/50 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-[#4781B3]" rows="2" required>{{ comentario.texto }}</textarea>
+                                            <div class="flex gap-3">
+                                                <button type="submit" class="text-[#4781B3] font-bold text-xs uppercase hover:text-white transition-colors">{% trans "Guardar" %}</button>
+                                                <button type="button" onclick="cancelEdit({{ comentario.id }})" class="text-gray-500 font-bold text-xs uppercase hover:text-white transition-colors">{% trans "Cancelar" %}</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                
+                                {# Menú 3 puntitos #}
+                                {% if user.is_authenticated %}
+                                <div class="relative menu-container flex-shrink-0">
+                                    <button onclick="toggleMenu('menu-{{ comentario.id }}')" class="text-gray-500 hover:text-white focus:outline-none p-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    
+                                    {# Dropdown #}
+                                    <div id="menu-{{ comentario.id }}" class="comment-menu hidden absolute right-0 mt-1 w-32 bg-[#1A1C20] rounded-lg shadow-xl border border-white/10 overflow-hidden z-20">
+                                        {% if comentario.usuario == user %}
+                                            <button onclick="editComment({{ comentario.id }})" class="w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors">{% trans "Editar" %}</button>
+                                            <form action="{% url 'eliminar_comentario' comentario.id %}" method="POST" class="m-0 border-t border-white/5">
+                                                {% csrf_token %}
+                                                <button type="submit" class="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-white/10 transition-colors" onclick="return confirm('{% trans '¿Seguro que deseas eliminar tu comentario?' %}')">{% trans "Eliminar" %}</button>
+                                            </form>
+                                        {% else %}
+                                            <form action="{% url 'reportar_comentario' comentario.id %}" method="POST" class="m-0">
+                                                {% csrf_token %}
+                                                <button type="submit" class="w-full text-left px-4 py-2 text-sm text-yellow-500 hover:bg-white/10 transition-colors" onclick="return confirm('{% trans '¿Seguro que deseas reportar este comentario?' %}')">{% trans "Reportar" %}</button>
+                                            </form>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% empty %}
+                        <p class="text-gray-400 text-sm italic">{% trans "Sé el primero en comentar esta publicación." %}</p>
+                    {% endfor %}
+                </div>
+            </div>
+
+            {# Footer: Interacciones (Like, Comentar) #}
+            <div class="p-5 border-t border-white/5 bg-[#111]">
+                <div class="flex items-center gap-5 text-2xl text-gray-400 mb-4">
+                    {% if user.is_authenticated %}
+                        <form action="{% url 'like_foto' foto.id %}" method="POST" class="inline m-0 p-0">
+                            {% csrf_token %}
+                            <button type="submit" class="focus:outline-none">
+                                {% if user in foto.likes.all %}
+                                    <i class="fas fa-heart text-red-500 hover:text-gray-400 transition-colors"></i>
+                                {% else %}
+                                    <i class="far fa-heart hover:text-red-500 transition-colors"></i>
+                                {% endif %}
+                            </button>
+                        </form>
+                    {% else %}
+                        <a href="{% url 'login' %}"><i class="far fa-heart hover:text-red-500 transition-colors"></i></a>
+                    {% endif %}
+                    <label for="comentario-input" class="cursor-pointer"><i class="far fa-comment hover:text-[#4781B3] transition-colors"></i></label>
+                    <button onclick="sharePost()" class="focus:outline-none" title="{% trans 'Compartir' %}">
+                        <i class="far fa-paper-plane hover:text-white cursor-pointer transition-colors"></i>
+                    </button>
+                </div>
+                <p class="text-white text-sm font-bold mb-3">{{ foto.total_likes }} {% trans "Me gusta" %}</p>
+                
+                {% if user.is_authenticated %}
+                    <form action="{% url 'comentar_foto' foto.id %}" method="POST" class="flex items-center gap-3">
+                        {% csrf_token %}
+                        <input type="text" id="comentario-input" name="comentario" required placeholder="{% trans 'Añade un comentario...' %}" class="flex-grow bg-black/50 border border-white/10 rounded-full px-4 py-2 text-sm text-white focus:outline-none focus:border-[#4781B3] transition-colors">
+                        <button type="submit" class="text-[#4781B3] font-bold text-sm uppercase tracking-wider hover:text-white transition-colors">{% trans "Publicar" %}</button>
+                    </form>
+                {% else %}
+                    <p class="text-xs text-gray-500"><a href="{% url 'login' %}" class="text-[#4781B3] hover:underline font-bold">{% trans "Inicia sesión" %}</a> {% trans "para comentar o dar me gusta." %}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function sharePost() {
+        const url = window.location.href; // Captura la URL exacta de esta foto
+        const title = "{{ foto.titulo|default:'CG Motorsports'|escapejs }}";
+        
+        if (navigator.share) {
+            // Abre el menú nativo de compartir en celulares y navegadores modernos
+            navigator.share({
+                title: title,
+                url: url
+            }).catch((error) => console.log('Error compartiendo:', error));
+        } else {
+            // Si está en PC y no hay menú nativo, copia el enlace
+            navigator.clipboard.writeText(url).then(() => {
+                alert('{% trans "¡Enlace copiado al portapapeles!" %}');
+            });
+        }
+    }
+
+    // Lógica para el menú de 3 puntitos y edición de comentarios
+    function toggleMenu(menuId) {
+        document.querySelectorAll('.comment-menu').forEach(menu => {
+            if (menu.id !== menuId) menu.classList.add('hidden');
+        });
+        const menu = document.getElementById(menuId);
+        menu.classList.toggle('hidden');
+    }
+
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.menu-container')) {
+            document.querySelectorAll('.comment-menu').forEach(menu => {
+                menu.classList.add('hidden');
+            });
+        }
+    });
+
+    function editComment(id) {
+        document.getElementById('text-' + id).classList.add('hidden');
+        document.getElementById('edit-form-' + id).classList.remove('hidden');
+        document.getElementById('menu-' + id).classList.add('hidden');
+    }
+
+    function cancelEdit(id) {
+        document.getElementById('text-' + id).classList.remove('hidden');
+        document.getElementById('edit-form-' + id).classList.add('hidden');
+    }
+</script>
+{% endblock %}

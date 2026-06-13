@@ -1,82 +1,206 @@
-{# Extendemos el diseño de base.html #}
 {% extends 'main_app/base.html' %}
 {% load static i18n %}
 
-{% block title %}{% trans "Media & Acción" %} | CG Motorsports{% endblock %}
+{% block title %}{% trans "Media" %} | CG Motorsports{% endblock %}
 
-{# Inyectamos FontAwesome solo en esta página para los iconos de la red social #}
 {% block extra_head %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 {% endblock %}
 
 {% block content %}
-<div class="relative min-h-screen pt-32 pb-20 px-4 flex flex-col items-center bg-cover bg-center bg-fixed" style="background-image: url('{% static 'main_app/images/sf-4.bmp' %}');">
+<div class="min-h-screen pt-32 pb-20 px-4 max-w-[1440px] mx-auto relative">
     
-    {# Overlay Oscuro para ganar legibilidad #}
-    <div class="absolute inset-0 bg-black/85 z-0"></div>
-    
-    {# Encabezado de la Galería #}
-    <div class="relative z-10 max-w-7xl w-full mb-12 text-center md:text-left">
-        <h1 class="font-display text-4xl md:text-5xl font-black text-white tracking-wide uppercase">{% trans "Media" %} <span class="text-[#4781B3]">{% trans "& Acción" %}</span></h1>
-        <p class="text-gray-400 text-sm mt-2">{% trans "Sigue de cerca nuestro recorrido. Tomas oficiales desde las entrañas del desierto." %}</p>
+    <div class="text-center mb-16">
+        <h1 class="font-display text-4xl md:text-5xl font-black text-white tracking-wide uppercase mb-2">{% trans "Galería" %}</h1>
+        <p class="text-gray-400 text-sm uppercase tracking-widest">{% trans "Toda la acción del Off-Road" %}</p>
+        
+        {# Botón para Administradores: Crear Álbum #}
+        {% if user.is_staff %}
+        <div class="mt-6 flex justify-center">
+            <a href="{% url 'admin:main_app_album_add' %}" target="_blank" class="inline-flex items-center justify-center bg-[#4781B3] text-white font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-full hover:bg-white hover:text-black transition-colors shadow-lg">
+                <i class="fas fa-plus mr-2"></i> {% trans "Crear Nuevo Álbum" %}
+            </a>
+        </div>
+        {% endif %}
     </div>
 
-    {# Contenedor Masonry (Mampostería) para que los posts se acomoden sin espacios huecos #}
-    <div class="relative z-10 max-w-7xl w-full columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
-
-        {# MAGIA DE DJANGO: Un bucle del 1 al 9 para generar los 9 posts automáticamente #}
-        {% for i in "123456789"|make_list %}
-            
-            {# Construimos dinámicamente la ruta: main_app/images/sf-1.bmp, sf-2.bmp, etc. #}
-            {% with image_path="main_app/images/sf-"|add:i|add:".bmp" %}
-            
-            {# Tarjeta del Post (Diseño Glassmorphism Moderno) #}
-            <article class="break-inside-avoid bg-[#111315]/90 backdrop-blur-md border border-white/5 rounded-[2rem] overflow-hidden shadow-2xl hover:border-[#4781B3]/40 transition-all duration-300 group">
+    {% for album in albumes %}
+        <div class="mb-16">
+            <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-white/10 pb-4 mb-8 gap-4">
+                <h2 class="font-display text-2xl md:text-3xl text-white uppercase">
+                    {{ album.titulo }} <span class="text-[#4781B3] text-sm ml-4">{{ album.fotos.count }} Archivos</span>
+                </h2>
                 
-                {# Cabecera del Post (Avatar y Usuario) #}
-                <div class="p-5 flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <img src="{% static 'main_app/images/logo.png' %}" alt="CG" class="w-11 h-11 rounded-full bg-black border border-gray-700 object-contain p-1.5">
-                        <div>
-                            <h3 class="font-bold text-white text-sm flex items-center gap-1">
-                                CG Motorsports
-                                <svg class="w-4 h-4 text-[#4781B3]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg>
-                            </h3>
-                            <p class="text-xs text-gray-400">{% trans "San Felipe, Baja California" %}</p>
-                        </div>
-                    </div>
-                    <button class="text-gray-600 hover:text-white transition-colors">
-                        <i class="fas fa-ellipsis-h"></i>
-                    </button>
-                </div>
-
-                {# Imagen a lo ancho total (Sin bordes como Instagram) #}
-                <div class="w-full bg-black relative cursor-pointer overflow-hidden">
-                    <img src="{% static image_path %}" alt="Toma de acción {{ i }}" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
-                </div>
-
-                {# Footer del Post (Interacciones y Descripción) #}
-                <div class="p-5">
-                    <div class="flex items-center justify-between mb-4 text-gray-400 text-[1.35rem]">
-                        <div class="flex gap-5">
-                            <i class="far fa-heart hover:text-red-500 hover:scale-110 cursor-pointer transition-all"></i>
-                            <i class="far fa-comment hover:text-[#4781B3] hover:scale-110 cursor-pointer transition-all"></i>
-                            <i class="far fa-paper-plane hover:text-white hover:scale-110 cursor-pointer transition-all"></i>
-                        </div>
-                        <i class="far fa-bookmark hover:text-white hover:scale-110 cursor-pointer transition-all"></i>
-                    </div>
-                    <p class="text-white text-sm font-bold mb-2">1,{{ i }}42 {% trans "Me gusta" %}</p>
-                    <p class="text-gray-300 text-sm leading-relaxed">
-                        <span class="font-bold text-white mr-1">cgmotorsports</span>
-                        {% if i in "147" %}{% trans "Domando las dunas a fondo. No hay terreno que nos detenga. 🏜️💨 AWD Power!" %}
-                        {% elif i in "258" %}{% trans "Precisión, suspensión y pura adrenalina en la Baja. 🏁🔥 #cgmotorsport" %}
-                        {% else %}{% trans "El monstruo haciendo lo que mejor sabe hacer: volar sobre el desierto. 🦅💥" %}
+                {# Botón para Administradores: Editar Álbum #}
+                {% if user.is_staff %}
+                    <a href="{% url 'admin:main_app_album_change' album.id %}" target="_blank" class="text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-white transition-colors bg-white/5 px-4 py-2 rounded-lg border border-white/10 hover:border-white/30 flex items-center w-fit">
+                        <i class="fas fa-edit mr-2"></i> {% trans "Subir Fotos / Editar Álbum" %}
+                    </a>
+                {% endif %}
+            </div>
+            
+            {# Grid Estilo Masonry #}
+            <div class="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+                {% for foto in album.fotos.all %}
+                    <div class="break-inside-avoid relative group cursor-pointer rounded-xl overflow-hidden bg-black shadow-xl border border-white/5 transition-transform duration-300 hover:-translate-y-1" onclick="openModal('{{ foto.id }}')">
+                        
+                        {% if foto.es_video %}
+                            <div class="absolute inset-0 flex items-center justify-center z-10 bg-black/30 group-hover:bg-black/10 transition-colors">
+                                <i class="fas fa-play-circle text-white/80 text-5xl drop-shadow-lg"></i>
+                            </div>
+                            {# Si tiene miniatura la usa, si no asume un cuadro negro representativo #}
+                            <img src="{% if foto.imagen %}{{ foto.imagen.url }}{% else %}{% static 'main_app/images/sf-6.bmp' %}{% endif %}" class="w-full object-cover opacity-70" alt="Video">
+                        {% else %}
+                            {% if foto.imagen %}
+                                <img src="{{ foto.imagen.url }}" class="w-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" alt="Foto">
+                            {% endif %}
                         {% endif %}
-                    </p>
+
+                        {# Contador rápido de Likes al hacer hover #}
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex gap-4 text-white">
+                            <span><i class="fas fa-heart text-[#4781B3]"></i> {{ foto.likes.count }}</span>
+                            <span><i class="fas fa-comment text-gray-400"></i> {{ foto.comentarios.count }}</span>
+                        </div>
+
+                        {# PAQUETE DE DATOS OCULTO PARA EL JAVASCRIPT #}
+                        <div id="data-{{ foto.id }}" class="hidden">
+                            <div class="is-video">{{ foto.es_video|yesno:"true,false" }}</div>
+                            <div class="media-url">{% if foto.es_video and foto.archivo_video %}{{ foto.archivo_video.url }}{% elif foto.imagen %}{{ foto.imagen.url }}{% endif %}</div>
+                            <div class="likes-count">{{ foto.likes.count }}</div>
+                            <div class="user-liked">{% if request.user in foto.likes.all %}true{% else %}false{% endif %}</div>
+                            <div class="action-like">{% url 'like_foto' foto.id %}</div>
+                            <div class="action-comment">{% url 'comentar_foto' foto.id %}</div>
+                            <div class="comments-html">
+                                {% for c in foto.comentarios.all %}
+                                    <div class="mb-4">
+                                        <span class="font-bold text-white text-sm">{{ c.usuario.first_name|default:c.usuario.username }}</span>
+                                        <span class="text-xs text-gray-500 ml-2">{{ c.fecha_creacion|date:"d M Y" }}</span>
+                                        <p class="text-gray-300 text-sm mt-1">{{ c.texto }}</p>
+                                    </div>
+                                {% empty %}
+                                    <p class="text-gray-500 text-sm italic">{% trans "Sé el primero en comentar." %}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% empty %}
+        <div class="text-center text-gray-500 py-20">{% trans "Aún no hay álbumes publicados." %}</div>
+    {% endfor %}
+
+</div>
+
+{# MODAL ESTILO FACEBOOK #}
+<div id="mediaModal" class="fixed inset-0 z-[100] hidden flex-col md:flex-row bg-black/95 backdrop-blur-xl transition-opacity">
+    
+    {# Botón Cerrar #}
+    <button onclick="closeModal()" class="absolute top-4 right-4 z-[110] text-gray-400 hover:text-white transition-colors">
+        <i class="fas fa-times text-3xl"></i>
+    </button>
+
+    {# Lado Izquierdo: Multimedia (70%) #}
+    <div class="w-full md:w-[70%] h-[40vh] md:h-screen flex items-center justify-center bg-black relative p-4">
+        <img id="modalImg" class="max-w-full max-h-full object-contain hidden shadow-2xl" src="" alt="Ampliada">
+        <video id="modalVid" class="max-w-full max-h-full hidden outline-none shadow-2xl" controls autoplay muted loop>
+            <source src="" type="video/mp4">
+        </video>
+    </div>
+
+    {# Lado Derecho: Interacción (30%) #}
+    <div class="w-full md:w-[30%] h-[60vh] md:h-screen bg-[#111] border-l border-white/10 flex flex-col relative overflow-hidden">
+        
+        {# Header de la Modal #}
+        <div class="p-6 border-b border-white/10 flex items-center gap-4 bg-[#0a0a0a]">
+            <img src="{% static 'main_app/images/LogoCGMS-2.png' %}" class="h-8 object-contain">
+            <div>
+                <h3 class="text-white font-bold tracking-widest uppercase text-sm">CG Motorsports</h3>
+                <p class="text-xs text-[#4781B3]">Baja Official Media</p>
+            </div>
+        </div>
+
+        {# Lista de Comentarios (Haciendo Scroll) #}
+        <div id="modalComments" class="flex-1 overflow-y-auto p-6 space-y-4 scrollbar-thin scrollbar-thumb-white/20">
+            <!-- Se llenará vía JS -->
+        </div>
+
+        {# Botonera de Acciones e Input #}
+        <div class="p-6 bg-[#0a0a0a] border-t border-white/10">
+            <div class="flex items-center gap-6 mb-4">
+                <a id="btnLike" href="#" class="text-2xl text-gray-400 hover:text-[#4781B3] transition-colors"><i class="fas fa-heart"></i> <span id="likesCounter" class="text-sm ml-1 font-bold">0</span></a>
+                <button class="text-2xl text-gray-400 hover:text-white transition-colors"><i class="fas fa-share-alt"></i></button>
+            </div>
+            
+            <form id="commentForm" method="POST" action="">
+                {% csrf_token %}
+                <div class="relative">
+                    <input type="text" name="comentario" required placeholder="{% trans 'Escribe un comentario...' %}" class="w-full bg-white/5 border border-white/10 rounded-full px-5 py-3 text-sm text-white focus:outline-none focus:border-[#4781B3] transition-colors">
+                    <button type="submit" class="absolute right-2 top-1.5 bottom-1.5 px-4 bg-[#4781B3] rounded-full text-white text-xs font-bold hover:bg-white hover:text-black transition-colors"><i class="fas fa-paper-plane"></i></button>
                 </div>
-            </article>
-            {% endwith %}
-        {% endfor %}
+            </form>
+        </div>
     </div>
 </div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function openModal(id) {
+        const modal = document.getElementById('mediaModal');
+        const data = document.getElementById('data-' + id);
+        
+        const isVideo = data.querySelector('.is-video').textContent === 'true';
+        const url = data.querySelector('.media-url').textContent;
+        const likes = data.querySelector('.likes-count').textContent;
+        const liked = data.querySelector('.user-liked').textContent === 'true';
+        
+        // Configurar Vista
+        const imgEl = document.getElementById('modalImg');
+        const vidEl = document.getElementById('modalVid');
+        
+        if(isVideo) {
+            imgEl.classList.add('hidden');
+            vidEl.classList.remove('hidden');
+            vidEl.src = url;
+        } else {
+            vidEl.classList.add('hidden');
+            vidEl.pause();
+            imgEl.classList.remove('hidden');
+            imgEl.src = url;
+        }
+        
+        // Configurar Datos y Formularios
+        document.getElementById('modalComments').innerHTML = data.querySelector('.comments-html').innerHTML;
+        document.getElementById('likesCounter').textContent = likes;
+        
+        const btnLike = document.getElementById('btnLike');
+        btnLike.href = data.querySelector('.action-like').textContent;
+        if(liked) btnLike.classList.replace('text-gray-400', 'text-[#4781B3]');
+        else btnLike.classList.replace('text-[#4781B3]', 'text-gray-400');
+        
+        document.getElementById('commentForm').action = data.querySelector('.action-comment').textContent;
+        
+        // Mostrar Modal
+        document.body.style.overflow = 'hidden';
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('mediaModal');
+        document.getElementById('modalVid').pause();
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Auto-Abrir si la URL manda la orden (cuando alguien da like y la página recarga)
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const openId = urlParams.get('open');
+        if(openId) openModal(openId);
+    };
+</script>
 {% endblock %}

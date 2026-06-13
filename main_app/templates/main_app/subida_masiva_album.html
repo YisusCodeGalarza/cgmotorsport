@@ -1,0 +1,18 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<div id="content-main">
+    <h2>Subida Masiva al Álbum: <strong>{{ album.titulo }}</strong></h2>
+    <p>Selecciona múltiples imágenes o videos desde tu computadora. Los videos MP4 se detectarán automáticamente.</p>
+    
+    <form method="post" enctype="multipart/form-data" style="margin-top: 20px; padding: 20px; border: 1px dashed #ccc; background: #f9f9f9;">
+        {% csrf_token %}
+        <div style="margin-bottom: 20px;">
+            <input type="file" name="fotos" multiple required style="padding: 10px; font-size: 16px;">
+        </div>
+        <div class="submit-row">
+            <input type="submit" value="Subir Archivos" class="default" style="cursor: pointer;">
+        </div>
+    </form>
+</div>
+{% endblock %}

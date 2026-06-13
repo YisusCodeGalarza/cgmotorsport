@@ -28,7 +28,7 @@
             {# Cabecera del Post (Perfil y Fecha) #}
             <div class="p-4 flex items-center justify-between">
                 <div class="flex items-center gap-3">
-                    <img src="{% static 'main_app/images/logo.png' %}" alt="CG Motorsports" class="w-10 h-10 rounded-full bg-black border border-gray-700 object-contain p-1">
+                    <img src="{% static 'main_app/images/LogoCGMS-1.png' %}" alt="CG Motorsports" class="w-40 h-40 rounded-full bg-black border border-gray-700 object-contain p-1">
                     <div class="leading-tight">
                         <h3 class="font-bold text-white text-[15px] flex items-center gap-1 hover:underline cursor-pointer">
                             CG Motorsports
@@ -60,12 +60,77 @@
             </div>
 
             {# Botones de Interacción #}
-            <div class="px-4 py-1.5 flex justify-between items-center text-gray-400 font-semibold text-[15px]">
-                <button class="flex-1 flex items-center justify-center gap-2 py-2 hover:bg-white/10 rounded-md transition-colors"><i class="far fa-thumbs-up text-[18px]"></i> {% trans "Me gusta" %}</button>
-                <button class="flex-1 flex items-center justify-center gap-2 py-2 hover:bg-white/10 rounded-md transition-colors"><i class="far fa-comment-alt text-[18px]"></i> {% trans "Comentar" %}</button>
-                <button class="flex-1 flex items-center justify-center gap-2 py-2 hover:bg-white/10 rounded-md transition-colors"><i class="fas fa-share text-[18px]"></i> {% trans "Compartir" %}</button>
+            <div class="px-4 py-1.5 border-b border-gray-800 flex justify-between items-center text-gray-400 font-semibold text-[15px]">
+                <form action="{% url 'like_seccion' seccion.nombre %}" method="POST" class="flex-1 flex">
+                    {% csrf_token %}
+                    <button type="submit" class="w-full flex items-center justify-center gap-2 py-2 hover:bg-white/10 rounded-md transition-colors {% if user in seccion.likes.all %}text-[#4781B3]{% endif %}">
+                        <i class="{% if user in seccion.likes.all %}fas{% else %}far{% endif %} fa-thumbs-up text-[18px]"></i> 
+                        <span>{{ seccion.likes.count }}</span> <span class="hidden sm:inline">{% trans "Me gusta" %}</span>
+                    </button>
+                </form>
+                <button onclick="toggleComments('comments-equipo')" class="flex-1 flex items-center justify-center gap-2 py-2 hover:bg-white/10 rounded-md transition-colors">
+                    <i class="far fa-comment-alt text-[18px]"></i> <span>{{ seccion.comentarios.count }}</span> <span class="hidden sm:inline">{% trans "Comentar" %}</span>
+                </button>
+                <button onclick="shareURL('{{ request.build_absolute_uri }}', 'CG Motorsports Team')" class="flex-1 flex items-center justify-center gap-2 py-2 hover:bg-white/10 rounded-md transition-colors">
+                    <i class="fas fa-share text-[18px]"></i> <span class="hidden sm:inline">{% trans "Compartir" %}</span>
+                </button>
+            </div>
+            
+            {# Sección de Comentarios #}
+            <div id="comments-equipo" class="hidden flex-col gap-4 p-4 bg-[#1A1C20]">
+                <div class="space-y-3 max-h-60 overflow-y-auto pr-2">
+                    {% for comentario in seccion.comentarios.all %}
+                        <div class="bg-black/40 p-3 rounded-lg border border-white/5 relative group">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="text-[13px] font-bold text-white flex items-center gap-2">
+                                    {% if comentario.usuario.perfil.avatar %}<img src="{{ comentario.usuario.perfil.avatar.url }}" class="w-5 h-5 rounded-full object-cover">{% else %}<i class="fas fa-user text-gray-500 text-xs"></i>{% endif %}
+                                    {{ comentario.usuario.first_name|default:comentario.usuario.username }}
+                                </span>
+                                {% if comentario.usuario == user %}
+                                    <form action="{% url 'eliminar_comentario_seccion' comentario.id %}" method="POST" class="inline opacity-0 group-hover:opacity-100 transition-opacity">
+                                        {% csrf_token %}
+                                        <button type="submit" class="text-gray-500 hover:text-red-500 text-xs"><i class="fas fa-trash"></i></button>
+                                    </form>
+                                {% endif %}
+                            </div>
+                            <p class="text-sm text-gray-300 ml-7">{{ comentario.texto }}</p>
+                        </div>
+                    {% empty %}
+                        <p class="text-sm text-gray-500 italic text-center">{% trans "Sé el primero en comentar." %}</p>
+                    {% endfor %}
+                </div>
+                
+                {% if user.is_authenticated %}
+                    <form action="{% url 'comentar_seccion' seccion.nombre %}" method="POST" class="flex items-center gap-3 mt-2">
+                        {% csrf_token %}
+                        <input type="text" name="comentario" required placeholder="{% trans 'Escribe un comentario...' %}" class="flex-grow bg-black/50 border border-white/10 rounded-full px-4 py-2 text-sm text-white focus:outline-none focus:border-[#4781B3]">
+                        <button type="submit" class="text-[#4781B3] font-bold text-sm uppercase hover:text-white transition-colors">{% trans "Publicar" %}</button>
+                    </form>
+                {% else %}
+                    <p class="text-xs text-gray-500 text-center"><a href="{% url 'login' %}" class="text-[#4781B3] hover:underline font-bold">{% trans "Inicia sesión" %}</a> {% trans "para comentar." %}</p>
+                {% endif %}
             </div>
         </article>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function toggleComments(id) {
+        const el = document.getElementById(id);
+        if (el.classList.contains('hidden')) {
+            el.classList.replace('hidden', 'flex');
+        } else {
+            el.classList.replace('flex', 'hidden');
+        }
+    }
+    function shareURL(url, title) {
+        if (navigator.share) {
+            navigator.share({ title: title, url: url }).catch(console.error);
+        } else {
+            navigator.clipboard.writeText(url).then(() => alert('{% trans "¡Enlace copiado al portapapeles!" %}'));
+        }
+    }
+</script>
 {% endblock %}
