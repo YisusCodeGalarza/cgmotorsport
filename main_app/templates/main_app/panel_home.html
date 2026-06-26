@@ -1,0 +1,58 @@
+{% extends 'main_app/panel_base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Dashboard" %} | CG Motorsports{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    
+    <!-- Encabezado -->
+    <div class="mb-10">
+        <h1 class="font-display text-3xl font-black text-white uppercase tracking-wide">{% trans "Panel de Control" %}</h1>
+        <p class="text-gray-400 text-sm mt-1">{% trans "Bienvenido de vuelta. Aquí tienes un resumen del estado del equipo." %}</p>
+    </div>
+
+    <!-- Tarjetas de Estadísticas (Stats) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        
+        <!-- Tarjeta 1: Mensajes -->
+        <a href="{% url 'panel_mensajes' %}" class="bg-[#111] border border-white/10 rounded-2xl p-6 flex flex-col relative overflow-hidden group hover:border-[#4781B3] transition-colors">
+            <div class="flex justify-between items-start mb-4 relative z-10">
+                <div class="w-12 h-12 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-xl"><i class="fas fa-envelope"></i></div>
+                <span class="text-3xl font-black font-display text-white">{{ stats.mensajes_noleidos }}</span>
+            </div>
+            <p class="text-sm font-bold text-gray-300 uppercase tracking-widest relative z-10">{% trans "Mensajes sin leer" %}</p>
+        </a>
+
+        <!-- Tarjeta 2: Propuestas -->
+        <a href="{% url 'panel_propuestas' %}" class="bg-[#111] border border-white/10 rounded-2xl p-6 flex flex-col relative overflow-hidden group hover:border-green-500 transition-colors">
+            <div class="flex justify-between items-start mb-4 relative z-10">
+                <div class="w-12 h-12 rounded-xl bg-green-500/20 text-green-400 flex items-center justify-center text-xl"><i class="fas fa-handshake"></i></div>
+                <span class="text-3xl font-black font-display text-white">{{ stats.propuestas_nuevas }}</span>
+            </div>
+            <p class="text-sm font-bold text-gray-300 uppercase tracking-widest relative z-10">{% trans "Nuevos Patrocinios" %}</p>
+        </a>
+
+        <!-- Tarjeta 3: Calendario -->
+        <div class="bg-[#111] border border-white/10 rounded-2xl p-6 flex flex-col relative overflow-hidden group">
+            <div class="flex justify-between items-start mb-4 relative z-10">
+                <div class="w-12 h-12 rounded-xl bg-[#4781B3]/20 text-[#4781B3] flex items-center justify-center text-xl"><i class="fas fa-flag-checkered"></i></div>
+                <span class="text-3xl font-black font-display text-white">{{ stats.eventos_activos }}</span>
+            </div>
+            <p class="text-sm font-bold text-gray-300 uppercase tracking-widest relative z-10">{% trans "Carreras Activas" %}</p>
+        </div>
+
+        <!-- Tarjeta 4: Patrocinadores -->
+        <div class="bg-[#111] border border-white/10 rounded-2xl p-6 flex flex-col relative overflow-hidden group">
+            <div class="flex justify-between items-start mb-4 relative z-10">
+                <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-xl"><i class="fas fa-star"></i></div>
+                <span class="text-3xl font-black font-display text-white">{{ stats.patrocinadores }}</span>
+            </div>
+            <p class="text-sm font-bold text-gray-300 uppercase tracking-widest relative z-10">{% trans "Marcas Aliadas" %}</p>
+        </div>
+    </div>
+
+    <!-- El siguiente paso será poner tablas interactivas en esta zona inferior -->
+
+</div>
+{% endblock %}

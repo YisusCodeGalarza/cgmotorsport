@@ -1,0 +1,590 @@
+[
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$GzDckImPxPhJJIJ7YuW1cF$akT8ALRLOwX7RdQcWrg02f+OQDryZmtfNZu83Bx8sY0=",
+        "last_login": "2026-06-17T20:36:21.362Z",
+        "is_superuser": true,
+        "username": "Admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "Admin@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-06-13T04:11:18.420Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$gXyDlrVTcpgsvrkpD7TxK1$xSa2ex214IHetRScIXFMjemBHHWpP3+WpcdqhE3vnEc=",
+        "last_login": "2026-06-13T04:21:10.629Z",
+        "is_superuser": false,
+        "username": "Jose@gmail.com",
+        "first_name": "Jose",
+        "last_name": "",
+        "email": "Jose@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-06-13T04:18:38Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$XCWToNOCVSR5cuUsFsFiBA$pVXncVNMtWTag6NKgvuLZbFJ2CTLlZKGvRKhMohXXyY=",
+        "last_login": "2026-06-18T05:45:39.694Z",
+        "is_superuser": false,
+        "username": "Armando@gmail.com",
+        "first_name": "Armando",
+        "last_name": "",
+        "email": "Armando@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-06-18T05:45:39.518Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "39g5l94fz8azimv1vg31bm86xelppdlu",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSGlMDxcuvcbyHQYpGogKe3K-O_apAvd3nPOfYmI21ri1nmJcxJnocTpd5uQHlx3kO5Yb01Sq-syT3JX5EG7vLbEz8vh_h0U7OVbEwdHZjQ2sw7ZAeikPSbvAjhUAJYGpDx6A9miJufMYC0pxgBoFRrx_gDbvzeJ:1wZwzl:PKexOvHQg0GePx7Tg4QT217AEvXpCQCD3R4nYbgWr2g",
+        "expire_date": "2026-07-01T20:36:21.363Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "mpgypna212iy5qk2uojp5mfdxg13qc5e",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSGlMDxcuvcbyHQYpGogKe3K-O_apAvd3nPOfYmI21ri1nmJcxJnocTpd5uQHlx3kO5Yb01Sq-syT3JX5EG7vLbEz8vh_h0U7OVbEwdHZjQ2sw7ZAeikPSbvAjhUAJYGpDx6A9miJufMYC0pxgBoFRrx_gDbvzeJ:1wZwJf:m6ObwWBhlt1tIXYs11ERF-Wg_u1dag8IYDq7Iimr5GA",
+        "expire_date": "2026-07-01T19:52:51.209Z"
+    }
+},
+{
+    "model": "main_app.evento",
+    "pk": 1,
+    "fields": {
+        "titulo": "Baja 500",
+        "fecha": "0001-01-01",
+        "ubicacion": "Ensenada",
+        "descripcion": "",
+        "imagen": "",
+        "activo": true
+    }
+},
+{
+    "model": "main_app.evento",
+    "pk": 2,
+    "fields": {
+        "titulo": "Baja 1000",
+        "fecha": "1995-03-12",
+        "ubicacion": "San Felipe",
+        "descripcion": "La mas perrona!",
+        "imagen": "eventos/baja_1000.webp",
+        "activo": true
+    }
+},
+{
+    "model": "main_app.evento",
+    "pk": 3,
+    "fields": {
+        "titulo": "Baja 400",
+        "fecha": "0001-01-01",
+        "ubicacion": "Ensenada",
+        "descripcion": "",
+        "imagen": "eventos/baja_400.webp",
+        "activo": true
+    }
+},
+{
+    "model": "main_app.album",
+    "pk": 1,
+    "fields": {
+        "titulo": "Baja 1000",
+        "descripcion": "Ensenada!",
+        "evento": 2,
+        "portada": "galeria/portadas/sf-3.jpg",
+        "fecha_creacion": "2026-06-13T04:15:15.280Z"
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 14,
+    "fields": {
+        "album": 1,
+        "imagen": "galeria/fotos/sf-1_AxOoSuM.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-18T05:30:23.358Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 15,
+    "fields": {
+        "album": 1,
+        "imagen": "galeria/fotos/sf-2_GrdtBL7.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-18T05:30:23.366Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 16,
+    "fields": {
+        "album": 1,
+        "imagen": "galeria/fotos/sf-3_0uNPyi4.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-18T05:30:23.377Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 17,
+    "fields": {
+        "album": 1,
+        "imagen": "galeria/fotos/sf-4_LAxlxBQ.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-18T05:30:23.387Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 18,
+    "fields": {
+        "album": 1,
+        "imagen": "galeria/fotos/sf-5_ZKLnWs1.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-18T05:30:23.398Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 19,
+    "fields": {
+        "album": 1,
+        "imagen": "galeria/fotos/sf-6_hayQWxW.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-18T05:30:23.407Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 20,
+    "fields": {
+        "album": 1,
+        "imagen": "galeria/fotos/sf-7_kGWZflp.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-18T05:30:23.416Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 21,
+    "fields": {
+        "album": 1,
+        "imagen": "galeria/fotos/sf-8_MdAghA1.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-18T05:30:23.424Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 22,
+    "fields": {
+        "album": 1,
+        "imagen": "galeria/fotos/sf-9_LENprzk.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-18T05:30:23.433Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 23,
+    "fields": {
+        "album": 1,
+        "imagen": "galeria/fotos/todoterreno1_svvlrNG.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-18T05:30:23.434Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 24,
+    "fields": {
+        "album": 1,
+        "imagen": "galeria/fotos/todoterreno2_wPWTFgw.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-18T05:30:23.435Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.perfil",
+    "pk": 1,
+    "fields": {
+        "usuario": [
+            "Admin"
+        ],
+        "avatar": ""
+    }
+},
+{
+    "model": "main_app.perfil",
+    "pk": 2,
+    "fields": {
+        "usuario": [
+            "Jose@gmail.com"
+        ],
+        "avatar": ""
+    }
+},
+{
+    "model": "main_app.perfil",
+    "pk": 3,
+    "fields": {
+        "usuario": [
+            "Armando@gmail.com"
+        ],
+        "avatar": ""
+    }
+},
+{
+    "model": "main_app.patrocinador",
+    "pk": 1,
+    "fields": {
+        "nombre": "Mirage",
+        "logo": "patrocinadores/mirage-logo.png",
+        "sitio_web": "https://www.instagram.com/mirageraceprep/",
+        "descripcion": "Mirage Race Prep",
+        "red_social_usuario": "@mirage",
+        "red_social_url": "https://www.instagram.com/mirageraceprep/",
+        "es_activo": true,
+        "likes": []
+    }
+},
+{
+    "model": "main_app.patrocinador",
+    "pk": 2,
+    "fields": {
+        "nombre": "bg-trucking",
+        "logo": "patrocinadores/bg-trucking.webp",
+        "sitio_web": "https://bgttrucking.com/",
+        "descripcion": "Servicio al Cliente\r\n\r\n(760) 768-1986 EXT: 258\r\ncustomercare@bgttrucking.com",
+        "red_social_usuario": "@bgttrucking",
+        "red_social_url": "https://www.instagram.com/bgttrucking/",
+        "es_activo": true,
+        "likes": []
+    }
+},
+{
+    "model": "main_app.patrocinador",
+    "pk": 3,
+    "fields": {
+        "nombre": "Brave",
+        "logo": "patrocinadores/brave-offroad-logo.png",
+        "sitio_web": "https://www.instagram.com/bravemotorsportsmx/",
+        "descripcion": "Partes off Road🏁\r\nContamos con las mejores marcas para tu proyecto SUV- TRUCK- UTV\r\nWhatsApp 6648231628\r\nTel.6649044472\r\nTijuana B.C mexico 🇲🇽",
+        "red_social_usuario": "@Brave",
+        "red_social_url": "https://www.instagram.com/bravemotorsportsmx/",
+        "es_activo": true,
+        "likes": []
+    }
+},
+{
+    "model": "main_app.seccioninteractiva",
+    "pk": 1,
+    "fields": {
+        "nombre": "todoterreno",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.seccioninteractiva",
+    "pk": 2,
+    "fields": {
+        "nombre": "prueba",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.seccioninteractiva",
+    "pk": 3,
+    "fields": {
+        "nombre": "equipo",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.mensajecontacto",
+    "pk": 1,
+    "fields": {
+        "nombre": "prueba",
+        "email": "ninguna@gmail.com",
+        "telefono": "6641234356",
+        "area_interes": "Prensa",
+        "asunto": "ninguno",
+        "mensaje": "de ninguna manera solo queria probar",
+        "fecha_envio": "2026-06-15T06:31:06.289Z",
+        "leido": false
+    }
+},
+{
+    "model": "main_app.propuestapatrocinio",
+    "pk": 1,
+    "fields": {
+        "nombre": "Jose",
+        "puesto": "el que sea",
+        "email": "ninguna@gmail.com",
+        "telefono": "6641234356",
+        "organizacion": "ninguna",
+        "sitio_web": "https://ninguna.com",
+        "mensaje": "porque si ",
+        "fecha_envio": "2026-06-15T06:29:47.982Z",
+        "revisado": false
+    }
+},
+{
+    "model": "main_app.suscripcionnewsletter",
+    "pk": 1,
+    "fields": {
+        "email": "Jose@gmail.com",
+        "fecha_suscripcion": "2026-06-18T05:40:52.888Z"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2026-06-13T04:14:38.970Z",
+        "user": [
+            "Admin"
+        ],
+        "content_type": [
+            "main_app",
+            "evento"
+        ],
+        "object_id": "1",
+        "object_repr": "baja 400 - 12 Jun 2026",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2026-06-13T04:15:15.282Z",
+        "user": [
+            "Admin"
+        ],
+        "content_type": [
+            "main_app",
+            "album"
+        ],
+        "object_id": "1",
+        "object_repr": "prueba",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2026-06-13T04:16:47.992Z",
+        "user": [
+            "Admin"
+        ],
+        "content_type": [
+            "main_app",
+            "fotografia"
+        ],
+        "object_id": "1",
+        "object_repr": "mia",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2026-06-13T04:20:50.533Z",
+        "user": [
+            "Admin"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "2",
+        "object_repr": "Jose@gmail.com",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Staff status\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2026-06-15T04:36:17.222Z",
+        "user": [
+            "Admin"
+        ],
+        "content_type": [
+            "main_app",
+            "patrocinador"
+        ],
+        "object_id": "1",
+        "object_repr": "Mirage",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2026-06-15T04:38:55.030Z",
+        "user": [
+            "Admin"
+        ],
+        "content_type": [
+            "main_app",
+            "patrocinador"
+        ],
+        "object_id": "2",
+        "object_repr": "bg-trucking",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2026-06-15T04:40:13.600Z",
+        "user": [
+            "Admin"
+        ],
+        "content_type": [
+            "main_app",
+            "patrocinador"
+        ],
+        "object_id": "3",
+        "object_repr": "Brave",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2026-06-15T06:24:07.194Z",
+        "user": [
+            "Admin"
+        ],
+        "content_type": [
+            "main_app",
+            "seccioninteractiva"
+        ],
+        "object_id": "1",
+        "object_repr": "Todoterreno",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2026-06-15T06:24:22.143Z",
+        "user": [
+            "Admin"
+        ],
+        "content_type": [
+            "main_app",
+            "seccioninteractiva"
+        ],
+        "object_id": "2",
+        "object_repr": "Prueba",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2026-06-17T19:53:39.152Z",
+        "user": [
+            "Admin"
+        ],
+        "content_type": [
+            "main_app",
+            "fotografia"
+        ],
+        "object_id": "2",
+        "object_repr": "Vuala",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2026-06-17T19:55:26.073Z",
+        "user": [
+            "Admin"
+        ],
+        "content_type": [
+            "main_app",
+            "fotografia"
+        ],
+        "object_id": "2",
+        "object_repr": "Vuala",
+        "action_flag": 3,
+        "change_message": ""
+    }
+}
+]

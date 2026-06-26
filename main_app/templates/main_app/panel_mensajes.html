@@ -1,0 +1,56 @@
+{% extends 'main_app/panel_base.html' %}
+
+{% block title %}Mensajes de Contacto | Panel{% endblock %}
+
+{% block content %}
+<div class="mb-8 flex justify-between items-end">
+    <div>
+        <h1 class="font-display text-3xl font-black text-white uppercase tracking-wide">Mensajes de Contacto</h1>
+        <p class="text-gray-400 text-sm mt-1">Bandeja de entrada del formulario de contacto.</p>
+    </div>
+</div>
+
+<div class="bg-[#111] border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+    <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm text-gray-400">
+            <thead class="text-xs uppercase bg-black/50 text-gray-300 font-bold tracking-widest">
+                <tr>
+                    <th scope="col" class="px-6 py-4">Remitente</th>
+                    <th scope="col" class="px-6 py-4">Asunto / Área</th>
+                    <th scope="col" class="px-6 py-4">Mensaje</th>
+                    <th scope="col" class="px-6 py-4 text-center">Estado</th>
+                    <th scope="col" class="px-6 py-4 text-right">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for m in mensajes %}
+                <tr class="border-b border-white/5 hover:bg-white/5 transition-colors {% if not m.leido %}bg-white/5{% endif %}">
+                    <td class="px-6 py-4">
+                        <span class="font-bold text-white">{{ m.nombre }}</span><br>
+                        <a href="mailto:{{ m.email }}" class="text-[#4781B3] hover:underline">{{ m.email }}</a><br>
+                        <span class="text-xs text-gray-500">{{ m.telefono }}</span>
+                    </td>
+                    <td class="px-6 py-4">
+                        <span class="font-bold text-white">{{ m.asunto }}</span><br>
+                        <span class="text-xs text-gray-500 uppercase tracking-widest">{{ m.area_interes }}</span><br>
+                        <span class="text-xs text-gray-500">{{ m.fecha_envio|date:"d M Y, H:i" }}</span>
+                    </td>
+                    <td class="px-6 py-4">
+                        <p class="text-xs max-w-xs truncate" title="{{ m.mensaje }}">{{ m.mensaje }}</p>
+                    </td>
+                    <td class="px-6 py-4 text-center">
+                        {% if m.leido %}<span class="bg-gray-800 text-gray-400 font-bold px-2 py-1 rounded text-xs">Leído</span>{% else %}<span class="bg-[#4781B3] text-white font-bold px-2 py-1 rounded text-xs shadow">Nuevo</span>{% endif %}
+                    </td>
+                    <td class="px-6 py-4 text-right space-x-2 whitespace-nowrap">
+                        <a href="{% url 'panel_mensaje_leer' m.id %}" class="text-gray-400 hover:text-white p-2" title="Marcar como {% if m.leido %}No Leído{% else %}Leído{% endif %}"><i class="fas {% if m.leido %}fa-envelope{% else %}fa-envelope-open{% endif %}"></i></a>
+                        <a href="{% url 'panel_mensaje_eliminar' m.id %}" onclick="return confirm('¿Eliminar este mensaje?')" class="text-red-500 hover:text-red-400 p-2"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="5" class="px-6 py-8 text-center text-gray-500">No hay mensajes recibidos.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

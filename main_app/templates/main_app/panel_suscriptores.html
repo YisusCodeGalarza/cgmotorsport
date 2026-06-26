@@ -1,0 +1,39 @@
+{% extends 'main_app/panel_base.html' %}
+
+{% block title %}Suscriptores Newsletter | Panel{% endblock %}
+
+{% block content %}
+<div class="mb-8 flex justify-between items-end">
+    <div>
+        <h1 class="font-display text-3xl font-black text-white uppercase tracking-wide">Suscriptores al Boletín</h1>
+        <p class="text-gray-400 text-sm mt-1">Correos electrónicos de personas que desean recibir noticias.</p>
+    </div>
+</div>
+
+<div class="bg-[#111] border border-white/10 rounded-2xl overflow-hidden shadow-2xl max-w-4xl">
+    <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm text-gray-400">
+            <thead class="text-xs uppercase bg-black/50 text-gray-300 font-bold tracking-widest">
+                <tr>
+                    <th scope="col" class="px-6 py-4">Correo Electrónico</th>
+                    <th scope="col" class="px-6 py-4">Fecha de Suscripción</th>
+                    <th scope="col" class="px-6 py-4 text-right">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in suscriptores %}
+                <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                    <td class="px-6 py-4 font-bold text-white">{{ s.email }}</td>
+                    <td class="px-6 py-4">{{ s.fecha_suscripcion|date:"d M Y, H:i" }}</td>
+                    <td class="px-6 py-4 text-right">
+                        <a href="{% url 'panel_suscriptor_eliminar' s.id %}" onclick="return confirm('¿Eliminar este suscriptor?')" class="text-red-500 hover:text-red-400 p-2"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="3" class="px-6 py-8 text-center text-gray-500">No hay suscriptores aún.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

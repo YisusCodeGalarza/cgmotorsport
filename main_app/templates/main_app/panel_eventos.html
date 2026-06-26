@@ -1,0 +1,65 @@
+{% extends 'main_app/panel_base.html' %}
+
+{% block title %}Gestión de Carreras | Panel{% endblock %}
+
+{% block content %}
+<div class="mb-8 flex justify-between items-end">
+    <div>
+        <h1 class="font-display text-3xl font-black text-white uppercase tracking-wide">Calendario de Carreras</h1>
+        <p class="text-gray-400 text-sm mt-1">Agrega, edita o elimina las carreras que aparecen en el buscador y el calendario público.</p>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
+    <!-- Formulario Agregar Nuevo -->
+    <div class="bg-[#111] border border-white/10 rounded-2xl p-6 h-fit">
+        <h2 class="text-lg font-bold text-white uppercase tracking-widest mb-4 border-b border-white/10 pb-2">Agregar Nueva Carrera</h2>
+        <form method="POST" enctype="multipart/form-data" class="space-y-4">
+            {% csrf_token %}
+            {% for field in form %}
+                <div>
+                    <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.errors %}
+                        <p class="text-red-500 text-xs mt-1">{{ field.errors.0 }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <button type="submit" class="w-full bg-[#4781B3] text-white font-bold uppercase tracking-widest text-xs py-3 rounded-lg hover:bg-white hover:text-black transition-colors mt-4">
+                Guardar Carrera
+            </button>
+        </form>
+    </div>
+
+    <!-- Lista de Carreras -->
+    <div class="xl:col-span-2 bg-[#111] border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm text-gray-400">
+                <thead class="text-xs uppercase bg-black/50 text-gray-300 font-bold tracking-widest">
+                    <tr>
+                        <th scope="col" class="px-6 py-4">Carrera</th>
+                        <th scope="col" class="px-6 py-4">Fecha</th>
+                        <th scope="col" class="px-6 py-4">Ubicación</th>
+                        <th scope="col" class="px-6 py-4 text-right">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for evento in eventos %}
+                    <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                        <td class="px-6 py-4 font-bold text-white">{{ evento.titulo }}</td>
+                        <td class="px-6 py-4">{{ evento.fecha|date:"d M Y" }}</td>
+                        <td class="px-6 py-4">{{ evento.ubicacion }}</td>
+                        <td class="px-6 py-4 text-right">
+                            <a href="{% url 'panel_evento_editar' evento.id %}" class="text-[#4781B3] hover:text-white p-2" title="Editar"><i class="fas fa-edit"></i></a>
+                            <a href="{% url 'panel_evento_eliminar' evento.id %}" onclick="return confirm('¿Eliminar esta carrera del mapa?')" class="text-red-500 hover:text-red-400 p-2"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr><td colspan="4" class="px-6 py-8 text-center text-gray-500">No hay carreras registradas.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

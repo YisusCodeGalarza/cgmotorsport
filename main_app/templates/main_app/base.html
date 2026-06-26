@@ -17,6 +17,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     
+    {# Font Awesome Global para todos los iconos del sitio #}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
         body { 
             font-family: 'Inter', sans-serif; 
@@ -102,6 +105,11 @@
                         {% endif %}
                         {{ user.first_name|default:user.username }}
                     </a>
+                    {% if user.is_staff %}
+                    <a href="{% url 'panel_home' %}" class="text-white text-[10px] xl:text-xs font-bold uppercase tracking-wide flex items-center gap-2 border border-[#4781B3] px-4 py-1.5 rounded-full bg-[#4781B3]/20 hover:bg-[#4781B3] transition-all ml-2">
+                        <i class="fas fa-cogs"></i> {% trans "Panel" %}
+                    </a>
+                    {% endif %}
                     <a href="{% url 'logout' %}" class="text-gray-400 hover:text-red-500 text-[10px] xl:text-xs font-bold uppercase tracking-wide transition-colors ml-2">{% trans "Salir" %}</a>
                 {% else %}
                     {# Mostrar botones si es un visitante #}
@@ -152,6 +160,11 @@
                         {% endif %}
                         {{ user.first_name|default:user.username }}
                     </a>
+                    {% if user.is_staff %}
+                    <a href="{% url 'panel_home' %}" class="text-white bg-[#4781B3]/20 border border-[#4781B3] px-6 py-2 rounded-full font-bold tracking-widest uppercase transition-colors flex items-center gap-2">
+                        <i class="fas fa-cogs"></i> {% trans "Panel de Control" %}
+                    </a>
+                    {% endif %}
                     <a href="{% url 'logout' %}" class="text-gray-500 hover:text-red-500 font-bold tracking-widest uppercase transition-colors">{% trans "Salir" %}</a>
                 {% else %}
                     <a href="{% url 'login' %}" class="text-white hover:text-[#4781B3] font-bold tracking-widest uppercase transition-colors">{% trans "Iniciar Sesión" %}</a>
@@ -167,6 +180,109 @@
         {% block content %}
         {% endblock %}
     </main>
+
+    {# ================================================================= #}
+    {# FOOTER TIPO "TALENT NETWORK" ADAPTADO A CG MOTORSPORTS          #}
+    {# ================================================================= #}
+    <footer class="bg-[#050505] border-t border-white/5 pt-16 pb-8 relative z-40 mt-auto">
+        <div class="max-w-[1200px] mx-auto px-4 md:px-8">
+            
+            {# 1. Logo Principal Central #}
+            <div class="flex justify-center mb-10">
+                <img src="{% static 'main_app/images/LogoCGMS-2.png' %}" alt="CG Motorsports" class="h-20 object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:scale-105 transition-transform duration-500">
+            </div>
+
+            <div class="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-10"></div>
+
+            {# 2. Tres Columnas de Enlaces (Estilo Talent Network) #}
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center md:text-left">
+                <div>
+                    <h4 class="text-white font-display uppercase tracking-widest text-lg mb-6 flex items-center justify-center md:justify-start gap-2"><i class="fas fa-flag-checkered text-[#4781B3] text-sm"></i> {% trans "El Equipo" %}</h4>
+                    <ul class="space-y-4 text-sm text-gray-400 font-light">
+                        <li><a href="{% url 'galeria' %}" class="hover:text-[#4781B3] transition-colors">+ {% trans "Media & Galería" %}</a></li>
+                        <li><a href="{% url 'todoterreno' %}" class="hover:text-[#4781B3] transition-colors">+ {% trans "El Monstruo AWD" %}</a></li>
+                        <li><a href="{% url 'equipo' %}" class="hover:text-[#4781B3] transition-colors">+ {% trans "Pilotos y Familia" %}</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-display uppercase tracking-widest text-lg mb-6 flex items-center justify-center md:justify-start gap-2"><i class="fas fa-calendar-alt text-[#4781B3] text-sm"></i> {% trans "La Temporada" %}</h4>
+                    <ul class="space-y-4 text-sm text-gray-400 font-light">
+                        <li><a href="{% url 'calendario' %}" class="hover:text-[#4781B3] transition-colors">+ {% trans "Calendario Oficial" %}</a></li>
+                        <li><a href="https://score-international.com/" target="_blank" rel="noopener noreferrer" class="hover:text-[#4781B3] transition-colors">+ {% trans "SCORE International" %}</a></li>
+                        <li><a href="http://www.codeoffroad.com.mx/" target="_blank" rel="noopener noreferrer" class="hover:text-[#4781B3] transition-colors">+ {% trans "CODE Off-Road" %}</a></li>
+                        <li><a href="http://www.recordoffroad.com/" target="_blank" rel="noopener noreferrer" class="hover:text-[#4781B3] transition-colors">+ {% trans "RECORD Off-Road" %}</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-display uppercase tracking-widest text-lg mb-6 flex items-center justify-center md:justify-start gap-2"><i class="fas fa-globe-americas text-[#4781B3] text-sm"></i> {% trans "Ecosistema Off-Road" %}</h4>
+                    <ul class="space-y-4 text-sm text-gray-400 font-light">
+                        <li><a href="{% url 'patrocinadores' %}" class="hover:text-[#4781B3] transition-colors">+ {% trans "Nuestros Patrocinadores" %}</a></li>
+                        <li><a href="{% url 'patrocinadores' %}#contacto-form" class="hover:text-[#4781B3] transition-colors">+ {% trans "Únete como Aliado" %}</a></li>
+                        <li><a href="{% url 'contacto' %}" class="hover:text-[#4781B3] transition-colors">+ {% trans "Prensa y Medios" %}</a></li>
+                        <li><a href="{% url 'contacto' %}" class="hover:text-[#4781B3] transition-colors">+ {% trans "Contacto Directo" %}</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-10"></div>
+
+            {# 3. Suscripción Newsletter #}
+            <div class="flex flex-col md:flex-row items-center justify-center gap-6 mb-8">
+                <i class="fas fa-envelope-open-text text-4xl text-[#4781B3]"></i>
+                <p class="text-gray-300 text-sm md:text-base text-center md:text-left max-w-lg leading-relaxed">
+                    {% trans "Suscríbete a nuestro newsletter y no te pierdas el polvo de la Baja. Recibe actualizaciones, noticias y próximos eventos." %}
+                </p>
+            </div>
+            <div class="max-w-xl mx-auto mb-10">
+                <form action="{% url 'suscribir_newsletter' %}" method="POST" class="relative flex items-center shadow-2xl">
+                    {% csrf_token %}
+                    <input type="email" name="email" required placeholder="{% trans 'Ingresa tu correo electrónico...' %}" class="w-full bg-[#111] border border-white/10 rounded-full pl-6 pr-32 py-4 text-sm text-white focus:outline-none focus:border-[#4781B3] transition-colors">
+                    <button type="submit" class="absolute right-1.5 top-1.5 bottom-1.5 bg-[#4781B3] text-white font-bold uppercase tracking-widest text-[10px] px-6 rounded-full hover:bg-white hover:text-black transition-colors shadow-lg">
+                        {% trans "Suscribir" %}
+                    </button>
+                </form>
+            </div>
+
+            <div class="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-10"></div>
+
+            {# 4. Redes Sociales Extendidas (Ícono + Texto) #}
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+                <a href="https://www.facebook.com/people/CG-Motorsports/100091862370170/?mibextid=LQQJ4d" target="_blank" class="flex flex-col items-center gap-3 group cursor-pointer p-4 rounded-xl hover:bg-white/5 transition-colors">
+                    <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#1877F2] transition-colors border border-white/10"><i class="fab fa-facebook-f text-xl text-white"></i></div>
+                    <span class="text-xs text-gray-400 tracking-widest uppercase group-hover:text-white transition-colors">/CGMotorsports</span>
+                </a>
+                <a href="https://www.instagram.com/cgmotorsports10" target="_blank" class="flex flex-col items-center gap-3 group cursor-pointer p-4 rounded-xl hover:bg-white/5 transition-colors">
+                    <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#E1306C] transition-colors border border-white/10"><i class="fab fa-instagram text-xl text-white"></i></div>
+                    <span class="text-xs text-gray-400 tracking-widest uppercase group-hover:text-white transition-colors">@cgmotorsports10</span>
+                </a>
+                <a href="https://www.youtube.com/@cgmotorsports-ir1vj" target="_blank" class="flex flex-col items-center gap-3 group cursor-pointer p-4 rounded-xl hover:bg-white/5 transition-colors">
+                    <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#FF0000] transition-colors border border-white/10"><i class="fab fa-youtube text-xl text-white"></i></div>
+                    <span class="text-xs text-gray-400 tracking-widest uppercase group-hover:text-white transition-colors">@CGMotorsports-ir1vj</span>
+                </a>
+                <a href="#" target="_blank" class="flex flex-col items-center gap-3 group cursor-pointer p-4 rounded-xl hover:bg-white/5 transition-colors">
+                    <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors border border-white/10"><i class="fab fa-tiktok text-xl text-white group-hover:text-black"></i></div>
+                    <span class="text-xs text-gray-400 tracking-widest uppercase group-hover:text-white transition-colors">@cgmotorsports</span>
+                </a>
+            </div>
+
+            {# 5. Copyright y Legales #}
+            <div class="text-center flex flex-col gap-4">
+                <p class="text-gray-500 text-[11px] uppercase tracking-widest">
+                    &copy; {% now "Y" %} | <a href="{% url 'home' %}" class="text-white font-bold hover:text-[#4781B3] transition-colors">CG Motorsports.</a> {% trans "Todos los derechos reservados." %}
+                </p>
+                <div class="flex flex-wrap justify-center gap-x-4 gap-y-2 text-[10px] text-gray-600 uppercase tracking-widest">
+                    <a href="{% url 'contacto' %}" class="hover:text-white transition-colors">{% trans "Contacto" %}</a>
+                    <span class="hidden sm:inline">|</span>
+                    <a href="#" class="hover:text-white transition-colors">{% trans "Términos y Condiciones" %}</a>
+                    <span class="hidden sm:inline">|</span>
+                    <a href="#" class="hover:text-white transition-colors">{% trans "Aviso de Privacidad" %}</a>
+                    <span class="hidden sm:inline">|</span>
+                    <a href="#" class="hover:text-white transition-colors">{% trans "Política de Cookies" %}</a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
 
     {# block extra_js: Hueco para inyectar código JavaScript antes de cerrar el body. #}
     {% block extra_js %}{% endblock %}

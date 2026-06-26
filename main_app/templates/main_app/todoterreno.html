@@ -4,46 +4,61 @@
 
 {% block title %}{% trans "Equipo Todoterreno" %} | CG Motorsports{% endblock %}
 
-{% block extra_head %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-{% endblock %}
-
 {% block content %}
-<div id="bg-container" class="relative min-h-screen pt-32 pb-20 px-4 flex flex-col items-center bg-cover bg-center bg-fixed transition-all duration-1000" style="background-image: url('{% static 'main_app/images/todoterreno1.jpg' %}');">
+<div class="relative min-h-screen pt-32 pb-20 px-4 bg-[#0a0a0a]">
     
-    {# Overlay Oscuro para asegurar que las letras brillen #}
-    <div class="absolute inset-0 bg-black/85 z-0"></div>
+    {# Fondo con Parallax sutil y dinámico #}
+    <div id="bg-container" class="absolute inset-0 bg-[url('{% static 'main_app/images/todoterreno1.jpg' %}')] bg-cover bg-center bg-fixed opacity-20 z-0 transition-all duration-1000 pointer-events-none"></div>
     
-    {# Encabezado #}
-    <div class="relative z-10 max-w-[1000px] w-full mb-12 text-center md:text-left">
-        <h1 class="font-display text-4xl md:text-5xl font-black text-white tracking-wide uppercase">{% trans "El" %} <span class="text-[#4781B3]">{% trans "Monstruo" %}</span> AWD</h1>
-        <p class="text-gray-400 text-sm mt-2 uppercase tracking-widest">{% trans "Ingeniería pura diseñada para dominar la Baja." %}</p>
-    </div>
+    <div class="relative z-10 max-w-[1200px] mx-auto">
+        
+        {# Encabezado #}
+        <div class="mb-12 text-center md:text-left">
+            <h1 class="font-display text-4xl md:text-5xl font-black text-white tracking-wide uppercase">{% trans "El" %} <span class="text-[#4781B3]">{% trans "Monstruo" %}</span> AWD</h1>
+            <p class="text-[#4781B3] text-sm md:text-base uppercase tracking-widest font-bold mt-2">{% trans "Ingeniería pura diseñada para dominar la Baja." %}</p>
+        </div>
 
-    {# Contenedor de Especificaciones (Tarjeta Dividida) #}
-    <div class="relative z-10 max-w-[1000px] w-full flex flex-col gap-10">
-        <article class="bg-[#111] border border-white/5 rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row group hover:border-[#4781B3]/50 transition-colors">
+        {# Contenedor de Especificaciones (Tarjeta Dividida) #}
+        <article class="bg-[#111]/90 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row group hover:border-[#4781B3]/50 transition-colors">
             
             {# Lado Izquierdo: Ficha Técnica #}
-            <div class="w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center">
+            <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
                 <div class="text-[#4781B3] font-bold tracking-widest text-sm uppercase mb-2">{% trans "Poder Absoluto" %}</div>
                 <h2 class="font-display text-3xl md:text-4xl font-black text-white uppercase tracking-wide mb-4">{% trans "Especificaciones" %}</h2>
-                <ul class="text-gray-400 text-sm leading-relaxed mb-6 space-y-3">
-                    <li><strong class="text-white">{% trans "Motor:" %}</strong> {% trans "V8 de Alto Rendimiento, afinado para resistencia en calor extremo." %}</li>
-                    <li><strong class="text-white">{% trans "Tracción:" %}</strong> {% trans "AWD (All-Wheel Drive) para tracción máxima en dunas y terreno suelto." %}</li>
-                    <li><strong class="text-white">{% trans "Suspensión:" %}</strong> {% trans "Amortiguadores de carrera con recorrido ultra-largo." %}</li>
-                    <li><strong class="text-white">{% trans "Chasis:" %}</strong> {% trans "Estructura tubular diseñada para impactos severos a más de 120 mph." %}</li>
-                </ul>
+                <div class="w-16 h-1 bg-[#4781B3] mb-8"></div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                    <div class="bg-black/50 border border-white/5 rounded-xl p-4 hover:border-[#4781B3]/50 transition-colors shadow-inner">
+                        <i class="fas fa-cogs text-[#4781B3] text-xl mb-2"></i>
+                        <h4 class="text-white font-bold text-sm uppercase tracking-widest mb-1">{% trans "Motor" %}</h4>
+                        <p class="text-gray-400 text-xs">{% trans "V8 Alto Rendimiento, afinado para calor extremo." %}</p>
+                    </div>
+                    <div class="bg-black/50 border border-white/5 rounded-xl p-4 hover:border-[#4781B3]/50 transition-colors shadow-inner">
+                        <i class="fas fa-truck-monster text-[#4781B3] text-xl mb-2"></i>
+                        <h4 class="text-white font-bold text-sm uppercase tracking-widest mb-1">{% trans "Tracción" %}</h4>
+                        <p class="text-gray-400 text-xs">{% trans "AWD Integral, máxima tracción en dunas." %}</p>
+                    </div>
+                    <div class="bg-black/50 border border-white/5 rounded-xl p-4 hover:border-[#4781B3]/50 transition-colors shadow-inner">
+                        <i class="fas fa-tools text-[#4781B3] text-xl mb-2"></i>
+                        <h4 class="text-white font-bold text-sm uppercase tracking-widest mb-1">{% trans "Suspensión" %}</h4>
+                        <p class="text-gray-400 text-xs">{% trans "Amortiguadores de competencia Fox recorrido largo." %}</p>
+                    </div>
+                    <div class="bg-black/50 border border-white/5 rounded-xl p-4 hover:border-[#4781B3]/50 transition-colors shadow-inner">
+                        <i class="fas fa-shield-alt text-[#4781B3] text-xl mb-2"></i>
+                        <h4 class="text-white font-bold text-sm uppercase tracking-widest mb-1">{% trans "Chasis" %}</h4>
+                        <p class="text-gray-400 text-xs">{% trans "Tubular ultra ligero diseñado para impactos severos." %}</p>
+                    </div>
+                </div>
             </div>
             
             {# Lado Derecho: Imagen y Comentarios #}
-            <div class="w-full md:w-1/2 flex flex-col bg-[#16181C] border-l border-white/5">
+            <div class="w-full md:w-1/2 flex flex-col bg-[#0a0a0a] border-t md:border-t-0 md:border-l border-white/10">
                 <div class="w-full bg-black overflow-hidden relative aspect-square md:aspect-auto flex-grow min-h-[300px]">
                     <img id="card-image" src="{% static 'main_app/images/todoterreno2.jpg' %}" alt="El Equipo Todoterreno" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-700">
                 </div>
                 
                 {# Footer Interactivo #}
-                <div class="w-full border-t border-white/10 p-5">
+                <div class="w-full border-t border-white/10 p-6 md:p-8">
                     <div class="flex items-center justify-center gap-8 text-xl text-gray-400 mb-4">
                     <form action="{% url 'like_seccion' seccion.nombre %}" method="POST" class="inline m-0">
                         {% csrf_token %}
@@ -62,10 +77,10 @@
                 </div>
                 
                 {# Sección de Comentarios #}
-                <div id="comments-todo" class="hidden flex-col gap-4">
-                    <div class="space-y-3 max-h-60 overflow-y-auto pr-2">
+                <div id="comments-todo" class="hidden flex-col gap-4 mt-6">
+                    <div class="space-y-3 max-h-60 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-white/10">
                         {% for comentario in seccion.comentarios.all %}
-                            <div class="bg-black/50 p-3 rounded-lg border border-white/5 relative group">
+                            <div class="bg-white/5 p-4 rounded-xl border border-white/10 relative group">
                                 <div class="flex items-center justify-between mb-1">
                                     <span class="text-sm font-bold text-white flex items-center gap-2">{% if comentario.usuario.perfil.avatar %}<img src="{{ comentario.usuario.perfil.avatar.url }}" class="w-5 h-5 rounded-full object-cover">{% else %}<i class="fas fa-user text-gray-500 text-xs"></i>{% endif %} {{ comentario.usuario.first_name|default:comentario.usuario.username }}</span>
                                     {% if comentario.usuario == user %}
@@ -75,17 +90,17 @@
                                         </form>
                                     {% endif %}
                                 </div>
-                                <p class="text-sm text-gray-300 ml-7">{{ comentario.texto }}</p>
+                                <p class="text-sm text-gray-300 ml-7 leading-relaxed">{{ comentario.texto }}</p>
                             </div>
                         {% empty %}
                             <p class="text-sm text-gray-500 italic text-center">{% trans "Sé el primero en comentar." %}</p>
                         {% endfor %}
                     </div>
                     {% if user.is_authenticated %}
-                        <form action="{% url 'comentar_seccion' seccion.nombre %}" method="POST" class="flex items-center gap-3 mt-2">
+                        <form action="{% url 'comentar_seccion' seccion.nombre %}" method="POST" class="flex items-center gap-3 mt-4">
                             {% csrf_token %}
-                            <input type="text" name="comentario" required placeholder="{% trans 'Escribe un comentario...' %}" class="flex-grow bg-black/50 border border-white/10 rounded-full px-4 py-2 text-sm text-white focus:outline-none focus:border-[#4781B3]">
-                            <button type="submit" class="text-[#4781B3] font-bold text-sm uppercase hover:text-white transition-colors">{% trans "Publicar" %}</button>
+                            <input type="text" name="comentario" required placeholder="{% trans 'Escribe un comentario...' %}" class="flex-grow bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#4781B3] transition-colors">
+                            <button type="submit" class="bg-[#4781B3] px-6 py-3 rounded-lg text-white font-bold text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-colors shadow-lg shadow-[#4781B3]/20">{% trans "Publicar" %}</button>
                         </form>
                     {% else %}
                         <p class="text-xs text-gray-500 text-center mt-2"><a href="{% url 'login' %}" class="text-[#4781B3] hover:underline font-bold">{% trans "Inicia sesión" %}</a> {% trans "para comentar." %}</p>
@@ -139,4 +154,3 @@
     }
 </script>
 {% endblock %}
-

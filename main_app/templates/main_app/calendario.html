@@ -5,69 +5,104 @@
 {% block title %}{% trans "Calendario SCORE" %} | CG Motorsports{% endblock %}
 
 {% block content %}
-<div class="relative min-h-screen pt-32 pb-20 px-4 flex flex-col items-center bg-cover bg-center bg-fixed" style="background-image: url('{% static 'main_app/images/sf-2.bmp' %}');">
+<div class="relative min-h-screen pt-32 pb-20 px-4 bg-[#0a0a0a]">
     
-    {# Overlay Oscuro para que el texto resalte sobre la imagen #}
-    <div class="absolute inset-0 bg-black/85 z-0"></div>
+    {# Fondo con Parallax sutil #}
+    <div class="absolute inset-0 bg-[url('{% static 'main_app/images/sf-2.bmp' %}')] bg-cover bg-center bg-fixed opacity-20 z-0 pointer-events-none"></div>
     
-    {# Encabezado #}
-    <div class="relative z-10 max-w-[1000px] w-full mb-12 text-center md:text-left">
-        <h1 class="font-display text-4xl md:text-5xl font-black text-white tracking-wide uppercase">{% trans "Temporada" %} <span class="text-[#4781B3]">2023</span></h1>
-        <p class="text-gray-400 text-sm mt-2 uppercase tracking-widest">{% trans "Fechas oficiales de SCORE International Off-Road Racing." %}</p>
-    </div>
-
-    {# Contenedor de las Carreras (Lista de Tarjetas Horizontales) #}
-    <div class="relative z-10 max-w-[1000px] w-full flex flex-col gap-10">
+    <div class="relative z-10 max-w-[1200px] mx-auto">
         
-        {# CARRERA 1: BAJA 500 #}
-        <article class="bg-[#111] border border-white/5 rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row group hover:border-[#4781B3]/50 transition-colors">
-            <div class="w-full md:w-2/5 aspect-video md:aspect-auto overflow-hidden relative">
-                <img src="{% static 'main_app/images/baja_500.webp' %}" alt="Baja 500" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                <div class="absolute top-4 left-4 bg-gray-700 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">{% trans "Completada" %}</div>
-            </div>
-            <div class="w-full md:w-3/5 p-6 md:p-10 flex flex-col justify-center">
-                <div class="text-gray-500 font-bold tracking-widest text-sm uppercase mb-2">{% trans "31 Mayo - 4 Junio 2023" %}</div>
-                <h2 class="font-display text-3xl md:text-4xl font-black text-white uppercase tracking-wide mb-3">{% trans "55th SCORE Baja 500" %}</h2>
-                <p class="text-gray-400 text-sm leading-relaxed mb-6">{% trans "La clásica y brutal carrera de verano. Temperaturas extremas y rutas que castigan el vehículo. Una guerra de desgaste donde el equipo todoterreno demuestra de qué está hecho." %}</p>
-                <div class="mt-auto">
-                    <span class="text-gray-500 text-sm flex items-center gap-2"><i class="fas fa-map-marker-alt"></i> {% trans "Ensenada, B.C. México" %}</span>
-                </div>
-            </div>
-        </article>
+        {# Encabezado #}
+        <div class="mb-12 text-center md:text-left">
+            <h1 class="font-display text-4xl md:text-5xl font-black text-white tracking-wide uppercase">{% trans "Calendario" %} <span class="text-[#4781B3]">{% trans "Oficial" %}</span></h1>
+            <p class="text-gray-400 text-sm mt-2 uppercase tracking-widest">{% trans "Histórico y próximas carreras de la temporada." %}</p>
+        </div>
 
-        {# CARRERA 2: BAJA 400 #}
-        <article class="bg-[#111] border border-white/5 rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row group hover:border-[#4781B3]/50 transition-colors">
-            <div class="w-full md:w-2/5 aspect-video md:aspect-auto overflow-hidden relative">
-                <img src="{% static 'main_app/images/baja_400.webp' %}" alt="Baja 400" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                <div class="absolute top-4 left-4 bg-gray-700 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">{% trans "Completada" %}</div>
-            </div>
-            <div class="w-full md:w-3/5 p-6 md:p-10 flex flex-col justify-center">
-                <div class="text-gray-500 font-bold tracking-widest text-sm uppercase mb-2">{% trans "12 - 17 Septiembre 2023" %}</div>
-                <h2 class="font-display text-3xl md:text-4xl font-black text-white uppercase tracking-wide mb-3">{% trans "4th SCORE Baja 400" %}</h2>
-                <p class="text-gray-400 text-sm leading-relaxed mb-6">{% trans "El desafío perfecto de media distancia. 400 millas de terreno súper técnico que pondrán a prueba la estrategia del equipo y prepararán el terreno para la gran final." %}</p>
-                <div class="mt-auto">
-                    <span class="text-gray-500 text-sm flex items-center gap-2"><i class="fas fa-map-marker-alt"></i> {% trans "Ensenada, B.C. México" %}</span>
+        {# MÓDULO DE BÚSQUEDA Y FILTROS #}
+        <div class="bg-[#111]/90 backdrop-blur-xl border border-white/10 rounded-2xl p-6 mb-12 shadow-2xl">
+            <form method="GET" action="{% url 'calendario' %}" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                
+                <!-- Filtro Categoría/Campeonato -->
+                <div class="flex flex-col">
+                    <label class="text-[10px] text-gray-400 uppercase tracking-widest font-bold mb-2">{% trans "Campeonato:" %}</label>
+                    <div class="relative">
+                        <i class="fas fa-trophy absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm"></i>
+                        <select name="campeonato" class="w-full bg-black/50 border border-white/10 rounded-lg pl-9 pr-3 py-2.5 text-sm text-gray-300 focus:border-[#4781B3] focus:outline-none appearance-none cursor-pointer transition-colors">
+                            <option value="">{% trans "Todos los Seriales" %}</option>
+                            <option value="score" {% if valores_busqueda.campeonato == 'score' %}selected{% endif %}>SCORE International</option>
+                            <option value="code" {% if valores_busqueda.campeonato == 'code' %}selected{% endif %}>CODE Off-Road</option>
+                            <option value="record" {% if valores_busqueda.campeonato == 'record' %}selected{% endif %}>RECORD Off-Road</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-        </article>
 
-        {# CARRERA 3: BAJA 1000 #}
-        <article class="bg-[#111] border border-white/5 rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row group hover:border-red-600/50 transition-colors relative">
-            <div class="absolute top-0 right-0 w-2 h-full bg-red-600/80"></div>
-            <div class="w-full md:w-2/5 aspect-video md:aspect-auto overflow-hidden relative">
-                <img src="{% static 'main_app/images/baja_1000.webp' %}" alt="Baja 1000" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                <div class="absolute top-4 left-4 bg-gray-700 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">{% trans "Completada" %}</div>
-            </div>
-            <div class="w-full md:w-3/5 p-6 md:p-10 flex flex-col justify-center">
-                <div class="text-gray-500 font-bold tracking-widest text-sm uppercase mb-2">{% trans "13 - 18 Noviembre 2023" %}</div>
-                <h2 class="font-display text-3xl md:text-4xl font-black text-white uppercase tracking-wide mb-3">{% trans "56th SCORE Baja 1000" %}</h2>
-                <p class="text-gray-400 text-sm leading-relaxed mb-6">{% trans "La madre de todas las batallas off-road. Mil millas de polvo, oscuridad, fatiga extrema y adrenalina pura cruzando toda la península. Aquí nacen las verdaderas leyendas." %}</p>
-                <div class="mt-auto">
-                    <span class="text-gray-500 text-sm flex items-center gap-2"><i class="fas fa-map-marker-alt"></i> {% trans "Ensenada - La Paz, B.C.S." %}</span>
+                <!-- Filtro Sede -->
+                <div class="flex flex-col">
+                    <label class="text-[10px] text-gray-400 uppercase tracking-widest font-bold mb-2">{% trans "Sede / Ruta:" %}</label>
+                    <div class="relative">
+                        <i class="fas fa-map-marker-alt absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm"></i>
+                        <select name="sede" class="w-full bg-black/50 border border-white/10 rounded-lg pl-9 pr-3 py-2.5 text-sm text-gray-300 focus:border-[#4781B3] focus:outline-none appearance-none cursor-pointer transition-colors">
+                            <option value="">{% trans "Todas las Sedes" %}</option>
+                            <option value="ensenada" {% if valores_busqueda.sede == 'ensenada' %}selected{% endif %}>Ensenada, B.C.</option>
+                            <option value="sanfelipe" {% if valores_busqueda.sede == 'sanfelipe' %}selected{% endif %}>San Felipe, B.C.</option>
+                            <option value="lapaz" {% if valores_busqueda.sede == 'lapaz' %}selected{% endif %}>La Paz, B.C.S.</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-        </article>
 
+                <!-- Buscador de Texto -->
+                <div class="flex flex-col lg:col-span-2">
+                    <label class="text-[10px] text-gray-400 uppercase tracking-widest font-bold mb-2">{% trans "Buscar Carrera:" %}</label>
+                    <div class="relative">
+                        <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm"></i>
+                        <input type="text" name="q" value="{{ valores_busqueda.q|default:'' }}" placeholder="{% trans 'Ej. Baja 1000, San Felipe 250...' %}" class="w-full bg-black/50 border border-white/10 rounded-lg pl-9 pr-3 py-2.5 text-sm text-white focus:border-[#4781B3] focus:outline-none transition-colors">
+                    </div>
+                </div>
+
+                <!-- Botones -->
+                <div class="flex items-end gap-3 h-full pt-6 lg:pt-0">
+                    <a href="{% url 'calendario' %}" class="w-full bg-white/5 border border-white/10 text-white font-bold uppercase tracking-widest text-[10px] py-3 rounded-lg hover:bg-white/10 transition-colors block text-center">
+                        {% trans "Limpiar" %}
+                    </a>
+                    <button type="submit" class="w-full bg-[#4781B3] text-white font-bold uppercase tracking-widest text-[10px] py-3 rounded-lg hover:bg-white hover:text-black transition-colors shadow-lg shadow-[#4781B3]/20">
+                        {% trans "Buscar" %}
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        {# CONTENEDOR DE LA LISTA DE CARRERAS #}
+        <div class="flex flex-col gap-6">
+            {% for evento in eventos %}
+                <article class="flex flex-col md:flex-row gap-6 p-4 bg-[#111] border border-white/5 rounded-2xl hover:border-[#4781B3]/50 transition-all shadow-lg relative group">
+                    <div class="w-full md:w-[260px] flex-shrink-0 relative overflow-hidden rounded-xl bg-black">
+                        <img src="{% if evento.imagen %}{{ evento.imagen.url }}{% else %}{% static 'main_app/images/baja_500.webp' %}{% endif %}" alt="{{ evento.nombre }}" class="w-full h-full object-cover aspect-video md:aspect-[4/3] group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100">
+                    </div>
+                    
+                    <div class="flex flex-col justify-center flex-grow py-2 pr-4">
+                        <div class="flex items-center gap-2 text-[#4781B3] text-xs font-bold tracking-widest uppercase mb-2">
+                            <i class="far fa-calendar-alt"></i> <span>{{ evento.fecha|date:"d M Y" }}</span>
+                        </div>
+                        <h3 class="text-2xl font-display font-black text-white uppercase tracking-wide mb-3 group-hover:text-[#4781B3] transition-colors">
+                            {{ evento.titulo }}
+                        </h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-4 max-w-3xl">{{ evento.descripcion }}</p>
+                        
+                        <div class="mt-auto flex items-center gap-2 text-gray-500 text-xs uppercase tracking-widest font-semibold">
+                            <i class="fas fa-map-marker-alt text-red-500 text-sm"></i> {{ evento.ubicacion }}
+                        </div>
+                    </div>
+                </article>
+            {% empty %}
+                <div class="col-span-full text-center py-20 bg-[#111] rounded-2xl border border-white/5">
+                    <h3 class="text-white font-display text-2xl mb-2">{% trans "Sin Resultados" %}</h3>
+                    <p class="text-gray-500 uppercase tracking-widest text-sm font-light">{% trans "No se encontraron eventos con los criterios de búsqueda. Intenta con otros filtros." %}</p>
+                    <a href="{% url 'calendario' %}" class="mt-6 inline-block bg-[#4781B3] text-white font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-lg hover:bg-white hover:text-black transition-colors">
+                        {% trans "Limpiar Búsqueda" %}
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
 {% endblock %}

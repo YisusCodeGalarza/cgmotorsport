@@ -19,11 +19,11 @@
     {# Contenedor del texto central #}
     <div class="relative z-20 text-center flex flex-col items-center px-4 mt-16 md:mt-0">
         <p class="text-xs md:text-sm font-bold tracking-[0.25em] uppercase text-white mb-2">
-            {% translate "" %}
+            {% trans "Bienvenidos al equipo" %}
         </p>
         
         <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-black uppercase text-center text-white mt-1 drop-shadow-lg tracking-wide">
-            {% translate "" %} <span class="text-[#4781B3]">{% translate "" %}</span>
+            {% trans "CG" %} <span class="text-[#4781B3]">{% trans "Motorsports" %}</span>
         </h1>
     </div>
 
@@ -51,7 +51,7 @@
             <div>
                 <p class="text-[#4781B3] font-bold tracking-[0.2em] uppercase text-xs md:text-sm mb-2">{% trans "Calendario Oficial SCORE" %}</p>
                 <h2 class="font-display text-4xl md:text-5xl font-black text-white uppercase tracking-wide">
-                    {% trans "Próximas" %} <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">{% trans "Carreras" %}</span>
+                    {% trans "próximas " %} <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">{% trans "carreras de la temporada." %}</span>
                 </h2>
             </div>
             <a href="{% url 'calendario' %}" class="group hidden md:flex items-center gap-3 text-sm font-bold tracking-widest text-white hover:text-[#4781B3] uppercase transition-colors">
@@ -60,42 +60,69 @@
             </a>
         </div>
 
-        {# Grid de Carreras Dinámico #}
+        {# Lista de Carreras (Estilo Calendario Compacto) #}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {% for evento in eventos %}
-                <div class="group relative bg-[#111]/80 backdrop-blur-sm border border-white/5 rounded-3xl p-8 hover:bg-[#16181C] hover:border-[#4781B3]/50 transition-all duration-500 hover:-translate-y-2 shadow-2xl flex flex-col">
-                    {# Efecto Glow en Hover #}
-                    <div class="absolute inset-0 bg-gradient-to-br from-[#4781B3]/0 via-transparent to-[#4781B3]/0 group-hover:from-[#4781B3]/10 group-hover:to-transparent rounded-3xl transition-all duration-500 pointer-events-none"></div>
-                    
-                    <div class="relative z-10 flex flex-col flex-grow">
-                        <div class="flex items-start justify-between mb-8">
-                            <div class="bg-black/50 border border-white/10 rounded-2xl px-5 py-3 text-center group-hover:border-[#4781B3]/50 transition-colors shadow-inner">
-                                <span class="block text-[#4781B3] font-black text-2xl leading-none mb-1">{{ evento.fecha|date:"d" }}</span>
-                                <span class="block text-gray-400 text-xs font-bold uppercase tracking-widest">{{ evento.fecha|date:"M" }}</span>
-                            </div>
-                            <div class="bg-white/5 px-4 py-1.5 rounded-full border border-white/5">
-                                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{{ evento.fecha|date:"Y" }}</span>
-                            </div>
-                        </div>
-                        
-                        <h3 class="font-display text-2xl md:text-3xl font-bold text-white uppercase mb-6 group-hover:text-[#4781B3] transition-colors line-clamp-2">
-                            {{ evento.titulo }}
-                        </h3>
-                        
-                        <div class="flex items-center gap-3 text-gray-400 text-sm mt-auto pt-6 border-t border-white/5">
-                            <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#4781B3]/20 transition-colors flex-shrink-0">
-                                <svg class="w-4 h-4 group-hover:text-[#4781B3] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                            </div>
-                            <span class="tracking-wide line-clamp-1">{{ evento.ubicacion }}</span>
-                        </div>
+
+            {# TARJETA 1: BAJA 500 #}
+            <article class="bg-[#111] border border-white/5 rounded-2xl overflow-hidden shadow-2xl group hover:border-[#4781B3]/50 transition-all duration-300 flex flex-col hover:-translate-y-2">
+                <div class="relative overflow-hidden">
+                    <img src="{% static 'main_app/images/baja_500.webp' %}" alt="Baja 500" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute top-3 left-3 bg-gray-900/80 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">{% trans "Mayo - Junio 2023" %}</div>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="font-display text-xl font-black text-white uppercase tracking-wide mb-2 group-hover:text-[#4781B3] transition-colors">
+                        {% trans "55th SCORE Baja 500" %}
+                    </h3>
+                    <p class="text-gray-400 text-sm leading-relaxed flex-grow mb-4">
+                        {% trans "La clásica y brutal carrera de verano. Temperaturas extremas y rutas que castigan el vehículo. Una guerra de desgaste." %}
+                    </p>
+                    <div class="mt-auto flex items-center justify-between text-xs text-gray-500 uppercase tracking-widest font-semibold border-t border-white/10 pt-3">
+                        <span><i class="far fa-calendar-alt text-[#4781B3] mr-1.5"></i> {% trans "31 May - 4 Jun" %}</span>
+                        <span><i class="fas fa-map-marker-alt text-red-500 mr-1.5"></i> {% trans "Ensenada, B.C." %}</span>
                     </div>
                 </div>
-            {% empty %}
-                <div class="col-span-full py-16 text-center border-2 border-dashed border-white/10 rounded-3xl bg-white/5">
-                    <svg class="w-12 h-12 text-gray-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                    <p class="text-gray-400 uppercase tracking-widest font-bold text-sm">{% trans "Aún no hay carreras publicadas para esta temporada." %}</p>
+            </article>
+
+            {# TARJETA 2: BAJA 400 #}
+            <article class="bg-[#111] border border-white/5 rounded-2xl overflow-hidden shadow-2xl group hover:border-[#4781B3]/50 transition-all duration-300 flex flex-col hover:-translate-y-2">
+                <div class="relative overflow-hidden">
+                    <img src="{% static 'main_app/images/baja_400.webp' %}" alt="Baja 400" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute top-3 left-3 bg-gray-900/80 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">{% trans "Septiembre 2023" %}</div>
                 </div>
-            {% endfor %}
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="font-display text-xl font-black text-white uppercase tracking-wide mb-2 group-hover:text-[#4781B3] transition-colors">
+                        {% trans "4th SCORE Baja 400" %}
+                    </h3>
+                    <p class="text-gray-400 text-sm leading-relaxed flex-grow mb-4">
+                        {% trans "El desafío perfecto de media distancia. 400 millas de terreno súper técnico que pondrán a prueba la estrategia del equipo." %}
+                    </p>
+                    <div class="mt-auto flex items-center justify-between text-xs text-gray-500 uppercase tracking-widest font-semibold border-t border-white/10 pt-3">
+                        <span><i class="far fa-calendar-alt text-[#4781B3] mr-1.5"></i> {% trans "12 - 17 Sep" %}</span>
+                        <span><i class="fas fa-map-marker-alt text-red-500 mr-1.5"></i> {% trans "Ensenada, B.C." %}</span>
+                    </div>
+                </div>
+            </article>
+
+            {# TARJETA 3: BAJA 1000 #}
+            <article class="bg-[#111] border border-white/5 rounded-2xl overflow-hidden shadow-2xl group hover:border-red-600/50 transition-all duration-300 flex flex-col hover:-translate-y-2">
+                <div class="relative overflow-hidden">
+                    <img src="{% static 'main_app/images/baja_1000.webp' %}" alt="Baja 1000" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute top-3 left-3 bg-gray-900/80 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">{% trans "Noviembre 2023" %}</div>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="font-display text-xl font-black text-white uppercase tracking-wide mb-2 group-hover:text-red-500 transition-colors">
+                        {% trans "56th SCORE Baja 1000" %}
+                    </h3>
+                    <p class="text-gray-400 text-sm leading-relaxed flex-grow mb-4">
+                        {% trans "La madre de todas las batallas off-road. Mil millas de polvo, oscuridad, fatiga extrema y adrenalina pura." %}
+                    </p>
+                    <div class="mt-auto flex items-center justify-between text-xs text-gray-500 uppercase tracking-widest font-semibold border-t border-white/10 pt-3">
+                        <span><i class="far fa-calendar-alt text-[#4781B3] mr-1.5"></i> {% trans "13 - 18 Nov" %}</span>
+                        <span><i class="fas fa-map-marker-alt text-red-500 mr-1.5"></i> {% trans "Ensenada - La Paz" %}</span>
+                    </div>
+                </div>
+            </article>
+
         </div>
 
         {# Botón Móvil #}
@@ -112,15 +139,15 @@
 <section id="patrocinadores" class="relative py-20 border-t border-white/5 bg-cover bg-center bg-fixed" style="background-image: url('{% static 'main_app/images/sf-6.bmp' %}');">
     <div class="absolute inset-0 bg-black/90 z-0"></div>
     <div class="relative z-10 max-w-7xl mx-auto px-4 text-center">
-        <h3 class="font-oswald text-2xl font-bold uppercase tracking-[0.2em] mb-12 text-gray-300">Sponsors <span class="text-[#4781B3]">Official</span></h3>
+        <h3 class="font-oswald text-2xl font-bold uppercase tracking-[0.2em] mb-12 text-gray-300">Nuestros patrocinadores <span class="text-[#4781B3]">Gracias a nuestros increíbles patrocinadores que ayudan a nuestro equipo a mejorar y ser mejores en lo que hacemos.</span></h3>
         
-        <div class="flex flex-wrap justify-center gap-6 opacity-80">
+        <div class="flex flex-wrap justify-center gap-6">
             {% for patrocinador in patrocinadores %}
-                <a {% if patrocinador.sitio_web %}href="{{ patrocinador.sitio_web }}" target="_blank"{% endif %} class="h-24 w-48 bg-white border border-white/10 flex items-center justify-center p-4 hover:border-[#4781B3]/50 transition-all duration-300 cursor-pointer group rounded-lg">
+                <a {% if patrocinador.sitio_web %}href="{{ patrocinador.sitio_web }}" target="_blank"{% endif %} class="h-28 w-56 bg-white border-2 border-transparent flex items-center justify-center p-6 hover:border-[#4781B3] hover:shadow-[0_0_20px_rgba(71,129,179,0.4)] hover:-translate-y-2 transition-all duration-300 cursor-pointer group rounded-2xl shadow-xl">
                     {% if patrocinador.logo %}
-                        <img src="{{ patrocinador.logo.url }}" alt="{{ patrocinador.nombre }}" class="max-h-full max-w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300">
+                        <img src="{{ patrocinador.logo.url }}" alt="{{ patrocinador.nombre }}" class="max-h-full max-w-full object-contain drop-shadow-sm group-hover:scale-110 transition-transform duration-300">
                     {% else %}
-                        <span class="font-oswald text-xl uppercase tracking-widest text-gray-500 group-hover:text-[#4781B3] transition-colors">{{ patrocinador.nombre }}</span>
+                        <span class="font-oswald text-xl uppercase tracking-widest text-gray-800 group-hover:text-[#4781B3] transition-colors">{{ patrocinador.nombre }}</span>
                     {% endif %}
                 </a>
             {% empty %}

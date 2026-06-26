@@ -1,84 +1,134 @@
-{# Extendemos el diseño de base.html #}
 {% extends 'main_app/base.html' %}
 {% load static i18n %}
 
 {% block title %}{% trans "Patrocinadores" %} | CG Motorsports{% endblock %}
 
 {% block content %}
-<div class="relative min-h-screen pt-32 pb-20 px-4 flex flex-col items-center bg-cover bg-center bg-fixed" style="background-image: url('{% static 'main_app/images/sf-3.bmp' %}');">
-    
-    {# Overlay Oscuro para que el texto y los posts resalten sobre la imagen #}
-    <div class="absolute inset-0 bg-black/80 z-0"></div>
-    
-    {# Encabezado del Feed #}
-    <div class="relative z-10 max-w-[1440px] w-full mb-10 text-center md:text-left">
-        <h1 class="font-display text-4xl md:text-5xl font-black text-white tracking-wide uppercase">{% trans "Partners" %} <span class="text-[#4781B3]">{% trans "Oficiales" %}</span></h1>
-        <p class="text-gray-400 text-sm mt-1">{% trans "Conoce a las marcas que hacen posible cada kilómetro en el desierto." %}</p>
+<div class="min-h-screen pt-32 pb-20 px-4 max-w-[1440px] mx-auto relative">
+
+    <!-- 1. Encabezado y Párrafo Principal -->
+    <div class="mb-12">
+        <div class="border-l-4 border-[#4781B3] pl-6 py-4 bg-white/5 inline-block pr-12 rounded-r-2xl mb-8 shadow-sm">
+            <h1 class="font-display text-4xl md:text-5xl font-black text-white uppercase tracking-wide">{% trans "Patrocinadores" %}</h1>
+        </div>
+        
+        <div class="bg-[#111] p-8 md:p-12 rounded-2xl border border-white/5 shadow-2xl max-w-5xl">
+            <h2 class="text-xl md:text-2xl font-light text-gray-300 leading-relaxed text-justify md:text-left">
+                {% trans "Los patrocinadores son más que un logo en el chasis, son los aliados que nos ayudan a sortear los terrenos más hostiles de la Baja. Con tu apoyo como patrocinador podemos conquistar cada meta." %} <span class="font-bold text-white">{% trans "CG Motorsports no corre solo, corre con tu compañía." %}</span>
+            </h2>
+        </div>
     </div>
 
-    {# Contenedor Principal estilo Cuadrícula Moderna #}
-    <div class="relative z-10 max-w-[1440px] w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
-
-        {% for patrocinador in patrocinadores %}.
-            <article id="patrocinador-{{ patrocinador.id }}" class="bg-[#111] border border-white/5 rounded-3xl overflow-hidden shadow-2xl flex flex-col transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#4781B3]/10 hover:border-[#4781B3]/30">
-                
-                {# Cabecera del Post (Avatar y Nombre) #}
-                <div class="p-6 flex items-center gap-4">
-                    <div class="w-14 h-14 rounded-full bg-white/5 flex items-center justify-center overflow-hidden border border-white/10 shrink-0 p-1">
-                        {% if patrocinador.logo %}
-                            <img src="{{ patrocinador.logo.url }}" alt="{{ patrocinador.nombre }} icono" class="w-full h-full object-contain p-1">
-                        {% else %}
-                            <span class="font-black text-white text-xl">{{ patrocinador.nombre|make_list|first }}</span>
-                        {% endif %}
-                    </div>
-                    <div class="flex-grow min-w-0">
-                        <h3 class="font-bold text-white text-lg flex items-center gap-1.5 truncate">
-                            {{ patrocinador.nombre }} 
-                            <svg class="w-4 h-4 text-[#4781B3] shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg>
-                        </h3>
-                        
-                        {# Usuario de red social #}
-                        <p class="text-gray-500 text-sm truncate">
-                            {% if patrocinador.red_social_usuario %}
-                                {{ patrocinador.red_social_usuario }}
-                            {% else %}
-                                @{{ patrocinador.nombre|slugify }}
-                            {% endif %}
-                        </p>
-                    </div>
-                </div>
-
-                {# Contenedor de la Imagen (Logotipo Integrado Transparente) #}
-                <div class="w-full aspect-video flex items-center justify-center p-8 bg-gradient-to-b from-[#0a0a0a] to-[#111] border-y border-white/5 relative overflow-hidden group">
-                    {# Brillo sutil de fondo #}
-                    <div class="absolute inset-0 bg-[#4781B3]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    {% if patrocinador.logo %}
-                        <img src="{{ patrocinador.logo.url }}" alt="{{ patrocinador.nombre }}" class="max-h-full max-w-full object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110 relative z-10">
-                    {% else %}
-                        <span class="text-gray-400 font-bold text-2xl uppercase tracking-widest relative z-10">{{ patrocinador.nombre }}</span>
-                    {% endif %}
-                </div>
-
-                {# Cuerpo del Texto y Botón de Acción #}
-                <div class="p-6 flex flex-col flex-grow">
-                    {# Texto Resumido (Excerpt de hasta 3 líneas) #}
-                    <p class="text-gray-400 text-sm leading-relaxed line-clamp-3 mb-6 flex-grow">
-                        {{ patrocinador.descripcion|default:"Apoyando al equipo en cada carrera. ¡Gracias por ser parte del proyecto oficial de CG Motorsports!" }}
-                    </p>
-                    
-                    {# Botón Moderno de Llamada a la Acción #}
-                    {% if patrocinador.sitio_web %}
-                        <a href="{{ patrocinador.sitio_web }}" target="_blank" class="block w-full text-center bg-[#4781B3]/10 text-[#4781B3] border border-[#4781B3]/20 hover:bg-[#4781B3] hover:text-white hover:border-[#4781B3] transition-all duration-300 rounded-xl py-3.5 text-xs font-bold uppercase tracking-widest shadow-lg">
-                            {% trans "Visitar Sitio" %}
-                        </a>
-                    {% endif %}
-                </div>
-            </article>
-        {% empty %}
-            <div class="col-span-full text-center py-10">
-                <p class="text-gray-400 text-lg uppercase tracking-widest">{% trans "Aún no hay patrocinadores registrados." %}</p>
+    <!-- 2. Propuesta de Valor (Split 50/50) -->
+    <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 items-stretch mb-24">
+        <div class="w-full lg:w-1/2 flex flex-col justify-center space-y-6 text-gray-300 text-sm md:text-base bg-[#0a0a0a] p-8 md:p-12 rounded-2xl border border-white/5 shadow-inner">
+            <h3 class="font-display text-2xl md:text-3xl text-white uppercase mb-4">{% trans "Camina a nuestro lado para que..." %}</h3>
+            
+            <div class="space-y-4">
+                <p class="flex items-start gap-3"><span class="text-[#4781B3] font-black text-lg leading-none">+</span> {% trans "Te conectemos con nuevos clientes; la afición Off-Road nos distingue." %}</p>
+                <p class="flex items-start gap-3"><span class="text-[#4781B3] font-black text-lg leading-none">+</span> {% trans "Concretes una comunicación directa con un nicho de mercado muy valioso." %}</p>
+                <p class="flex items-start gap-3"><span class="text-[#4781B3] font-black text-lg leading-none">+</span> {% trans "Pongamos a tu alcance espacios publicitarios y de interacción en nuestros pits y eventos." %}</p>
+                <p class="flex items-start gap-3"><span class="text-[#4781B3] font-black text-lg leading-none">+</span> {% trans "Aumentes la exposición internacional y el posicionamiento de tu marca." %}</p>
+                <p class="flex items-start gap-3"><span class="text-[#4781B3] font-black text-lg leading-none">+</span> {% trans "Hagas crecer la fidelización vinculando tus productos a la pasión del automovilismo." %}</p>
             </div>
-        {% endfor %}
+            
+            <div class="pt-6 text-center lg:text-left">
+                <!-- El botón hace scroll suave hasta el formulario de abajo -->
+                <a href="#contacto-form" class="inline-block bg-[#4781B3] text-white font-bold uppercase tracking-widest px-8 py-3 rounded-md hover:bg-white hover:text-black transition-colors shadow-lg">{% trans "Únete al Equipo" %}</a>
+            </div>
+        </div>
+        
+        <!-- Imagen de respaldo (Puedes cambiar el sf-5.bmp por cualquier foto) -->
+        <div class="w-full lg:w-1/2 relative group rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center bg-[#111] border border-white/5 min-h-[300px]">
+            <img src="{% static 'main_app/images/sf-5.bmp' %}" alt="Patrocinadores" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 group-hover:opacity-80 transition-all duration-700">
+        </div>
+    </div>
+
+    <!-- 3. Grid de Aliados / Patrocinadores (Diseño de 5 Columnas) -->
+    <div class="mb-24">
+        <h3 class="font-display text-3xl font-black text-white uppercase mb-8 border-b border-white/10 pb-4">{% trans "Hemos trabajado con" %}</h3>
+        
+        <!-- grid-cols-2 en celulares, 3 en tablets, 5 en monitores grandes -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            {% for patrocinador in patrocinadores %}
+            <div id="patrocinador-{{ patrocinador.id }}" class="group bg-[#111] rounded-2xl border border-white/5 p-5 flex flex-col hover:border-[#4781B3]/50 hover:shadow-[0_0_20px_rgba(71,129,179,0.15)] transition-all duration-300 relative overflow-hidden hover:-translate-y-1">
+                
+                <!-- Contenedor del Logo en Blanco -->
+                <div class="h-28 w-full bg-white rounded-xl flex items-center justify-center p-4 mb-5 shadow-inner group-hover:shadow-[0_0_15px_rgba(71,129,179,0.2)] transition-all duration-300">
+                    {% if patrocinador.logo %}
+                        <a {% if patrocinador.sitio_web %}href="{{ patrocinador.sitio_web }}" target="_blank"{% endif %} title="{{ patrocinador.nombre }}" class="w-full h-full flex items-center justify-center">
+                            <img src="{{ patrocinador.logo.url }}" alt="{{ patrocinador.nombre }}" class="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300 drop-shadow-sm">
+                        </a>
+                    {% else %}
+                        <span class="text-gray-800 font-bold uppercase tracking-widest text-xs text-center group-hover:text-[#4781B3] transition-colors">{{ patrocinador.nombre }}</span>
+                    {% endif %}
+                </div>
+            </div>
+            {% empty %}
+                <div class="col-span-full text-center py-20 bg-[#111] rounded-2xl border border-white/5">
+                    <p class="text-gray-600 uppercase tracking-widest text-sm font-light">{% trans "Nuevas alianzas próximamente." %}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- 4. Formulario de Contacto integrado -->
+    <div id="contacto-form" class="bg-[#111] rounded-2xl p-8 md:p-12 border border-white/5 shadow-2xl relative overflow-hidden">
+        <h3 class="font-display text-3xl font-black text-white uppercase mb-8 border-b border-white/10 pb-4">{% trans "Contáctanos" %}</h3>
+        
+        <form action="{% url 'patrocinadores' %}" method="POST" class="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+            {% csrf_token %}
+            <div class="space-y-2 md:col-span-1">
+                <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{% trans "Nombre" %} <span class="text-[#4781B3]">*</span></label>
+                <input type="text" name="nombre" required class="w-full bg-black/50 border border-white/10 rounded-lg p-3 text-sm text-white focus:border-[#4781B3] focus:outline-none transition-colors">
+            </div>
+            <div class="space-y-2 md:col-span-1">
+                <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{% trans "Puesto" %} <span class="text-[#4781B3]">*</span></label>
+                <input type="text" name="puesto" required class="w-full bg-black/50 border border-white/10 rounded-lg p-3 text-sm text-white focus:border-[#4781B3] focus:outline-none transition-colors">
+            </div>
+            <div class="space-y-2 md:col-span-1">
+                <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{% trans "Dirección Email" %} <span class="text-[#4781B3]">*</span></label>
+                <input type="email" name="email" required class="w-full bg-black/50 border border-white/10 rounded-lg p-3 text-sm text-white focus:border-[#4781B3] focus:outline-none transition-colors">
+            </div>
+            
+            <div class="space-y-2 md:col-span-1">
+                <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{% trans "Teléfono" %} <span class="text-[#4781B3]">*</span></label>
+                <input type="tel" name="telefono" required class="w-full bg-black/50 border border-white/10 rounded-lg p-3 text-sm text-white focus:border-[#4781B3] focus:outline-none transition-colors">
+            </div>
+            <div class="space-y-2 md:col-span-1">
+                <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{% trans "Organización / Empresa" %} <span class="text-[#4781B3]">*</span></label>
+                <input type="text" name="organizacion" required class="w-full bg-black/50 border border-white/10 rounded-lg p-3 text-sm text-white focus:border-[#4781B3] focus:outline-none transition-colors">
+            </div>
+            <div class="space-y-2 md:col-span-1">
+                <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{% trans "Página Web" %} <span class="text-[#4781B3]">*</span></label>
+                <input type="url" name="sitio_web" class="w-full bg-black/50 border border-white/10 rounded-lg p-3 text-sm text-white focus:border-[#4781B3] focus:outline-none transition-colors">
+            </div>
+            
+            <div class="space-y-2 col-span-1 md:col-span-3">
+                <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{% trans "¿Por qué te interesa participar con el equipo?" %} <span class="text-[#4781B3]">*</span></label>
+                <textarea name="mensaje" required rows="3" class="w-full bg-black/50 border border-white/10 rounded-lg p-3 text-sm text-white focus:border-[#4781B3] focus:outline-none transition-colors"></textarea>
+            </div>
+            
+            <div class="col-span-1 md:col-span-3 mt-4 flex justify-end">
+                <button type="submit" class="bg-[#4781B3] text-white font-bold uppercase tracking-widest text-xs px-8 py-4 rounded-lg hover:bg-white hover:text-black transition-colors shadow-lg">
+                    {% trans "Enviar Propuesta" %}
+                </button>
+            </div>
+        </form>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Smooth scrolling para anclas
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
 {% endblock %}

@@ -12,7 +12,9 @@ from .models import (
     SeccionInteractiva,
     ComentarioSeccion,
     ComentarioPatrocinador,
-    ComentarioFoto
+    ComentarioFoto,
+    MensajeContacto,
+    PropuestaPatrocinio
 )
 
 
@@ -98,3 +100,18 @@ class ComentarioPatrocinadorAdmin(admin.ModelAdmin):
     list_display = ('usuario', 'patrocinador', 'fecha_creacion', 'reportado')
     list_filter = ('reportado', 'fecha_creacion', 'patrocinador')
     search_fields = ('texto', 'usuario__username')
+
+
+@admin.register(MensajeContacto)
+class MensajeContactoAdmin(admin.ModelAdmin):
+    list_display = ('nombre', 'asunto', 'area_interes', 'fecha_envio', 'leido')
+    list_filter = ('leido', 'area_interes', 'fecha_envio')
+    search_fields = ('nombre', 'email', 'asunto', 'mensaje')
+    list_editable = ('leido',)
+
+@admin.register(PropuestaPatrocinio)
+class PropuestaPatrocinioAdmin(admin.ModelAdmin):
+    list_display = ('organizacion', 'nombre', 'email', 'fecha_envio', 'revisado')
+    list_filter = ('revisado', 'fecha_envio')
+    search_fields = ('organizacion', 'nombre', 'email', 'mensaje')
+    list_editable = ('revisado',)

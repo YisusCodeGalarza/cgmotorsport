@@ -3,3 +3,7 @@
 __pycache__/
 db.sqlite3
 .DS_Store
+.env
+core_project/settings.py
+__pycache__/
+*.pyc

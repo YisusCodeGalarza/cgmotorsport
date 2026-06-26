@@ -37,11 +37,42 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('perfil/', views.perfil_view, name='perfil'),
     
+    # Ruta para suscripción al Newsletter
+    path('suscribir/', views.suscribir_newsletter, name='suscribir_newsletter'),
+    
     # Rutas de la Galería Multimedia
     path('galeria/', views.galeria_view, name='galeria'),
     path('galeria/foto/<int:id>/like/', views.like_foto, name='like_foto'),
     path('galeria/foto/<int:id>/comentar/', views.comentar_foto, name='comentar_foto'),
     
+    # Rutas para acciones en comentarios de Galería y Vista Detalle
+    path('galeria/foto/<int:id>/detalle/', views.foto_detalle_view, name='foto_detalle'),
+    path('galeria/comentario/<int:id>/editar/', views.editar_comentario, name='editar_comentario'),
+    path('galeria/comentario/<int:id>/eliminar/', views.eliminar_comentario, name='eliminar_comentario'),
+    path('galeria/comentario/<int:id>/reportar/', views.reportar_comentario, name='reportar_comentario'),
+
+    # Rutas del Panel de Control Privado
+    path('panel/', views.panel_home, name='panel_home'),
+    path('panel/eventos/', views.panel_eventos, name='panel_eventos'),
+    path('panel/eventos/editar/<int:id>/', views.panel_evento_editar, name='panel_evento_editar'),
+    path('panel/eventos/eliminar/<int:id>/', views.panel_evento_eliminar, name='panel_evento_eliminar'),
+    path('panel/patrocinadores/', views.panel_patrocinadores, name='panel_patrocinadores'),
+    path('panel/patrocinadores/editar/<int:id>/', views.panel_patrocinador_editar, name='panel_patrocinador_editar'),
+    path('panel/patrocinadores/eliminar/<int:id>/', views.panel_patrocinador_eliminar, name='panel_patrocinador_eliminar'),
+    path('panel/galeria/', views.panel_galeria, name='panel_galeria'),
+    path('panel/galeria/editar/<int:id>/', views.panel_album_editar, name='panel_album_editar'),
+    path('panel/galeria/<int:id>/fotos/', views.panel_album_fotos, name='panel_album_fotos'),
+    path('panel/galeria/foto/eliminar/<int:id>/', views.panel_foto_eliminar, name='panel_foto_eliminar'),
+    path('panel/galeria/eliminar/<int:id>/', views.panel_album_eliminar, name='panel_album_eliminar'),
+    path('panel/mensajes/', views.panel_mensajes, name='panel_mensajes'),
+    path('panel/mensajes/leer/<int:id>/', views.panel_mensaje_leer, name='panel_mensaje_leer'),
+    path('panel/mensajes/eliminar/<int:id>/', views.panel_mensaje_eliminar, name='panel_mensaje_eliminar'),
+    path('panel/propuestas/', views.panel_propuestas, name='panel_propuestas'),
+    path('panel/propuestas/revisar/<int:id>/', views.panel_propuesta_revisar, name='panel_propuesta_revisar'),
+    path('panel/propuestas/eliminar/<int:id>/', views.panel_propuesta_eliminar, name='panel_propuesta_eliminar'),
+    path('panel/suscriptores/', views.panel_suscriptores, name='panel_suscriptores'),
+    path('panel/suscriptores/eliminar/<int:id>/', views.panel_suscriptor_eliminar, name='panel_suscriptor_eliminar'),
+
     # Interacciones universales
     path('patrocinadores/<int:id>/like/', views.like_patrocinador, name='like_patrocinador'),
     path('patrocinadores/<int:id>/comentar/', views.comentar_patrocinador, name='comentar_patrocinador'),
