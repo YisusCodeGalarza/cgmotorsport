@@ -431,15 +431,26 @@ def panel_album_eliminar(request, id):
 def panel_album_fotos(request, id):
     album = get_object_or_404(Album, id=id)
     if request.method == 'POST':
-        fotos = request.FILES.getlist('fotos')
-        for f in fotos:
-            # Detectar si es un video o imagen por su extensión
-            if f.name.lower().endswith('.mp4'):
-                Fotografia.objects.create(album=album, archivo_video=f, es_video=True)
-            else:
-                Fotografia.objects.create(album=album, imagen=f)
-        if fotos:
-            messages.success(request, f"Se subieron {len(fotos)} archivos exitosamente.")
+        # Manejar subida de imágenes
+        imagenes = request.FILES.getlist('imagenes')
+        for img in imagenes:
+            Fotografia.objects.create(album=album, imagen=img, es_video=False)
+        if imagenes:
+            messages.success(request, f"Se subieron {len(imagenes)} imágen(es) exitosamente.")
+
+        # Manejar subida de video con su miniatura
+        video_file = request.FILES.get('video')
+        thumbnail_file = request.FILES.get('miniatura')
+
+        if video_file and thumbnail_file:
+            Fotografia.objects.create(
+                album=album,
+                archivo_video=video_file,
+                imagen=thumbnail_file, # Esta es la miniatura
+                es_video=True
+            )
+            messages.success(request, "Video y su miniatura subidos exitosamente.")
+
         return redirect('panel_album_fotos', id=album.id)
     
     fotos = album.fotos.all()
