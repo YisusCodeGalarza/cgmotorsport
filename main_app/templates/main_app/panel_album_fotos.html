@@ -1,28 +1,29 @@
 {% extends 'main_app/panel_base.html' %}
+{% load i18n %}
 
-{% block title %}Fotos del Álbum | Panel{% endblock %}
+{% block title %}{% trans "Fotos del Álbum" %} | {% trans "Panel" %}{% endblock %}
 
 {% block content %}
 <div class="mb-8 flex justify-between items-end">
     <div>
-        <h1 class="font-display text-3xl font-black text-white uppercase tracking-wide">Archivos del Álbum</h1>
-        <p class="text-gray-400 text-sm mt-1">Viendo contenido de: <strong class="text-white">{{ album.titulo }}</strong></p>
+        <h1 class="font-display text-3xl font-black text-white uppercase tracking-wide">{% trans "Archivos del Álbum" %}</h1>
+        <p class="text-gray-400 text-sm mt-1">{% trans "Viendo contenido de:" %} <strong class="text-white">{{ album.titulo }}</strong></p>
     </div>
-    <a href="{% url 'panel_galeria' %}" class="text-[#4781B3] hover:text-white text-sm font-bold uppercase tracking-widest"><i class="fas fa-arrow-left mr-2"></i>Volver</a>
+    <a href="{% url 'panel_galeria' %}" class="text-[#4781B3] hover:text-white text-sm font-bold uppercase tracking-widest"><i class="fas fa-arrow-left mr-2"></i>{% trans "Volver" %}</a>
 </div>
 
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
     <!-- Formulario Subida Masiva -->
     <div class="bg-[#111] border border-white/10 rounded-2xl p-6 h-fit lg:sticky lg:top-8">
-        <h2 class="text-lg font-bold text-white uppercase tracking-widest mb-4 border-b border-white/10 pb-2">Subir Archivos</h2>
+        <h2 class="text-lg font-bold text-white uppercase tracking-widest mb-4 border-b border-white/10 pb-2">{% trans "Subir Archivos" %}</h2>
         <form method="POST" enctype="multipart/form-data" class="space-y-4">
             {% csrf_token %}
             <div>
-                <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Selecciona múltiples fotos o videos (MP4)</label>
+                <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">{% trans "Selecciona múltiples fotos o videos (MP4)" %}</label>
                 <input type="file" name="fotos" multiple accept="image/*,video/mp4" required class="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-[#4781B3] file:text-white hover:file:bg-white hover:file:text-black cursor-pointer transition-colors bg-black/50 border border-white/10 rounded-lg p-2">
             </div>
             <button type="submit" class="w-full bg-[#4781B3] text-white font-bold uppercase tracking-widest text-xs py-3 rounded-lg hover:bg-white hover:text-black transition-colors mt-4 shadow-lg">
-                <i class="fas fa-upload mr-2"></i> Subir al Álbum
+                <i class="fas fa-upload mr-2"></i> {% trans "Subir al Álbum" %}
             </button>
         </form>
     </div>
@@ -44,13 +45,13 @@
                 {% endif %}
                 
                 <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <a href="{% url 'panel_foto_eliminar' foto.id %}" onclick="return confirm('¿Eliminar este archivo definitivamente?')" class="bg-red-500 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors shadow-lg" title="Eliminar"><i class="fas fa-trash"></i></a>
+                    <a href="{% url 'panel_foto_eliminar' foto.id %}" onclick="return confirm('{% trans '¿Eliminar este archivo definitivamente?' %}')" class="bg-red-500 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors shadow-lg" title="{% trans 'Eliminar' %}"><i class="fas fa-trash"></i></a>
                 </div>
             </div>
             {% empty %}
             <div class="col-span-full bg-[#111] border border-white/10 rounded-2xl p-10 text-center flex flex-col items-center justify-center h-48">
                 <i class="fas fa-images text-4xl text-gray-600 mb-3"></i>
-                <p class="text-gray-400 font-bold uppercase tracking-widest text-sm">El álbum está vacío.</p>
+                <p class="text-gray-400 font-bold uppercase tracking-widest text-sm">{% trans "El álbum está vacío." %}</p>
             </div>
             {% endfor %}
         </div>

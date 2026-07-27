@@ -139,7 +139,9 @@
 <section id="patrocinadores" class="relative py-20 border-t border-white/5 bg-cover bg-center bg-fixed" style="background-image: url('{% static 'main_app/images/sf-6.bmp' %}');">
     <div class="absolute inset-0 bg-black/90 z-0"></div>
     <div class="relative z-10 max-w-7xl mx-auto px-4 text-center">
-        <h3 class="font-oswald text-2xl font-bold uppercase tracking-[0.2em] mb-12 text-gray-300">Nuestros patrocinadores <span class="text-[#4781B3]">Gracias a nuestros increíbles patrocinadores que ayudan a nuestro equipo a mejorar y ser mejores en lo que hacemos.</span></h3>
+        <h3 class="font-oswald text-2xl font-bold uppercase tracking-[0.2em] mb-12 text-gray-300">
+            {% blocktrans %}Nuestros patrocinadores <span class="text-[#4781B3]">Gracias a nuestros increíbles patrocinadores que ayudan a nuestro equipo a mejorar y ser mejores en lo que hacemos.</span>{% endblocktrans %}
+        </h3>
         
         <div class="flex flex-wrap justify-center gap-6">
             {% for patrocinador in patrocinadores %}
@@ -151,14 +153,14 @@
                     {% endif %}
                 </a>
             {% empty %}
-                <p class="text-gray-500 text-sm tracking-widest uppercase">Aún no hay patrocinadores registrados.</p>
+                <p class="text-gray-500 text-sm tracking-widest uppercase">
+                    {% trans "Aún no hay patrocinadores registrados." %}
+                </p>
             {% endfor %}
         </div>
         
         <div class="mt-12 text-center">
-            <a href="{% url 'patrocinadores' %}" class="inline-block border border-[#4781B3] text-[#4781B3] hover:bg-[#4781B3] hover:text-white px-8 py-3 text-sm font-bold uppercase tracking-widest transition-colors duration-300">
-                Ver todos los patrocinadores
-            </a>
+            <a href="{% url 'patrocinadores' %}" class="inline-block border border-[#4781B3] text-[#4781B3] hover:bg-[#4781B3] hover:text-white px-8 py-3 text-sm font-bold uppercase tracking-widest transition-colors duration-300">{% trans "Ver todos los patrocinadores" %}</a>
         </div>
     </div>
     </div>

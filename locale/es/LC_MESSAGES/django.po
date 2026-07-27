@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-24 20:41-0700\n"
+"POT-Creation-Date: 2026-07-27 15:02-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,408 +17,953 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-#: .\core_project\settings.py:129
+
+#: core_project/settings.py:147
 msgid "Español"
 msgstr ""
 
-#: .\core_project\settings.py:130
+#: core_project/settings.py:148
 msgid "English"
 msgstr ""
 
-#: .\main_app\templates\main_app\Team.html:5
+#: main_app/templates/main_app/Team.html:5
+#: main_app/templates/main_app/base.html:200
 msgid "El Equipo"
 msgstr ""
 
-#: .\main_app\templates\main_app\Team.html:19
-#: .\main_app\templates\main_app\todoterreno.html:19
+#: main_app/templates/main_app/Team.html:17
+#: main_app/templates/main_app/todoterreno.html:17
 msgid "El"
 msgstr ""
 
-#: .\main_app\templates\main_app\Team.html:19
-#: .\main_app\templates\main_app\registro.html:15
+#: main_app/templates/main_app/Team.html:17
+#: main_app/templates/main_app/registro.html:16
 msgid "Equipo"
 msgstr ""
 
-#: .\main_app\templates\main_app\Team.html:20
-msgid "La familia detrás del Equipo todoterreno."
+#: main_app/templates/main_app/Team.html:18
+msgid "La familia detrás de la máquina."
 msgstr ""
 
-#: .\main_app\templates\main_app\Team.html:47
-msgid "The CG Motorsports Team"
+#: main_app/templates/main_app/Team.html:30
+msgid ""
+"CG Motorsports es más que un equipo de carreras; es una familia unida por la "
+"adrenalina, la gasolina y el polvo de la Baja. Nacidos en San Felipe, "
+"llevamos el Off-Road en la sangre."
 msgstr ""
 
-#: .\main_app\templates\main_app\Team.html:48
+#: main_app/templates/main_app/Team.html:31
 msgid "“Alone we can do so little, together we can do so much”"
 msgstr ""
 
-#: .\main_app\templates\main_app\Team.html:59
-msgid "en"
+#: main_app/templates/main_app/Team.html:86
+#: main_app/templates/main_app/todoterreno.html:96
+msgid "Sé el primero en comentar."
 msgstr ""
 
-#: .\main_app\templates\main_app\Team.html:64
-#: .\main_app\templates\main_app\galeria.html:68
-msgid "Me gusta"
+#: main_app/templates/main_app/Team.html:93
+#: main_app/templates/main_app/galeria.html:170
+#: main_app/templates/main_app/todoterreno.html:102
+msgid "Escribe un comentario..."
 msgstr ""
 
-#: .\main_app\templates\main_app\Team.html:65
-msgid "Comentar"
-msgstr ""
-
-#: .\main_app\templates\main_app\Team.html:66
-msgid "Compartir"
-msgstr ""
-
-#: .\main_app\templates\main_app\base.html:45
-#: .\main_app\templates\main_app\base.html:85
-msgid "CARRERAS"
-msgstr ""
-
-#: .\main_app\templates\main_app\base.html:48
-#: .\main_app\templates\main_app\base.html:86
-msgid "EL EQUIPO"
-msgstr ""
-
-#: .\main_app\templates\main_app\base.html:49
-#: .\main_app\templates\main_app\base.html:87
-msgid "MEDIA"
-msgstr ""
-
-#: .\main_app\templates\main_app\base.html:50
-#: .\main_app\templates\main_app\base.html:88
-msgid "PATROCINADORES"
-msgstr ""
-
-#: .\main_app\templates\main_app\base.html:51
-#: .\main_app\templates\main_app\base.html:89
-msgid "EQUIPO TODOTERRENO"
-msgstr ""
-
-#: .\main_app\templates\main_app\base.html:52
-#: .\main_app\templates\main_app\base.html:90
-msgid "CONTACTO"
-msgstr ""
-
-#: .\main_app\templates\main_app\base.html:57
-#: .\main_app\templates\main_app\login.html:5
-msgid "Iniciar Sesión"
-msgstr ""
-
-#: .\main_app\templates\main_app\base.html:58
-msgid "Registrarse"
-msgstr ""
-
-#: .\main_app\templates\main_app\base.html:84
-msgid "INICIO"
-msgstr ""
-
-#: .\main_app\templates\main_app\calendario.html:5
-msgid "Calendario SCORE"
-msgstr ""
-
-#: .\main_app\templates\main_app\calendario.html:15
-msgid "Temporada"
-msgstr ""
-
-#: .\main_app\templates\main_app\calendario.html:16
-msgid "Fechas oficiales de SCORE International Off-Road Racing."
-msgstr ""
-
-#: .\main_app\templates\main_app\calendario.html:26
-#: .\main_app\templates\main_app\calendario.html:42
-#: .\main_app\templates\main_app\calendario.html:59
-msgid "Completada"
-msgstr ""
-
-#: .\main_app\templates\main_app\calendario.html:29
-#: .\main_app\templates\main_app\home.html:51
-msgid "31 Mayo - 4 Junio 2023"
-msgstr ""
-
-#: .\main_app\templates\main_app\calendario.html:30
-#: .\main_app\templates\main_app\home.html:52
-msgid "55th SCORE Baja 500"
-msgstr ""
-
-#: .\main_app\templates\main_app\calendario.html:31
-msgid ""
-"La clásica y brutal carrera de verano. Temperaturas extremas y rutas que "
-"castigan el vehículo. Una guerra de desgaste donde el equipo todoterreno "
-"demuestra de qué está hecho."
-msgstr ""
-
-#: .\main_app\templates\main_app\calendario.html:33
-#: .\main_app\templates\main_app\calendario.html:49
-#: .\main_app\templates\main_app\home.html:53
-#: .\main_app\templates\main_app\home.html:63
-msgid "Ensenada, B.C. México"
-msgstr ""
-
-#: .\main_app\templates\main_app\calendario.html:45
-#: .\main_app\templates\main_app\home.html:61
-msgid "12 - 17 Septiembre 2023"
-msgstr ""
-
-#: .\main_app\templates\main_app\calendario.html:46
-#: .\main_app\templates\main_app\home.html:62
-msgid "4th SCORE Baja 400"
-msgstr ""
-
-#: .\main_app\templates\main_app\calendario.html:47
-msgid ""
-"El desafío perfecto de media distancia. 400 millas de terreno súper técnico "
-"que pondrán a prueba la estrategia del equipo y prepararán el terreno para "
-"la gran final."
-msgstr ""
-
-#: .\main_app\templates\main_app\calendario.html:62
-msgid "13 - 18 Noviembre 2023"
-msgstr ""
-
-#: .\main_app\templates\main_app\calendario.html:63
-msgid "56th SCORE Baja 1000"
-msgstr ""
-
-#: .\main_app\templates\main_app\calendario.html:64
-msgid ""
-"La madre de todas las batallas off-road. Mil millas de polvo, oscuridad, "
-"fatiga extrema y adrenalina pura cruzando toda la península. Aquí nacen las "
-"verdaderas leyendas."
-msgstr ""
-
-#: .\main_app\templates\main_app\calendario.html:66
-msgid "Ensenada - La Paz, B.C.S."
-msgstr ""
-
-#: .\main_app\templates\main_app\contacto.html:5
-#: .\main_app\templates\main_app\contacto.html:20
-msgid "Contacto"
-msgstr ""
-
-#: .\main_app\templates\main_app\contacto.html:21
-msgid "Conéctate con el equipo"
-msgstr ""
-
-#: .\main_app\templates\main_app\contacto.html:23
-msgid "Síguenos"
-msgstr ""
-
-#: .\main_app\templates\main_app\contacto.html:40
-msgid ""
-"¿Dudas, patrocinios o medios? Escríbenos por mensaje directo en nuestras "
-"redes sociales y te responderemos a la brevedad."
-msgstr ""
-
-#: .\main_app\templates\main_app\galeria.html:5
-msgid "Media & Acción"
-msgstr ""
-
-#: .\main_app\templates\main_app\galeria.html:20
-msgid "Media"
-msgstr ""
-
-#: .\main_app\templates\main_app\galeria.html:20
-msgid "& Acción"
-msgstr ""
-
-#: .\main_app\templates\main_app\galeria.html:21
-msgid ""
-"Sigue de cerca nuestro recorrido. Tomas oficiales desde las entrañas del "
-"desierto."
-msgstr ""
-
-#: .\main_app\templates\main_app\galeria.html:45
-msgid "San Felipe, Baja California"
-msgstr ""
-
-#: .\main_app\templates\main_app\galeria.html:71
-msgid ""
-"Domando las dunas a fondo. No hay terreno que nos detenga. 🏜️💨 AWD Power!"
-msgstr ""
-
-#: .\main_app\templates\main_app\galeria.html:72
-msgid "Precisión, suspensión y pura adrenalina en la Baja. 🏁🔥 #cgmotorsport"
-msgstr ""
-
-#: .\main_app\templates\main_app\galeria.html:73
-msgid ""
-"El monstruo haciendo lo que mejor sabe hacer: volar sobre el desierto. 🦅💥"
-msgstr ""
-
-#: .\main_app\templates\main_app\home.html:22
-msgid "EQUIPO OFICIAL DE EQUIPOS TODOTERRENO AWD"
-msgstr ""
-
-#: .\main_app\templates\main_app\home.html:26
-msgid "BUILT IN THE"
-msgstr ""
-
-#: .\main_app\templates\main_app\home.html:26
-msgid "DESERT"
-msgstr ""
-
-#: .\main_app\templates\main_app\home.html:32
-msgid "VER CALENDARIO"
-msgstr ""
-
-#: .\main_app\templates\main_app\home.html:42
-msgid "Carreras"
-msgstr ""
-
-#: .\main_app\templates\main_app\home.html:43
-msgid "Resumen de Temporada"
-msgstr ""
-
-#: .\main_app\templates\main_app\login.html:18
-msgid "Bienvenido"
-msgstr ""
-
-#: .\main_app\templates\main_app\login.html:18
-msgid "Piloto"
-msgstr ""
-
-#: .\main_app\templates\main_app\login.html:19
-msgid "Ingresa tus credenciales para acceder al Paddock."
-msgstr ""
-
-#: .\main_app\templates\main_app\login.html:24
-msgid "Usuario o Correo"
-msgstr ""
-
-#: .\main_app\templates\main_app\login.html:25
-#: .\main_app\templates\main_app\registro.html:27
-msgid "piloto@ejemplo.com"
-msgstr ""
-
-#: .\main_app\templates\main_app\login.html:29
-#: .\main_app\templates\main_app\registro.html:31
-msgid "Contraseña"
-msgstr ""
-
-#: .\main_app\templates\main_app\login.html:30
-#: .\main_app\templates\main_app\registro.html:32
-msgid "••••••••"
-msgstr ""
-
-#: .\main_app\templates\main_app\login.html:34
-msgid "Entrar a la cuenta"
-msgstr ""
-
-#: .\main_app\templates\main_app\login.html:39
-msgid "¿No tienes cuenta?"
-msgstr ""
-
-#: .\main_app\templates\main_app\login.html:39
-msgid "Regístrate aquí"
-msgstr ""
-
-#: .\main_app\templates\main_app\patrocinadores.html:5
-msgid "Patrocinadores"
-msgstr ""
-
-#: .\main_app\templates\main_app\patrocinadores.html:15
-msgid "Partners"
-msgstr ""
-
-#: .\main_app\templates\main_app\patrocinadores.html:15
-msgid "Oficiales"
-msgstr ""
-
-#: .\main_app\templates\main_app\patrocinadores.html:16
-msgid "Conoce a las marcas que hacen posible cada kilómetro en el desierto."
-msgstr ""
-
-#: .\main_app\templates\main_app\patrocinadores.html:64
-msgid "Ver Sitio"
-msgstr ""
-
-#: .\main_app\templates\main_app\patrocinadores.html:70
-msgid "Aún no hay patrocinadores registrados."
-msgstr ""
-
-#: .\main_app\templates\main_app\registro.html:5
-msgid "Registro"
-msgstr ""
-
-#: .\main_app\templates\main_app\registro.html:15
-msgid "Únete al"
-msgstr ""
-
-#: .\main_app\templates\main_app\registro.html:16
-msgid "Crea tu cuenta y accede a contenido exclusivo."
-msgstr ""
-
-#: .\main_app\templates\main_app\registro.html:21
-msgid "Nombre Completo"
-msgstr ""
-
-#: .\main_app\templates\main_app\registro.html:22
-msgid "Tu nombre"
-msgstr ""
-
-#: .\main_app\templates\main_app\registro.html:26
-msgid "Correo Electrónico"
-msgstr ""
-
-#: .\main_app\templates\main_app\registro.html:36
-msgid "Crear Cuenta"
-msgstr ""
-
-#: .\main_app\templates\main_app\registro.html:41
-msgid "¿Ya tienes cuenta?"
-msgstr ""
-
-#: .\main_app\templates\main_app\registro.html:41
+#: main_app/templates/main_app/Team.html:97
+#: main_app/templates/main_app/foto_detalle.html:136
+#: main_app/templates/main_app/registro.html:53
+#: main_app/templates/main_app/todoterreno.html:106
 msgid "Inicia sesión"
 msgstr ""
 
-#: .\main_app\templates\main_app\todoterreno.html:5
+#: main_app/templates/main_app/Team.html:97
+#: main_app/templates/main_app/todoterreno.html:106
+msgid "para comentar."
+msgstr ""
+
+#: main_app/templates/main_app/Team.html:121
+#: main_app/templates/main_app/foto_detalle.html:159
+#: main_app/templates/main_app/todoterreno.html:152
+msgid "¡Enlace copiado al portapapeles!"
+msgstr ""
+
+#: main_app/templates/main_app/Usuarios.html:4
+msgid "Mi Cuenta"
+msgstr ""
+
+#: main_app/templates/main_app/Usuarios.html:14
+msgid "Configuración de"
+msgstr ""
+
+#: main_app/templates/main_app/Usuarios.html:14
+msgid "Cuenta"
+msgstr ""
+
+#: main_app/templates/main_app/Usuarios.html:15
+msgid "Administra tu perfil"
+msgstr ""
+
+#: main_app/templates/main_app/Usuarios.html:32
+msgid "Cambiar Foto de Perfil"
+msgstr ""
+
+#: main_app/templates/main_app/Usuarios.html:38
+msgid "Nombre de Piloto"
+msgstr ""
+
+#: main_app/templates/main_app/Usuarios.html:46
+msgid "Correo de Contacto"
+msgstr ""
+
+#: main_app/templates/main_app/Usuarios.html:53
+#: main_app/templates/main_app/panel_album_editar.html:26
+msgid "Guardar Cambios"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:86
+#: main_app/templates/main_app/base.html:145
+msgid "CARRERAS"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:90
+msgid "GALLERY"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:91
+#: main_app/templates/main_app/base.html:148
+msgid "PATROCINADORES"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:92
+#: main_app/templates/main_app/base.html:149
+msgid "EQUIPO TODOTERRENO"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:93
+#: main_app/templates/main_app/base.html:150
+msgid "CONTACTO"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:110
+#: main_app/templates/main_app/panel_album_editar.html:4
+#: main_app/templates/main_app/panel_album_fotos.html:4
+#: main_app/templates/main_app/panel_eventos.html:4
+msgid "Panel"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:113
+#: main_app/templates/main_app/base.html:168
+msgid "Salir"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:116
+#: main_app/templates/main_app/base.html:170
+#: main_app/templates/main_app/login.html:5
+msgid "Iniciar Sesión"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:117
+#: main_app/templates/main_app/base.html:171
+msgid "Registrarse"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:144
+msgid "INICIO"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:147
+msgid "MEDIA"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:165
+#: main_app/templates/main_app/panel_base.html:7
+#: main_app/templates/main_app/panel_home.html:11
+msgid "Panel de Control"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:202
+msgid "Media & Galería"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:203
+msgid "El Monstruo AWD"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:204
+msgid "Pilotos y Familia"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:208
+msgid "La Temporada"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:210
+msgid "Calendario Oficial"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:211
+msgid "SCORE International"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:212
+msgid "CODE Off-Road"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:213
+msgid "RECORD Off-Road"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:217
+msgid "Ecosistema Off-Road"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:219
+msgid "Nuestros Patrocinadores"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:220
+msgid "Únete como Aliado"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:221
+#: main_app/templates/main_app/contacto.html:52
+msgid "Prensa y Medios"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:222
+msgid "Contacto Directo"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:233
+msgid ""
+"Suscríbete a nuestro newsletter y no te pierdas el polvo de la Baja. Recibe "
+"actualizaciones, noticias y próximos eventos."
+msgstr ""
+
+#: main_app/templates/main_app/base.html:239
+msgid "Ingresa tu correo electrónico..."
+msgstr ""
+
+#: main_app/templates/main_app/base.html:241
+msgid "Suscribir"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:271
+msgid "Todos los derechos reservados."
+msgstr ""
+
+#: main_app/templates/main_app/base.html:274
+#: main_app/templates/main_app/contacto.html:5
+#: main_app/templates/main_app/contacto.html:17
+msgid "Contacto"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:276
+msgid "Términos y Condiciones"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:278
+msgid "Aviso de Privacidad"
+msgstr ""
+
+#: main_app/templates/main_app/base.html:280
+msgid "Política de Cookies"
+msgstr ""
+
+#: main_app/templates/main_app/calendario.html:5
+msgid "Calendario SCORE"
+msgstr ""
+
+#: main_app/templates/main_app/calendario.html:17
+msgid "Calendario"
+msgstr ""
+
+#: main_app/templates/main_app/calendario.html:17
+msgid "Oficial"
+msgstr ""
+
+#: main_app/templates/main_app/calendario.html:18
+msgid "Histórico y próximas carreras de la temporada."
+msgstr ""
+
+#: main_app/templates/main_app/calendario.html:27
+msgid "Campeonato:"
+msgstr ""
+
+#: main_app/templates/main_app/calendario.html:31
+msgid "Todos los Seriales"
+msgstr ""
+
+#: main_app/templates/main_app/calendario.html:41
+msgid "Sede / Ruta:"
+msgstr ""
+
+#: main_app/templates/main_app/calendario.html:45
+msgid "Todas las Sedes"
+msgstr ""
+
+#: main_app/templates/main_app/calendario.html:55
+msgid "Buscar Carrera:"
+msgstr ""
+
+#: main_app/templates/main_app/calendario.html:58
+msgid "Ej. Baja 1000, San Felipe 250..."
+msgstr ""
+
+#: main_app/templates/main_app/calendario.html:65
+msgid "Limpiar"
+msgstr ""
+
+#: main_app/templates/main_app/calendario.html:68
+msgid "Buscar"
+msgstr ""
+
+#: main_app/templates/main_app/calendario.html:98
+msgid "Sin Resultados"
+msgstr ""
+
+#: main_app/templates/main_app/calendario.html:99
+msgid ""
+"No se encontraron eventos con los criterios de búsqueda. Intenta con otros "
+"filtros."
+msgstr ""
+
+#: main_app/templates/main_app/calendario.html:101
+msgid "Limpiar Búsqueda"
+msgstr ""
+
+#: main_app/templates/main_app/contacto.html:18
+msgid "Conéctate con el equipo"
+msgstr ""
+
+#: main_app/templates/main_app/contacto.html:26
+msgid "Envíanos un mensaje"
+msgstr ""
+
+#: main_app/templates/main_app/contacto.html:33
+#: main_app/templates/main_app/registro.html:24
+msgid "Nombre Completo"
+msgstr ""
+
+#: main_app/templates/main_app/contacto.html:34
+msgid "Nombre(s) y Apellido(s)"
+msgstr ""
+
+#: main_app/templates/main_app/contacto.html:38
+msgid "Email"
+msgstr ""
+
+#: main_app/templates/main_app/contacto.html:43
+#: main_app/templates/main_app/patrocinadores.html:95
+msgid "Teléfono"
+msgstr ""
+
+#: main_app/templates/main_app/contacto.html:48
+msgid "Área de Interés"
+msgstr ""
+
+#: main_app/templates/main_app/contacto.html:50
+msgid "Información General"
+msgstr ""
+
+#: main_app/templates/main_app/contacto.html:51
+msgid "Patrocinios y Alianzas"
+msgstr ""
+
+#: main_app/templates/main_app/contacto.html:53
+msgid "Logística del Equipo"
+msgstr ""
+
+#: main_app/templates/main_app/contacto.html:58
+msgid "Asunto"
+msgstr ""
+
+#: main_app/templates/main_app/contacto.html:63
+msgid "Mensaje"
+msgstr ""
+
+#: main_app/templates/main_app/contacto.html:64
+msgid "¿Cómo podemos ayudarte?"
+msgstr ""
+
+#: main_app/templates/main_app/contacto.html:69
+msgid "Enviar Mensaje"
+msgstr ""
+
+#: main_app/templates/main_app/contacto.html:76
+msgid "¡Contáctanos!"
+msgstr ""
+
+#: main_app/templates/main_app/contacto.html:85
+msgid "Base de Operaciones"
+msgstr ""
+
+#: main_app/templates/main_app/contacto.html:95
+msgid "Correo General"
+msgstr ""
+
+#: main_app/templates/main_app/contacto.html:105
+msgid "Horario Paddock"
+msgstr ""
+
+#: main_app/templates/main_app/contacto.html:111
+msgid "Nuestras Redes"
+msgstr ""
+
+#: main_app/templates/main_app/foto_detalle.html:38
+msgid "Comentarios"
+msgstr ""
+
+#: main_app/templates/main_app/foto_detalle.html:66
+#: main_app/templates/main_app/galeria.html:106
+msgid "Guardar"
+msgstr ""
+
+#: main_app/templates/main_app/foto_detalle.html:67
+#: main_app/templates/main_app/galeria.html:107
+#: main_app/templates/main_app/panel_album_editar.html:29
+msgid "Cancelar"
+msgstr ""
+
+#: main_app/templates/main_app/foto_detalle.html:83
+#: main_app/templates/main_app/galeria.html:84
+#: main_app/templates/main_app/panel_eventos.html:54
+msgid "Editar"
+msgstr ""
+
+#: main_app/templates/main_app/foto_detalle.html:86
+#: main_app/templates/main_app/galeria.html:87
+msgid "¿Seguro que deseas eliminar tu comentario?"
+msgstr ""
+
+#: main_app/templates/main_app/foto_detalle.html:86
+#: main_app/templates/main_app/galeria.html:87
+#: main_app/templates/main_app/panel_album_fotos.html:48
+msgid "Eliminar"
+msgstr ""
+
+#: main_app/templates/main_app/foto_detalle.html:91
+#: main_app/templates/main_app/galeria.html:92
+msgid "¿Seguro que deseas reportar este comentario?"
+msgstr ""
+
+#: main_app/templates/main_app/foto_detalle.html:91
+#: main_app/templates/main_app/galeria.html:92
+msgid "Reportar"
+msgstr ""
+
+#: main_app/templates/main_app/foto_detalle.html:100
+msgid "Sé el primero en comentar esta publicación."
+msgstr ""
+
+#: main_app/templates/main_app/foto_detalle.html:123
+msgid "Compartir"
+msgstr ""
+
+#: main_app/templates/main_app/foto_detalle.html:127
+msgid "Me gusta"
+msgstr ""
+
+#: main_app/templates/main_app/foto_detalle.html:132
+msgid "Añade un comentario..."
+msgstr ""
+
+#: main_app/templates/main_app/foto_detalle.html:133
+#: main_app/templates/main_app/todoterreno.html:103
+msgid "Publicar"
+msgstr ""
+
+#: main_app/templates/main_app/foto_detalle.html:136
+msgid "para comentar o dar me gusta."
+msgstr ""
+
+#: main_app/templates/main_app/galeria.html:4
+msgid "Media"
+msgstr ""
+
+#: main_app/templates/main_app/galeria.html:10
+#: main_app/templates/main_app/panel_base.html:38
+msgid "Galería"
+msgstr ""
+
+#: main_app/templates/main_app/galeria.html:11
+msgid "Toda la acción del Off-Road"
+msgstr ""
+
+#: main_app/templates/main_app/galeria.html:17
+msgid "Crear Nuevo Álbum"
+msgstr ""
+
+#: main_app/templates/main_app/galeria.html:33
+msgid "Subir Fotos / Editar Álbum"
+msgstr ""
+
+#: main_app/templates/main_app/galeria.html:113
+msgid "Aún no hay comentarios. ¡Sé el primero en comentar!"
+msgstr ""
+
+#: main_app/templates/main_app/galeria.html:122
+msgid "Aún no hay álbumes publicados."
+msgstr ""
+
+#: main_app/templates/main_app/home.html:22
+msgid "Bienvenidos al equipo"
+msgstr ""
+
+#: main_app/templates/main_app/home.html:26
+msgid "CG"
+msgstr ""
+
+#: main_app/templates/main_app/home.html:26
+msgid "Motorsports"
+msgstr ""
+
+#: main_app/templates/main_app/home.html:34
+msgid "VER CALENDARIO"
+msgstr ""
+
+#: main_app/templates/main_app/home.html:52
+msgid "Calendario Oficial SCORE"
+msgstr ""
+
+#: main_app/templates/main_app/home.html:54
+msgid "próximas "
+msgstr ""
+
+#: main_app/templates/main_app/home.html:54
+msgid "carreras de la temporada."
+msgstr ""
+
+#: main_app/templates/main_app/home.html:58
+#: main_app/templates/main_app/home.html:131
+msgid "Ver todo el calendario"
+msgstr ""
+
+#: main_app/templates/main_app/home.html:70
+msgid "Mayo - Junio 2023"
+msgstr ""
+
+#: main_app/templates/main_app/home.html:74
+msgid "55th SCORE Baja 500"
+msgstr ""
+
+#: main_app/templates/main_app/home.html:77
+msgid ""
+"La clásica y brutal carrera de verano. Temperaturas extremas y rutas que "
+"castigan el vehículo. Una guerra de desgaste."
+msgstr ""
+
+#: main_app/templates/main_app/home.html:80
+msgid "31 May - 4 Jun"
+msgstr ""
+
+#: main_app/templates/main_app/home.html:81
+#: main_app/templates/main_app/home.html:101
+msgid "Ensenada, B.C."
+msgstr ""
+
+#: main_app/templates/main_app/home.html:90
+msgid "Septiembre 2023"
+msgstr ""
+
+#: main_app/templates/main_app/home.html:94
+msgid "4th SCORE Baja 400"
+msgstr ""
+
+#: main_app/templates/main_app/home.html:97
+msgid ""
+"El desafío perfecto de media distancia. 400 millas de terreno súper técnico "
+"que pondrán a prueba la estrategia del equipo."
+msgstr ""
+
+#: main_app/templates/main_app/home.html:100
+msgid "12 - 17 Sep"
+msgstr ""
+
+#: main_app/templates/main_app/home.html:110
+msgid "Noviembre 2023"
+msgstr ""
+
+#: main_app/templates/main_app/home.html:114
+msgid "56th SCORE Baja 1000"
+msgstr ""
+
+#: main_app/templates/main_app/home.html:117
+msgid ""
+"La madre de todas las batallas off-road. Mil millas de polvo, oscuridad, "
+"fatiga extrema y adrenalina pura."
+msgstr ""
+
+#: main_app/templates/main_app/home.html:120
+msgid "13 - 18 Nov"
+msgstr ""
+
+#: main_app/templates/main_app/home.html:121
+msgid "Ensenada - La Paz"
+msgstr ""
+
+#: main_app/templates/main_app/home.html:143
+msgid ""
+"Nuestros patrocinadores <span class=\"text-[#4781B3]\">Gracias a nuestros "
+"increíbles patrocinadores que ayudan a nuestro equipo a mejorar y ser "
+"mejores en lo que hacemos.</span>"
+msgstr ""
+
+#: main_app/templates/main_app/home.html:157
+msgid "Aún no hay patrocinadores registrados."
+msgstr ""
+
+#: main_app/templates/main_app/home.html:163
+msgid "Ver todos los patrocinadores"
+msgstr ""
+
+#: main_app/templates/main_app/login.html:18
+msgid "Bienvenido"
+msgstr ""
+
+#: main_app/templates/main_app/login.html:18
+msgid "Piloto"
+msgstr ""
+
+#: main_app/templates/main_app/login.html:19
+msgid "Ingresa tus credenciales para acceder al Paddock."
+msgstr ""
+
+#: main_app/templates/main_app/login.html:26
+msgid "Usuario o Correo"
+msgstr ""
+
+#: main_app/templates/main_app/login.html:29
+#: main_app/templates/main_app/registro.html:35
+msgid "piloto@ejemplo.com"
+msgstr ""
+
+#: main_app/templates/main_app/login.html:34
+#: main_app/templates/main_app/registro.html:40
+msgid "Contraseña"
+msgstr ""
+
+#: main_app/templates/main_app/login.html:37
+#: main_app/templates/main_app/registro.html:43
+msgid "••••••••"
+msgstr ""
+
+#: main_app/templates/main_app/login.html:42
+msgid "Entrar a la cuenta"
+msgstr ""
+
+#: main_app/templates/main_app/login.html:47
+msgid "¿No tienes cuenta?"
+msgstr ""
+
+#: main_app/templates/main_app/login.html:47
+msgid "Regístrate aquí"
+msgstr ""
+
+#: main_app/templates/main_app/panel_album_editar.html:4
+msgid "Editar Álbum"
+msgstr ""
+
+#: main_app/templates/main_app/panel_album_editar.html:9
+msgid "Editar Info del Álbum"
+msgstr ""
+
+#: main_app/templates/main_app/panel_album_editar.html:10
+msgid "Modificando registro:"
+msgstr ""
+
+#: main_app/templates/main_app/panel_album_editar.html:12
+#: main_app/templates/main_app/panel_album_fotos.html:12
+msgid "Volver"
+msgstr ""
+
+#: main_app/templates/main_app/panel_album_fotos.html:4
+msgid "Fotos del Álbum"
+msgstr ""
+
+#: main_app/templates/main_app/panel_album_fotos.html:9
+msgid "Archivos del Álbum"
+msgstr ""
+
+#: main_app/templates/main_app/panel_album_fotos.html:10
+msgid "Viendo contenido de:"
+msgstr ""
+
+#: main_app/templates/main_app/panel_album_fotos.html:18
+msgid "Subir Archivos"
+msgstr ""
+
+#: main_app/templates/main_app/panel_album_fotos.html:22
+msgid "Selecciona múltiples fotos o videos (MP4)"
+msgstr ""
+
+#: main_app/templates/main_app/panel_album_fotos.html:26
+msgid "Subir al Álbum"
+msgstr ""
+
+#: main_app/templates/main_app/panel_album_fotos.html:48
+msgid "¿Eliminar este archivo definitivamente?"
+msgstr ""
+
+#: main_app/templates/main_app/panel_album_fotos.html:54
+msgid "El álbum está vacío."
+msgstr ""
+
+#: main_app/templates/main_app/panel_base.html:26
+#: main_app/templates/main_app/panel_home.html:4
+msgid "Dashboard"
+msgstr ""
+
+#: main_app/templates/main_app/panel_base.html:30
+msgid "Carreras"
+msgstr ""
+
+#: main_app/templates/main_app/panel_base.html:34
+#: main_app/templates/main_app/patrocinadores.html:4
+#: main_app/templates/main_app/patrocinadores.html:12
+#: main_app/templates/main_app/patrocinadores.html:43
+msgid "Patrocinadores"
+msgstr ""
+
+#: main_app/templates/main_app/panel_base.html:42
+msgid "Mensajes"
+msgstr ""
+
+#: main_app/templates/main_app/panel_base.html:46
+msgid "Patrocinios"
+msgstr ""
+
+#: main_app/templates/main_app/panel_base.html:50
+msgid "Suscriptores"
+msgstr ""
+
+#: main_app/templates/main_app/panel_base.html:56
+msgid "Ver Web Pública"
+msgstr ""
+
+#: main_app/templates/main_app/panel_eventos.html:4
+msgid "Gestión de Carreras"
+msgstr ""
+
+#: main_app/templates/main_app/panel_eventos.html:9
+msgid "Calendario de Carreras"
+msgstr ""
+
+#: main_app/templates/main_app/panel_eventos.html:10
+msgid ""
+"Agrega, edita o elimina las carreras que aparecen en el buscador y el "
+"calendario público."
+msgstr ""
+
+#: main_app/templates/main_app/panel_eventos.html:17
+msgid "Agregar Nueva Carrera"
+msgstr ""
+
+#: main_app/templates/main_app/panel_eventos.html:30
+msgid "Guardar Carrera"
+msgstr ""
+
+#: main_app/templates/main_app/panel_eventos.html:41
+msgid "Carrera"
+msgstr ""
+
+#: main_app/templates/main_app/panel_eventos.html:42
+msgid "Fecha"
+msgstr ""
+
+#: main_app/templates/main_app/panel_eventos.html:43
+msgid "Ubicación"
+msgstr ""
+
+#: main_app/templates/main_app/panel_eventos.html:44
+msgid "Acciones"
+msgstr ""
+
+#: main_app/templates/main_app/panel_eventos.html:55
+msgid "¿Eliminar esta carrera del mapa?"
+msgstr ""
+
+#: main_app/templates/main_app/panel_eventos.html:59
+msgid "No hay carreras registradas."
+msgstr ""
+
+#: main_app/templates/main_app/panel_home.html:12
+msgid "Bienvenido de vuelta. Aquí tienes un resumen del estado del equipo."
+msgstr ""
+
+#: main_app/templates/main_app/panel_home.html:24
+msgid "Mensajes sin leer"
+msgstr ""
+
+#: main_app/templates/main_app/panel_home.html:33
+msgid "Nuevos Patrocinios"
+msgstr ""
+
+#: main_app/templates/main_app/panel_home.html:42
+msgid "Carreras Activas"
+msgstr ""
+
+#: main_app/templates/main_app/panel_home.html:51
+msgid "Marcas Aliadas"
+msgstr ""
+
+#: main_app/templates/main_app/patrocinadores.html:17
+msgid ""
+"Los patrocinadores son más que un logo en el chasis, son los aliados que nos "
+"ayudan a sortear los terrenos más hostiles de la Baja. Con tu apoyo como "
+"patrocinador podemos conquistar cada meta."
+msgstr ""
+
+#: main_app/templates/main_app/patrocinadores.html:17
+msgid "CG Motorsports no corre solo, corre con tu compañía."
+msgstr ""
+
+#: main_app/templates/main_app/patrocinadores.html:25
+msgid "Camina a nuestro lado para que..."
+msgstr ""
+
+#: main_app/templates/main_app/patrocinadores.html:28
+msgid "Te conectemos con nuevos clientes; la afición Off-Road nos distingue."
+msgstr ""
+
+#: main_app/templates/main_app/patrocinadores.html:29
+msgid "Concretes una comunicación directa con un nicho de mercado muy valioso."
+msgstr ""
+
+#: main_app/templates/main_app/patrocinadores.html:30
+msgid ""
+"Pongamos a tu alcance espacios publicitarios y de interacción en nuestros "
+"pits y eventos."
+msgstr ""
+
+#: main_app/templates/main_app/patrocinadores.html:31
+msgid "Aumentes la exposición internacional y el posicionamiento de tu marca."
+msgstr ""
+
+#: main_app/templates/main_app/patrocinadores.html:32
+msgid ""
+"Hagas crecer la fidelización vinculando tus productos a la pasión del "
+"automovilismo."
+msgstr ""
+
+#: main_app/templates/main_app/patrocinadores.html:37
+msgid "Únete al Equipo"
+msgstr ""
+
+#: main_app/templates/main_app/patrocinadores.html:49
+msgid "Hemos trabajado con"
+msgstr ""
+
+#: main_app/templates/main_app/patrocinadores.html:69
+msgid "Nuevas alianzas próximamente."
+msgstr ""
+
+#: main_app/templates/main_app/patrocinadores.html:77
+msgid "Contáctanos"
+msgstr ""
+
+#: main_app/templates/main_app/patrocinadores.html:82
+msgid "Nombre"
+msgstr ""
+
+#: main_app/templates/main_app/patrocinadores.html:86
+msgid "Puesto"
+msgstr ""
+
+#: main_app/templates/main_app/patrocinadores.html:90
+msgid "Dirección Email"
+msgstr ""
+
+#: main_app/templates/main_app/patrocinadores.html:99
+msgid "Organización / Empresa"
+msgstr ""
+
+#: main_app/templates/main_app/patrocinadores.html:103
+msgid "Página Web"
+msgstr ""
+
+#: main_app/templates/main_app/patrocinadores.html:108
+msgid "¿Por qué te interesa participar con el equipo?"
+msgstr ""
+
+#: main_app/templates/main_app/patrocinadores.html:114
+msgid "Enviar Propuesta"
+msgstr ""
+
+#: main_app/templates/main_app/registro.html:5
+msgid "Registro"
+msgstr ""
+
+#: main_app/templates/main_app/registro.html:16
+msgid "Únete al"
+msgstr ""
+
+#: main_app/templates/main_app/registro.html:17
+msgid "Crea tu cuenta y accede a contenido exclusivo."
+msgstr ""
+
+#: main_app/templates/main_app/registro.html:27
+msgid "Tu nombre"
+msgstr ""
+
+#: main_app/templates/main_app/registro.html:32
+msgid "Correo Electrónico"
+msgstr ""
+
+#: main_app/templates/main_app/registro.html:48
+msgid "Crear Cuenta"
+msgstr ""
+
+#: main_app/templates/main_app/registro.html:53
+msgid "¿Ya tienes cuenta?"
+msgstr ""
+
+#: main_app/templates/main_app/todoterreno.html:5
 msgid "Equipo Todoterreno"
 msgstr ""
 
-#: .\main_app\templates\main_app\todoterreno.html:19
+#: main_app/templates/main_app/todoterreno.html:17
 msgid "Monstruo"
 msgstr ""
 
-#: .\main_app\templates\main_app\todoterreno.html:20
+#: main_app/templates/main_app/todoterreno.html:18
 msgid "Ingeniería pura diseñada para dominar la Baja."
 msgstr ""
 
-#: .\main_app\templates\main_app\todoterreno.html:29
+#: main_app/templates/main_app/todoterreno.html:26
 msgid "Poder Absoluto"
 msgstr ""
 
-#: .\main_app\templates\main_app\todoterreno.html:30
+#: main_app/templates/main_app/todoterreno.html:27
 msgid "Especificaciones"
 msgstr ""
 
-#: .\main_app\templates\main_app\todoterreno.html:32
-msgid "Motor:"
+#: main_app/templates/main_app/todoterreno.html:33
+msgid "Motor"
 msgstr ""
 
-#: .\main_app\templates\main_app\todoterreno.html:32
-msgid "V8 de Alto Rendimiento, afinado para resistencia en calor extremo."
+#: main_app/templates/main_app/todoterreno.html:34
+msgid "V8 Alto Rendimiento, afinado para calor extremo."
 msgstr ""
 
-#: .\main_app\templates\main_app\todoterreno.html:33
-msgid "Tracción:"
+#: main_app/templates/main_app/todoterreno.html:38
+msgid "Tracción"
 msgstr ""
 
-#: .\main_app\templates\main_app\todoterreno.html:33
-msgid "AWD (All-Wheel Drive) para tracción máxima en dunas y terreno suelto."
+#: main_app/templates/main_app/todoterreno.html:39
+msgid "AWD Integral, máxima tracción en dunas."
 msgstr ""
 
-#: .\main_app\templates\main_app\todoterreno.html:34
-msgid "Suspensión:"
+#: main_app/templates/main_app/todoterreno.html:43
+msgid "Suspensión"
 msgstr ""
 
-#: .\main_app\templates\main_app\todoterreno.html:34
-msgid "Amortiguadores de carrera con recorrido ultra-largo."
+#: main_app/templates/main_app/todoterreno.html:44
+msgid "Amortiguadores de competencia Fox recorrido largo."
 msgstr ""
 
-#: .\main_app\templates\main_app\todoterreno.html:35
-msgid "Chasis:"
+#: main_app/templates/main_app/todoterreno.html:48
+msgid "Chasis"
 msgstr ""
 
-#: .\main_app\templates\main_app\todoterreno.html:35
-msgid "Estructura tubular diseñada para impactos severos a más de 120 mph."
+#: main_app/templates/main_app/todoterreno.html:49
+msgid "Tubular ultra ligero diseñado para impactos severos."
 msgstr ""
