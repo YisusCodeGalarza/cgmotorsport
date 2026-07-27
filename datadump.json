@@ -3,7 +3,7 @@
     "model": "auth.user",
     "fields": {
         "password": "pbkdf2_sha256$600000$GzDckImPxPhJJIJ7YuW1cF$akT8ALRLOwX7RdQcWrg02f+OQDryZmtfNZu83Bx8sY0=",
-        "last_login": "2026-06-17T20:36:21.362Z",
+        "last_login": "2026-07-27T22:29:40.675Z",
         "is_superuser": true,
         "username": "Admin",
         "first_name": "",
@@ -52,6 +52,14 @@
 },
 {
     "model": "sessions.session",
+    "pk": "1y45rqhazl0gsq53ix6jqge6jqk7n5cw",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSGlMDxcuvcbyHQYpGogKe3K-O_apAvd3nPOfYmI21ri1nmJcxJnocTpd5uQHlx3kO5Yb01Sq-syT3JX5EG7vLbEz8vh_h0U7OVbEwdHZjQ2sw7ZAeikPSbvAjhUAJYGpDx6A9miJufMYC0pxgBoFRrx_gDbvzeJ:1woTpM:M3bViGMSHwlnkesErgAMayXVpDZK2qoe_C8yq_1jb48",
+        "expire_date": "2026-08-10T22:29:40.678Z"
+    }
+},
+{
+    "model": "sessions.session",
     "pk": "39g5l94fz8azimv1vg31bm86xelppdlu",
     "fields": {
         "session_data": ".eJxVjMsOwiAQRf-FtSGlMDxcuvcbyHQYpGogKe3K-O_apAvd3nPOfYmI21ri1nmJcxJnocTpd5uQHlx3kO5Yb01Sq-syT3JX5EG7vLbEz8vh_h0U7OVbEwdHZjQ2sw7ZAeikPSbvAjhUAJYGpDx6A9miJufMYC0pxgBoFRrx_gDbvzeJ:1wZwzl:PKexOvHQg0GePx7Tg4QT217AEvXpCQCD3R4nYbgWr2g",
@@ -64,6 +72,14 @@
     "fields": {
         "session_data": ".eJxVjMsOwiAQRf-FtSGlMDxcuvcbyHQYpGogKe3K-O_apAvd3nPOfYmI21ri1nmJcxJnocTpd5uQHlx3kO5Yb01Sq-syT3JX5EG7vLbEz8vh_h0U7OVbEwdHZjQ2sw7ZAeikPSbvAjhUAJYGpDx6A9miJufMYC0pxgBoFRrx_gDbvzeJ:1wZwJf:m6ObwWBhlt1tIXYs11ERF-Wg_u1dag8IYDq7Iimr5GA",
         "expire_date": "2026-07-01T19:52:51.209Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "uz2nc1io2byx55d1ee3ejrfinf8iuig6",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSGlMDxcuvcbyHQYpGogKe3K-O_apAvd3nPOfYmI21ri1nmJcxJnocTpd5uQHlx3kO5Yb01Sq-syT3JX5EG7vLbEz8vh_h0U7OVbEwdHZjQ2sw7ZAeikPSbvAjhUAJYGpDx6A9miJufMYC0pxgBoFRrx_gDbvzeJ:1wcxEK:ztQiQIHcC3WqHwnjcgecLmAbI1ImL2ubDuNW55WDa3c",
+        "expire_date": "2026-07-10T03:27:48.945Z"
     }
 },
 {
@@ -104,155 +120,532 @@
 },
 {
     "model": "main_app.album",
-    "pk": 1,
+    "pk": 2,
     "fields": {
-        "titulo": "Baja 1000",
-        "descripcion": "Ensenada!",
-        "evento": 2,
-        "portada": "galeria/portadas/sf-3.jpg",
-        "fecha_creacion": "2026-06-13T04:15:15.280Z"
+        "titulo": "General",
+        "descripcion": "Todas Nuestras Fotos",
+        "evento": null,
+        "portada": "",
+        "fecha_creacion": "2026-06-26T03:37:35.971Z"
     }
 },
 {
     "model": "main_app.fotografia",
-    "pk": 14,
+    "pk": 25,
     "fields": {
-        "album": 1,
-        "imagen": "galeria/fotos/sf-1_AxOoSuM.jpg",
+        "album": 2,
+        "imagen": "galeria/fotos/9d021384-030b-497c-9c1d-301be7a82b8f.jpg",
         "es_video": false,
         "archivo_video": "",
         "leyenda": null,
-        "fecha_subida": "2026-06-18T05:30:23.358Z",
+        "fecha_subida": "2026-06-26T03:38:34.519Z",
         "likes": []
     }
 },
 {
     "model": "main_app.fotografia",
-    "pk": 15,
+    "pk": 26,
     "fields": {
-        "album": 1,
-        "imagen": "galeria/fotos/sf-2_GrdtBL7.jpg",
+        "album": 2,
+        "imagen": "galeria/fotos/44dd10e3-ce21-4049-bd03-4c2e33f4d8a4.jpg",
         "es_video": false,
         "archivo_video": "",
         "leyenda": null,
-        "fecha_subida": "2026-06-18T05:30:23.366Z",
+        "fecha_subida": "2026-06-26T03:38:34.549Z",
         "likes": []
     }
 },
 {
     "model": "main_app.fotografia",
-    "pk": 16,
+    "pk": 27,
     "fields": {
-        "album": 1,
-        "imagen": "galeria/fotos/sf-3_0uNPyi4.jpg",
+        "album": 2,
+        "imagen": "galeria/fotos/96aa1c53-f824-4dd3-ae8c-5d26c1108707.jpg",
         "es_video": false,
         "archivo_video": "",
         "leyenda": null,
-        "fecha_subida": "2026-06-18T05:30:23.377Z",
+        "fecha_subida": "2026-06-26T03:38:34.573Z",
         "likes": []
     }
 },
 {
     "model": "main_app.fotografia",
-    "pk": 17,
+    "pk": 28,
     "fields": {
-        "album": 1,
-        "imagen": "galeria/fotos/sf-4_LAxlxBQ.jpg",
-        "es_video": false,
-        "archivo_video": "",
+        "album": 2,
+        "imagen": "",
+        "es_video": true,
+        "archivo_video": "galeria/videos/989a5561-8969-4a8c-92ea-834e612a095d.MP4",
         "leyenda": null,
-        "fecha_subida": "2026-06-18T05:30:23.387Z",
+        "fecha_subida": "2026-06-26T03:38:34.574Z",
         "likes": []
     }
 },
 {
     "model": "main_app.fotografia",
-    "pk": 18,
+    "pk": 29,
     "fields": {
-        "album": 1,
-        "imagen": "galeria/fotos/sf-5_ZKLnWs1.jpg",
+        "album": 2,
+        "imagen": "galeria/fotos/4210d513-0090-4707-8cc9-326b15543f18.jpg",
         "es_video": false,
         "archivo_video": "",
         "leyenda": null,
-        "fecha_subida": "2026-06-18T05:30:23.398Z",
+        "fecha_subida": "2026-06-26T03:38:34.597Z",
         "likes": []
     }
 },
 {
     "model": "main_app.fotografia",
-    "pk": 19,
+    "pk": 30,
     "fields": {
-        "album": 1,
-        "imagen": "galeria/fotos/sf-6_hayQWxW.jpg",
+        "album": 2,
+        "imagen": "galeria/fotos/244783d6-8877-4b0b-8d73-5e9df9ea8d48.jpg",
         "es_video": false,
         "archivo_video": "",
         "leyenda": null,
-        "fecha_subida": "2026-06-18T05:30:23.407Z",
+        "fecha_subida": "2026-06-26T03:38:34.622Z",
         "likes": []
     }
 },
 {
     "model": "main_app.fotografia",
-    "pk": 20,
+    "pk": 31,
     "fields": {
-        "album": 1,
-        "imagen": "galeria/fotos/sf-7_kGWZflp.jpg",
+        "album": 2,
+        "imagen": "galeria/fotos/96789924-3559-47b8-bc41-1813984bba9b.JPG",
         "es_video": false,
         "archivo_video": "",
         "leyenda": null,
-        "fecha_subida": "2026-06-18T05:30:23.416Z",
+        "fecha_subida": "2026-06-26T03:38:34.623Z",
         "likes": []
     }
 },
 {
     "model": "main_app.fotografia",
-    "pk": 21,
+    "pk": 32,
     "fields": {
-        "album": 1,
-        "imagen": "galeria/fotos/sf-8_MdAghA1.jpg",
+        "album": 2,
+        "imagen": "galeria/fotos/A6427C37-CC51-415C-8601-7D5B33F8D641.JPG",
         "es_video": false,
         "archivo_video": "",
         "leyenda": null,
-        "fecha_subida": "2026-06-18T05:30:23.424Z",
+        "fecha_subida": "2026-06-26T03:38:34.624Z",
         "likes": []
     }
 },
 {
     "model": "main_app.fotografia",
-    "pk": 22,
+    "pk": 33,
     "fields": {
-        "album": 1,
-        "imagen": "galeria/fotos/sf-9_LENprzk.jpg",
+        "album": 2,
+        "imagen": "galeria/fotos/A976036B-1527-4EDB-97D7-5C48CB8A801C.JPG",
         "es_video": false,
         "archivo_video": "",
         "leyenda": null,
-        "fecha_subida": "2026-06-18T05:30:23.433Z",
+        "fecha_subida": "2026-06-26T03:38:34.625Z",
         "likes": []
     }
 },
 {
     "model": "main_app.fotografia",
-    "pk": 23,
+    "pk": 34,
     "fields": {
-        "album": 1,
-        "imagen": "galeria/fotos/todoterreno1_svvlrNG.jpg",
+        "album": 2,
+        "imagen": "galeria/fotos/A7627530-FC71-4B1A-8FD9-2A4984EB9DC8.JPG",
         "es_video": false,
         "archivo_video": "",
         "leyenda": null,
-        "fecha_subida": "2026-06-18T05:30:23.434Z",
+        "fecha_subida": "2026-06-26T03:38:34.625Z",
         "likes": []
     }
 },
 {
     "model": "main_app.fotografia",
-    "pk": 24,
+    "pk": 35,
     "fields": {
-        "album": 1,
-        "imagen": "galeria/fotos/todoterreno2_wPWTFgw.jpg",
+        "album": 2,
+        "imagen": "",
+        "es_video": true,
+        "archivo_video": "galeria/videos/c2e75a69-db80-47f4-9e76-5179617bc40f.MP4",
+        "leyenda": null,
+        "fecha_subida": "2026-06-26T03:38:34.626Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 36,
+    "fields": {
+        "album": 2,
+        "imagen": "galeria/fotos/c497d966-3cb1-4001-af3a-15c7d0810b4c.jpg",
         "es_video": false,
         "archivo_video": "",
         "leyenda": null,
-        "fecha_subida": "2026-06-18T05:30:23.435Z",
+        "fecha_subida": "2026-06-26T03:38:34.649Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 37,
+    "fields": {
+        "album": 2,
+        "imagen": "",
+        "es_video": true,
+        "archivo_video": "galeria/videos/d472d255-3ff5-4dd9-a1b5-fbc0874cd197.MP4",
+        "leyenda": null,
+        "fecha_subida": "2026-06-26T03:38:34.650Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 38,
+    "fields": {
+        "album": 2,
+        "imagen": "galeria/fotos/d914ac79-8fcc-4329-bdf3-fb1f1ace9867.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-26T03:38:34.669Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 39,
+    "fields": {
+        "album": 2,
+        "imagen": "galeria/fotos/fa02bbe6-4fc6-4840-a518-ce48cce50626.JPG",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-26T03:38:34.670Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 40,
+    "fields": {
+        "album": 2,
+        "imagen": "galeria/fotos/fdb8e9ad-335a-447e-8a16-ba90a202152f.JPG",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-26T03:38:34.671Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 41,
+    "fields": {
+        "album": 2,
+        "imagen": "galeria/fotos/IMG_3160.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-26T03:38:34.823Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 42,
+    "fields": {
+        "album": 2,
+        "imagen": "galeria/fotos/IMG_3162.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-26T03:38:34.932Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 44,
+    "fields": {
+        "album": 2,
+        "imagen": "galeria/fotos/IMG_6581.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-26T03:38:35.055Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 45,
+    "fields": {
+        "album": 2,
+        "imagen": "galeria/fotos/IMG_6610.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-26T03:38:35.100Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 46,
+    "fields": {
+        "album": 2,
+        "imagen": "galeria/fotos/IMG_6628.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-26T03:38:35.178Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 47,
+    "fields": {
+        "album": 2,
+        "imagen": "galeria/fotos/IMG_6635.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-26T03:38:35.246Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 49,
+    "fields": {
+        "album": 2,
+        "imagen": "galeria/fotos/IMG_6646.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-26T03:38:35.321Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 52,
+    "fields": {
+        "album": 2,
+        "imagen": "galeria/fotos/1_h4C3soM.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-26T03:40:36.893Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 53,
+    "fields": {
+        "album": 2,
+        "imagen": "galeria/fotos/2_Ikpepq2.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-26T03:40:36.897Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 54,
+    "fields": {
+        "album": 2,
+        "imagen": "galeria/fotos/3_yXfnJNf.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-26T03:40:36.959Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 55,
+    "fields": {
+        "album": 2,
+        "imagen": "galeria/fotos/5_fGO7JGJ.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-26T03:40:36.989Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 56,
+    "fields": {
+        "album": 2,
+        "imagen": "galeria/fotos/6_4jNyUR1.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-26T03:40:37.011Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 57,
+    "fields": {
+        "album": 2,
+        "imagen": "galeria/fotos/jump_EhUasfm.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-26T03:40:37.012Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 58,
+    "fields": {
+        "album": 2,
+        "imagen": "galeria/fotos/sf-1_8BdJ0ky.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-26T03:40:37.024Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 59,
+    "fields": {
+        "album": 2,
+        "imagen": "galeria/fotos/sf-2_nmyVEJ7.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-26T03:40:37.032Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 60,
+    "fields": {
+        "album": 2,
+        "imagen": "galeria/fotos/sf-3_i6fV82l.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-26T03:40:37.043Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 61,
+    "fields": {
+        "album": 2,
+        "imagen": "galeria/fotos/sf-4_NFd9Q41.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-26T03:40:37.053Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 62,
+    "fields": {
+        "album": 2,
+        "imagen": "galeria/fotos/sf-5_iHZARqB.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-26T03:40:37.064Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 63,
+    "fields": {
+        "album": 2,
+        "imagen": "galeria/fotos/sf-6_KCCnCCG.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-26T03:40:37.073Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 64,
+    "fields": {
+        "album": 2,
+        "imagen": "galeria/fotos/sf-7_ZJ2ciRy.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-26T03:40:37.082Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 65,
+    "fields": {
+        "album": 2,
+        "imagen": "galeria/fotos/sf-8_iY3HVI6.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-26T03:40:37.090Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 66,
+    "fields": {
+        "album": 2,
+        "imagen": "galeria/fotos/sf-9_G43lQBP.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-26T03:40:37.100Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 67,
+    "fields": {
+        "album": 2,
+        "imagen": "galeria/fotos/todoterreno1_EeRXVmy.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-26T03:40:37.101Z",
+        "likes": []
+    }
+},
+{
+    "model": "main_app.fotografia",
+    "pk": 68,
+    "fields": {
+        "album": 2,
+        "imagen": "galeria/fotos/todoterreno2_TCY2dAH.jpg",
+        "es_video": false,
+        "archivo_video": "",
+        "leyenda": null,
+        "fecha_subida": "2026-06-26T03:40:37.101Z",
         "likes": []
     }
 },
