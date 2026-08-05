@@ -2,7 +2,7 @@
 {% extends 'main_app/base.html' %}
 {% load static i18n %}
 
-{% block title %}{% trans "Calendario SCORE" %} | CG Motorsports{% endblock %}
+{% block title %}{% trans "SCORE Calendar" %} | CG Motorsports{% endblock %}
 
 {% block content %}
 <div class="relative min-h-screen pt-32 pb-20 px-4 bg-[#0a0a0a]">
@@ -14,8 +14,8 @@
         
         {# Encabezado #}
         <div class="mb-12 text-center md:text-left">
-            <h1 class="font-display text-4xl md:text-5xl font-black text-white tracking-wide uppercase">{% trans "Calendario" %} <span class="text-[#4781B3]">{% trans "Oficial" %}</span></h1>
-            <p class="text-gray-400 text-sm mt-2 uppercase tracking-widest">{% trans "Histórico y próximas carreras de la temporada." %}</p>
+            <h1 class="font-display text-4xl md:text-5xl font-black text-white tracking-wide uppercase">{% trans "Official" %} <span class="text-[#4781B3]">{% trans "Calendar" %}</span></h1>
+            <p class="text-gray-400 text-sm mt-2 uppercase tracking-widest">{% trans "History and upcoming races of the season" %}</p>
         </div>
 
         {# MÓDULO DE BÚSQUEDA Y FILTROS #}
@@ -24,11 +24,11 @@
                 
                 <!-- Filtro Categoría/Campeonato -->
                 <div class="flex flex-col">
-                    <label class="text-[10px] text-gray-400 uppercase tracking-widest font-bold mb-2">{% trans "Campeonato:" %}</label>
+                    <label class="text-[10px] text-gray-400 uppercase tracking-widest font-bold mb-2">{% trans "Championship" %}:</label>
                     <div class="relative">
                         <i class="fas fa-trophy absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm"></i>
                         <select name="campeonato" class="w-full bg-black/50 border border-white/10 rounded-lg pl-9 pr-3 py-2.5 text-sm text-gray-300 focus:border-[#4781B3] focus:outline-none appearance-none cursor-pointer transition-colors">
-                            <option value="">{% trans "Todos los Seriales" %}</option>
+                            <option value="">{% trans "All Series" %}</option>
                             <option value="score" {% if valores_busqueda.campeonato == 'score' %}selected{% endif %}>SCORE International</option>
                             <option value="code" {% if valores_busqueda.campeonato == 'code' %}selected{% endif %}>CODE Off-Road</option>
                             <option value="record" {% if valores_busqueda.campeonato == 'record' %}selected{% endif %}>RECORD Off-Road</option>
@@ -38,11 +38,11 @@
 
                 <!-- Filtro Sede -->
                 <div class="flex flex-col">
-                    <label class="text-[10px] text-gray-400 uppercase tracking-widest font-bold mb-2">{% trans "Sede / Ruta:" %}</label>
+                    <label class="text-[10px] text-gray-400 uppercase tracking-widest font-bold mb-2">{% trans "Venue / Route" %}:</label>
                     <div class="relative">
                         <i class="fas fa-map-marker-alt absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm"></i>
                         <select name="sede" class="w-full bg-black/50 border border-white/10 rounded-lg pl-9 pr-3 py-2.5 text-sm text-gray-300 focus:border-[#4781B3] focus:outline-none appearance-none cursor-pointer transition-colors">
-                            <option value="">{% trans "Todas las Sedes" %}</option>
+                            <option value="">{% trans "All Venues" %}</option>
                             <option value="ensenada" {% if valores_busqueda.sede == 'ensenada' %}selected{% endif %}>Ensenada, B.C.</option>
                             <option value="sanfelipe" {% if valores_busqueda.sede == 'sanfelipe' %}selected{% endif %}>San Felipe, B.C.</option>
                             <option value="lapaz" {% if valores_busqueda.sede == 'lapaz' %}selected{% endif %}>La Paz, B.C.S.</option>
@@ -52,20 +52,20 @@
 
                 <!-- Buscador de Texto -->
                 <div class="flex flex-col lg:col-span-2">
-                    <label class="text-[10px] text-gray-400 uppercase tracking-widest font-bold mb-2">{% trans "Buscar Carrera:" %}</label>
+                    <label class="text-[10px] text-gray-400 uppercase tracking-widest font-bold mb-2">{% trans "Search Race" %}:</label>
                     <div class="relative">
                         <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm"></i>
-                        <input type="text" name="q" value="{{ valores_busqueda.q|default:'' }}" placeholder="{% trans 'Ej. Baja 1000, San Felipe 250...' %}" class="w-full bg-black/50 border border-white/10 rounded-lg pl-9 pr-3 py-2.5 text-sm text-white focus:border-[#4781B3] focus:outline-none transition-colors">
+                        <input type="text" name="q" value="{{ valores_busqueda.q|default:'' }}" placeholder="{% trans 'e.g. Baja 1000, San Felipe 250...' %}" class="w-full bg-black/50 border border-white/10 rounded-lg pl-9 pr-3 py-2.5 text-sm text-white focus:border-[#4781B3] focus:outline-none transition-colors">
                     </div>
                 </div>
 
                 <!-- Botones -->
                 <div class="flex items-end gap-3 h-full pt-6 lg:pt-0">
                     <a href="{% url 'calendario' %}" class="w-full bg-white/5 border border-white/10 text-white font-bold uppercase tracking-widest text-[10px] py-3 rounded-lg hover:bg-white/10 transition-colors block text-center">
-                        {% trans "Limpiar" %}
+                        {% trans "Clear" %}
                     </a>
                     <button type="submit" class="w-full bg-[#4781B3] text-white font-bold uppercase tracking-widest text-[10px] py-3 rounded-lg hover:bg-white hover:text-black transition-colors shadow-lg shadow-[#4781B3]/20">
-                        {% trans "Buscar" %}
+                        {% trans "Search" %}
                     </button>
                 </div>
             </form>
@@ -95,10 +95,10 @@
                 </article>
             {% empty %}
                 <div class="col-span-full text-center py-20 bg-[#111] rounded-2xl border border-white/5">
-                    <h3 class="text-white font-display text-2xl mb-2">{% trans "Sin Resultados" %}</h3>
-                    <p class="text-gray-500 uppercase tracking-widest text-sm font-light">{% trans "No se encontraron eventos con los criterios de búsqueda. Intenta con otros filtros." %}</p>
+                    <h3 class="text-white font-display text-2xl mb-2">{% trans "No Results" %}</h3>
+                    <p class="text-gray-500 uppercase tracking-widest text-sm font-light">{% trans "No events were found with the search criteria. Try other filters" %}</p>
                     <a href="{% url 'calendario' %}" class="mt-6 inline-block bg-[#4781B3] text-white font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-lg hover:bg-white hover:text-black transition-colors">
-                        {% trans "Limpiar Búsqueda" %}
+                        {% trans "Clear Search" %}
                     </a>
                 </div>
             {% endfor %}

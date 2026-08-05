@@ -31,11 +31,11 @@
             {# Descripción de la imagen #}
             <div class="p-5 flex-grow overflow-y-auto">
                 <h1 class="text-white font-display text-2xl uppercase tracking-wide font-bold mb-3">{{ foto.titulo }}</h1>
-                <p class="text-gray-300 text-sm leading-relaxed mb-6">{{ foto.descripcion|default:"Sin descripción." }}</p>
+                <p class="text-gray-300 text-sm leading-relaxed mb-6">{{ foto.descripcion|default:_("No description.") }}</p>
                 
                 {# Área de comentarios #}
                 <div class="space-y-4">
-                    <p class="text-xs font-bold text-gray-500 uppercase tracking-widest border-b border-white/5 pb-2">{% trans "Comentarios" %}</p>
+                    <p class="text-xs font-bold text-gray-500 uppercase tracking-widest border-b border-white/5 pb-2">{% trans "Comments" %}</p>
                     
                     {# Bucle que lee los comentarios guardados en la BD #}
                     {% for comentario in foto.comentarios.all %}
@@ -63,8 +63,8 @@
                                             {% csrf_token %}
                                             <textarea name="texto" class="w-full bg-black/50 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-[#4781B3]" rows="2" required>{{ comentario.texto }}</textarea>
                                             <div class="flex gap-3">
-                                                <button type="submit" class="text-[#4781B3] font-bold text-xs uppercase hover:text-white transition-colors">{% trans "Guardar" %}</button>
-                                                <button type="button" onclick="cancelEdit({{ comentario.id }})" class="text-gray-500 font-bold text-xs uppercase hover:text-white transition-colors">{% trans "Cancelar" %}</button>
+                                                <button type="submit" class="text-[#4781B3] font-bold text-xs uppercase hover:text-white transition-colors">{% trans "Save" %}</button>
+                                                <button type="button" onclick="cancelEdit({{ comentario.id }})" class="text-gray-500 font-bold text-xs uppercase hover:text-white transition-colors">{% trans "Cancel" %}</button>
                                             </div>
                                         </form>
                                     </div>
@@ -80,15 +80,15 @@
                                     {# Dropdown #}
                                     <div id="menu-{{ comentario.id }}" class="comment-menu hidden absolute right-0 mt-1 w-32 bg-[#1A1C20] rounded-lg shadow-xl border border-white/10 overflow-hidden z-20">
                                         {% if comentario.usuario == user %}
-                                            <button onclick="editComment({{ comentario.id }})" class="w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors">{% trans "Editar" %}</button>
+                                            <button onclick="editComment({{ comentario.id }})" class="w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors">{% trans "Edit" %}</button>
                                             <form action="{% url 'eliminar_comentario' comentario.id %}" method="POST" class="m-0 border-t border-white/5">
                                                 {% csrf_token %}
-                                                <button type="submit" class="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-white/10 transition-colors" onclick="return confirm('{% trans '¿Seguro que deseas eliminar tu comentario?' %}')">{% trans "Eliminar" %}</button>
+                                                <button type="submit" class="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-white/10 transition-colors" onclick="return confirm('{% trans 'Are you sure you want to delete your comment?' %}')">{% trans "Delete" %}</button>
                                             </form>
                                         {% else %}
                                             <form action="{% url 'reportar_comentario' comentario.id %}" method="POST" class="m-0">
                                                 {% csrf_token %}
-                                                <button type="submit" class="w-full text-left px-4 py-2 text-sm text-yellow-500 hover:bg-white/10 transition-colors" onclick="return confirm('{% trans '¿Seguro que deseas reportar este comentario?' %}')">{% trans "Reportar" %}</button>
+                                                <button type="submit" class="w-full text-left px-4 py-2 text-sm text-yellow-500 hover:bg-white/10 transition-colors" onclick="return confirm('{% trans 'Are you sure you want to report this comment?' %}')">{% trans "Report" %}</button>
                                             </form>
                                         {% endif %}
                                     </div>
@@ -97,7 +97,7 @@
                             </div>
                         </div>
                     {% empty %}
-                        <p class="text-gray-400 text-sm italic">{% trans "Sé el primero en comentar esta publicación." %}</p>
+                        <p class="text-gray-400 text-sm italic">{% trans "Be the first to comment on this post." %}</p>
                     {% endfor %}
                 </div>
             </div>
@@ -120,20 +120,20 @@
                         <a href="{% url 'login' %}"><i class="far fa-heart hover:text-red-500 transition-colors"></i></a>
                     {% endif %}
                     <label for="comentario-input" class="cursor-pointer"><i class="far fa-comment hover:text-[#4781B3] transition-colors"></i></label>
-                    <button onclick="sharePost()" class="focus:outline-none" title="{% trans 'Compartir' %}">
+                    <button onclick="sharePost()" class="focus:outline-none" title="{% trans 'Share' %}">
                         <i class="far fa-paper-plane hover:text-white cursor-pointer transition-colors"></i>
                     </button>
                 </div>
-                <p class="text-white text-sm font-bold mb-3">{{ foto.total_likes }} {% trans "Me gusta" %}</p>
+                <p class="text-white text-sm font-bold mb-3">{{ foto.total_likes }} {% trans "Likes" %}</p>
                 
                 {% if user.is_authenticated %}
                     <form action="{% url 'comentar_foto' foto.id %}" method="POST" class="flex items-center gap-3">
                         {% csrf_token %}
-                        <input type="text" id="comentario-input" name="comentario" required placeholder="{% trans 'Añade un comentario...' %}" class="flex-grow bg-black/50 border border-white/10 rounded-full px-4 py-2 text-sm text-white focus:outline-none focus:border-[#4781B3] transition-colors">
-                        <button type="submit" class="text-[#4781B3] font-bold text-sm uppercase tracking-wider hover:text-white transition-colors">{% trans "Publicar" %}</button>
+                        <input type="text" id="comentario-input" name="comentario" required placeholder="{% trans 'Add a comment...' %}" class="flex-grow bg-black/50 border border-white/10 rounded-full px-4 py-2 text-sm text-white focus:outline-none focus:border-[#4781B3] transition-colors">
+                        <button type="submit" class="text-[#4781B3] font-bold text-sm uppercase tracking-wider hover:text-white transition-colors">{% trans "Post" %}</button>
                     </form>
                 {% else %}
-                    <p class="text-xs text-gray-500"><a href="{% url 'login' %}" class="text-[#4781B3] hover:underline font-bold">{% trans "Inicia sesión" %}</a> {% trans "para comentar o dar me gusta." %}</p>
+                    <p class="text-xs text-gray-500"><a href="{% url 'login' %}" class="text-[#4781B3] hover:underline font-bold">{% trans "Log in" %}</a> {% trans "to comment or like." %}</p>
                 {% endif %}
             </div>
         </div>
@@ -156,7 +156,7 @@
         } else {
             // Si está en PC y no hay menú nativo, copia el enlace
             navigator.clipboard.writeText(url).then(() => {
-                alert('{% trans "¡Enlace copiado al portapapeles!" %}');
+                alert('{% trans "Link copied to clipboard!" %}');
             });
         }
     }

@@ -1,14 +1,15 @@
 {% extends 'main_app/panel_base.html' %}
+{% load i18n %}
 
-{% block title %}Editar Patrocinador | Panel{% endblock %}
+{% block title %}{% trans "Edit Sponsor" %} | {% trans "Panel" %}{% endblock %}
 
 {% block content %}
 <div class="mb-8 flex justify-between items-end">
     <div>
-        <h1 class="font-display text-3xl font-black text-white uppercase tracking-wide">Editar Patrocinador</h1>
-        <p class="text-gray-400 text-sm mt-1">Modificando registro: <strong class="text-white">{{ patrocinador.nombre }}</strong></p>
+        <h1 class="font-display text-3xl font-black text-white uppercase tracking-wide">{% trans "Edit Sponsor" %}</h1>
+        <p class="text-gray-400 text-sm mt-1">{% trans "Editing record:" %} <strong class="text-white">{{ patrocinador.nombre }}</strong></p>
     </div>
-    <a href="{% url 'panel_patrocinadores' %}" class="text-[#4781B3] hover:text-white text-sm font-bold uppercase tracking-widest"><i class="fas fa-arrow-left mr-2"></i>Volver</a>
+    <a href="{% url 'panel_patrocinadores' %}" class="text-[#4781B3] hover:text-white text-sm font-bold uppercase tracking-widest"><i class="fas fa-arrow-left mr-2"></i>{% trans "Back" %}</a>
 </div>
 
 <div class="bg-[#111] border border-white/10 rounded-2xl p-6 md:p-10 max-w-3xl">
@@ -22,10 +23,10 @@
         {% endfor %}
         <div class="flex gap-4 pt-4 border-t border-white/10">
             <button type="submit" class="bg-[#4781B3] text-white font-bold uppercase tracking-widest text-sm px-8 py-3 rounded-lg hover:bg-white hover:text-black transition-colors">
-                Guardar Cambios
+                {% trans "Save Changes" %}
             </button>
             <a href="{% url 'panel_patrocinadores' %}" class="bg-white/5 border border-white/10 text-white font-bold uppercase tracking-widest text-sm px-8 py-3 rounded-lg hover:bg-white/10 transition-colors">
-                Cancelar
+                {% trans "Cancel" %}
             </a>
         </div>
     </form>

@@ -14,7 +14,7 @@
         
         <div class="bg-[#111] p-8 md:p-12 rounded-2xl border border-white/5 shadow-2xl max-w-5xl">
             <h2 class="text-xl md:text-2xl font-light text-gray-300 leading-relaxed text-justify md:text-left">
-                {% trans "Los patrocinadores son más que un logo en el chasis, son los aliados que nos ayudan a sortear los terrenos más hostiles de la Baja. Con tu apoyo como patrocinador podemos conquistar cada meta." %} <span class="font-bold text-white">{% trans "CG Motorsports no corre solo, corre con tu compañía." %}</span>
+                {% trans "Sponsors are more than just a logo on the chassis; they are the allies who help us navigate the most hostile terrains of Baja. With your support as a sponsor, we can conquer every goal." %} <span class="font-bold text-white">{% trans "CG Motorsports doesn't race alone; it races with your company." %}</span>
             </h2>
         </div>
     </div>
@@ -22,7 +22,7 @@
     <!-- 2. Propuesta de Valor (Split 50/50) -->
     <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 items-stretch mb-24">
         <div class="w-full lg:w-1/2 flex flex-col justify-center space-y-6 text-gray-300 text-sm md:text-base bg-[#0a0a0a] p-8 md:p-12 rounded-2xl border border-white/5 shadow-inner">
-            <h3 class="font-display text-2xl md:text-3xl text-white uppercase mb-4">{% trans "Camina a nuestro lado para que..." %}</h3>
+            <h3 class="font-display text-2xl md:text-3xl text-white uppercase mb-4">{% trans "Walk by our side so that..." %}</h3>
             
             <div class="space-y-4">
                 <p class="flex items-start gap-3"><span class="text-[#4781B3] font-black text-lg leading-none">+</span> {% trans "Te conectemos con nuevos clientes; la afición Off-Road nos distingue." %}</p>
@@ -46,7 +46,7 @@
 
     <!-- 3. Grid de Aliados / Patrocinadores (Diseño de 5 Columnas) -->
     <div class="mb-24">
-        <h3 class="font-display text-3xl font-black text-white uppercase mb-8 border-b border-white/10 pb-4">{% trans "Hemos trabajado con" %}</h3>
+        <h3 class="font-display text-3xl font-black text-white uppercase mb-8 border-b border-white/10 pb-4">{% trans "We have worked with" %}</h3>
         
         <!-- grid-cols-2 en celulares, 3 en tablets, 5 en monitores grandes -->
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
@@ -67,6 +67,7 @@
             {% empty %}
                 <div class="col-span-full text-center py-20 bg-[#111] rounded-2xl border border-white/5">
                     <p class="text-gray-600 uppercase tracking-widest text-sm font-light">{% trans "Nuevas alianzas próximamente." %}</p>
+                    <p class="text-gray-500 text-xs mt-2">{% trans "New partnerships coming soon." %}</p>
                 </div>
             {% endfor %}
         </div>
@@ -74,44 +75,56 @@
 
     <!-- 4. Formulario de Contacto integrado -->
     <div id="contacto-form" class="bg-[#111] rounded-2xl p-8 md:p-12 border border-white/5 shadow-2xl relative overflow-hidden">
-        <h3 class="font-display text-3xl font-black text-white uppercase mb-8 border-b border-white/10 pb-4">{% trans "Contáctanos" %}</h3>
+        <h3 class="font-display text-3xl font-black text-white uppercase mb-8 border-b border-white/10 pb-4">{% trans "Contact Us" %}</h3>
         
         <form action="{% url 'patrocinadores' %}" method="POST" class="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
             {% csrf_token %}
+            {% if form.errors %}
+                <div class="md:col-span-3 bg-red-900/50 border border-red-500/50 text-white text-sm rounded-lg p-4">
+                    <p class="font-bold mb-2">{% trans "Please correct the errors below:" %}</p>
+                    <ul class="list-disc list-inside">
+                        {% for field, errors in form.errors.items %}
+                            {% for error in errors %}
+                                <li>{{ field|title }}: {{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
             <div class="space-y-2 md:col-span-1">
-                <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{% trans "Nombre" %} <span class="text-[#4781B3]">*</span></label>
-                <input type="text" name="nombre" required class="w-full bg-black/50 border border-white/10 rounded-lg p-3 text-sm text-white focus:border-[#4781B3] focus:outline-none transition-colors">
+                <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{{ form.nombre.label_tag }} <span class="text-[#4781B3]">*</span></label>
+                {{ form.nombre }}
             </div>
             <div class="space-y-2 md:col-span-1">
-                <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{% trans "Puesto" %} <span class="text-[#4781B3]">*</span></label>
-                <input type="text" name="puesto" required class="w-full bg-black/50 border border-white/10 rounded-lg p-3 text-sm text-white focus:border-[#4781B3] focus:outline-none transition-colors">
+                <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{% trans "Position" %} <span class="text-[#4781B3]">*</span></label>
+                {{ form.puesto }}
             </div>
             <div class="space-y-2 md:col-span-1">
-                <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{% trans "Dirección Email" %} <span class="text-[#4781B3]">*</span></label>
-                <input type="email" name="email" required class="w-full bg-black/50 border border-white/10 rounded-lg p-3 text-sm text-white focus:border-[#4781B3] focus:outline-none transition-colors">
+                <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{% trans "Email Address" %} <span class="text-[#4781B3]">*</span></label>
+                {{ form.email }}
             </div>
             
             <div class="space-y-2 md:col-span-1">
                 <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{% trans "Teléfono" %} <span class="text-[#4781B3]">*</span></label>
-                <input type="tel" name="telefono" required class="w-full bg-black/50 border border-white/10 rounded-lg p-3 text-sm text-white focus:border-[#4781B3] focus:outline-none transition-colors">
+                {{ form.telefono }}
             </div>
             <div class="space-y-2 md:col-span-1">
-                <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{% trans "Organización / Empresa" %} <span class="text-[#4781B3]">*</span></label>
-                <input type="text" name="organizacion" required class="w-full bg-black/50 border border-white/10 rounded-lg p-3 text-sm text-white focus:border-[#4781B3] focus:outline-none transition-colors">
+                <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{% trans "Organization / Company" %} <span class="text-[#4781B3]">*</span></label>
+                {{ form.organizacion }}
             </div>
             <div class="space-y-2 md:col-span-1">
-                <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{% trans "Página Web" %} <span class="text-[#4781B3]">*</span></label>
-                <input type="url" name="sitio_web" class="w-full bg-black/50 border border-white/10 rounded-lg p-3 text-sm text-white focus:border-[#4781B3] focus:outline-none transition-colors">
+                <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{% trans "Website" %} <span class="text-[#4781B3]">*</span></label>
+                {{ form.sitio_web }}
             </div>
             
             <div class="space-y-2 col-span-1 md:col-span-3">
                 <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{% trans "¿Por qué te interesa participar con el equipo?" %} <span class="text-[#4781B3]">*</span></label>
-                <textarea name="mensaje" required rows="3" class="w-full bg-black/50 border border-white/10 rounded-lg p-3 text-sm text-white focus:border-[#4781B3] focus:outline-none transition-colors"></textarea>
+                {{ form.mensaje }}
             </div>
             
             <div class="col-span-1 md:col-span-3 mt-4 flex justify-end">
                 <button type="submit" class="bg-[#4781B3] text-white font-bold uppercase tracking-widest text-xs px-8 py-4 rounded-lg hover:bg-white hover:text-black transition-colors shadow-lg">
-                    {% trans "Enviar Propuesta" %}
+                    {% trans "Send Proposal" %}
                 </button>
             </div>
         </form>

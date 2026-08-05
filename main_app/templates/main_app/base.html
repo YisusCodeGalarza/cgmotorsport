@@ -1,23 +1,26 @@
-{# Etiqueta de Django: Carga las rutas estáticas para poder usar archivos CSS, JS e imágenes del proyecto. #}
 {% load static %}
-{# Carga la librería de traducciones (i18n) de Django #}
 {% load i18n %}
 <!DOCTYPE html>
-<html lang="es">
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    {# block title: Define un espacio que home.html puede reemplazar con su propio título. #}
     <title>{% block title %}CG Motorsports 2026{% endblock %}</title>
     
-    {# block extra_head: Hueco para inyectar CSS extra desde otras vistas si fuera necesario. #}
+    <!-- Favicon / Icono de la pestaña -->
+    <link rel="icon" type="image/x-icon" href="{% static 'main_app/images/favicon.ico' %}">
+
+
     {% block extra_head %}{% endblock %}
+    {% block extra_css %}{% endblock %}
     
+    <!-- Tailwind CSS & Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700;900&family=Inter:wght@400;600;700&family=Barlow:wght@400;700;900&display=swap" rel="stylesheet">
     
-    {# Font Awesome Global para todos los iconos del sitio #}
+    <!-- Font Awesome Global -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -26,9 +29,10 @@
             background-color: #0a0a0a;
         }
         .font-display { font-family: 'Oswald', sans-serif; }
+        .font-barlow { font-family: 'Barlow', sans-serif; }
     </style>
 </head>
-<body class="antialiased text-white overflow-x-hidden">
+<body class="antialiased text-white overflow-x-hidden flex flex-col min-h-screen">
 
     {# SISTEMA DE MENSAJES FLOTANTES (TOASTS) #}
     {% if messages %}
@@ -57,22 +61,21 @@
         </div>
         
         <script>
-            // Auto-ocultar los mensajes después de 5 segundos con animación de salida
             setTimeout(() => {
                 document.querySelectorAll('.toast-message').forEach(toast => {
                     toast.classList.replace('translate-x-0', 'translate-x-full');
                     toast.classList.replace('opacity-100', 'opacity-0');
-                    setTimeout(() => toast.remove(), 500); // Borra el elemento del HTML tras la animación
+                    setTimeout(() => toast.remove(), 500);
                 });
             }, 5000);
         </script>
     {% endif %}
 
-    {# CAPA Z-INDEX 50: Header superpuesto sobre el contenido para efecto inmersivo #}
-    <header class="absolute top-0 left-0 w-full z-50 bg-black/40 backdrop-blur-sm border-b border-white/5">
+    {# HEADER Y NAVEGACIÓN #}
+    <header id="main-header" class="fixed top-0 left-0 w-full z-50 bg-black/40 backdrop-blur-sm border-b border-white/5 transition-all duration-300">
         <div class="flex items-center justify-between px-6 py-4 max-w-[1440px] mx-auto">
             
-            {# Extremo Izquierdo: Logo #}
+            {# Extremo Izquierdo: Logos #}
             <div class="flex-shrink-0">
                 <a href="{% url 'home' %}" class="flex items-center gap-3 group">
                     <img src="{% static 'main_app/images/LogoCGMS-2.png' %}" alt="CG Motorsports Logo" class="h-12 md:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-lg">
@@ -82,21 +85,18 @@
 
             {# Centro: Menú Navegación Desktop #}
             <nav class="hidden md:flex space-x-4 lg:space-x-6 xl:space-x-8 text-white text-[10px] lg:text-xs xl:text-sm font-semibold tracking-wider uppercase items-center whitespace-nowrap">
-                <a href="{% url 'calendario' %}" class="relative group cursor-pointer flex items-center hover:text-[#4781B3] transition-colors">
-                    {% trans "CARRERAS" %}
-                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </a>
-                {# <a href="{% url 'equipo' %}" class="hover:text-[#4781B3] transition-colors">{% trans "EL EQUIPO" %}</a> #}
-                <a href="{% url 'galeria' %}" class="hover:text-[#4781B3] transition-colors">{% trans "GALLERY" %}</a>
-                <a href="{% url 'patrocinadores' %}" class="hover:text-[#4781B3] transition-colors">{% trans "PATROCINADORES" %}</a>
-                <a href="{% url 'todoterreno' %}" class="hover:text-[#4781B3] transition-colors">{% trans "EQUIPO TODOTERRENO" %}</a>
-                <a href="{% url 'contacto' %}" class="hover:text-[#4781B3] transition-colors">{% trans "CONTACTO" %}</a>
+                {# <a href="{% url 'home' %}" class="hover:text-[#4781B3] transition-colors">{% trans "Home" %}</a> #}
+                <a href="{% url 'calendario' %}" class="hover:text-[#4781B3] transition-colors">{% trans "Races" %}</a>
+                {# <a href="{% url 'equipo' %}" class="hover:text-[#4781B3] transition-colors">{% trans "The Team" %}</a> #}
+                <a href="{% url 'galeria' %}" class="hover:text-[#4781B3] transition-colors">{% trans "Gallery" %}</a>
+                <a href="{% url 'patrocinadores' %}" class="hover:text-[#4781B3] transition-colors">{% trans "Sponsors" %}</a>
+                <a href="{% url 'todoterreno' %}" class="hover:text-[#4781B3] transition-colors">{% trans "The Car" %}</a>
+                <a href="{% url 'contacto' %}" class="hover:text-[#4781B3] transition-colors">{% trans "Contact" %}</a>
             </nav>
 
-            {# Extremo Derecho: Autenticación #}
+            {# Extremo Derecho: Autenticación & Selector de Idioma Desktop #}
             <div class="hidden lg:flex items-center gap-4 flex-shrink-0 whitespace-nowrap">
                 {% if user.is_authenticated %}
-                    {# Botón hacia el Perfil del Usuario #}
                     <a href="{% url 'perfil' %}" class="text-white text-[10px] xl:text-xs font-bold uppercase tracking-wide flex items-center gap-2 border border-white/10 px-4 py-1.5 rounded-full bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all">
                         {% if user.perfil.avatar %}
                             <img src="{{ user.perfil.avatar.url }}" alt="Avatar" class="w-5 h-5 rounded-full object-cover">
@@ -110,25 +110,26 @@
                         <i class="fas fa-cogs"></i> {% trans "Panel" %}
                     </a>
                     {% endif %}
-                    <a href="{% url 'logout' %}" class="text-gray-400 hover:text-red-500 text-[10px] xl:text-xs font-bold uppercase tracking-wide transition-colors ml-2">{% trans "Salir" %}</a>
+                    <a href="{% url 'logout' %}" class="text-gray-400 hover:text-red-500 text-[10px] xl:text-xs font-bold uppercase tracking-wide transition-colors ml-2">{% trans "Logout" %}</a>
                 {% else %}
-                    {# Mostrar botones si es un visitante #}
-                    <a href="{% url 'login' %}" class="text-white hover:text-[#4781B3] text-[10px] xl:text-xs font-bold uppercase tracking-wide transition-colors">{% trans "Iniciar Sesión" %}</a>
-                    <a href="{% url 'registro' %}" class="bg-[#4781B3] px-4 xl:px-6 py-2 rounded-full text-white text-[10px] xl:text-xs font-bold uppercase tracking-wide hover:bg-white hover:text-black transition-colors shadow-lg shadow-[#4781B3]/30">{% trans "Registrarse" %}</a>
+                    <a href="{% url 'login' %}" class="text-white hover:text-[#4781B3] text-[10px] xl:text-xs font-bold uppercase tracking-wide transition-colors">{% trans "Login" %}</a>
+                    <a href="{% url 'registro' %}" class="bg-[#4781B3] px-4 xl:px-6 py-2 rounded-full text-white text-[10px] xl:text-xs font-bold uppercase tracking-wide hover:bg-white hover:text-black transition-colors shadow-lg shadow-[#4781B3]/30">{% trans "Sign Up" %}</a>
                 {% endif %}
 
-                {# Toggle Inteligente de Idiomas (ES / EN) #}
+                {# Selector de Idioma (Desktop) CORREGIDO #}
                 <form action="{% url 'set_language' %}" method="post" class="flex items-center ml-2 border-l border-white/20 pl-4">
                     {% csrf_token %}
-                    <input name="next" type="hidden" value="{{ request.path }}">
-                    {% get_current_language as LANGUAGE_CODE %}
-                    
+                    <input name="next" type="hidden" value="{{ request.get_full_path }}">
                     {% if LANGUAGE_CODE == 'es' %}
                         <input type="hidden" name="language" value="en">
-                        <button type="submit" class="text-white font-bold text-[10px] xl:text-xs tracking-widest hover:text-[#4781B3] transition-colors">ES <span class="text-gray-600 font-normal mx-1">/</span> <span class="text-gray-400 hover:text-white">EN</span></button>
+                        <button type="submit" class="text-white font-bold text-[10px] xl:text-xs tracking-widest hover:text-[#4781B3] transition-colors">
+                            ES <span class="text-gray-600 font-normal mx-1">/</span> <span class="text-gray-400 hover:text-white">EN</span>
+                        </button>
                     {% else %}
                         <input type="hidden" name="language" value="es">
-                        <button type="submit" class="text-white font-bold text-[10px] xl:text-xs tracking-widest hover:text-[#4781B3] transition-colors"><span class="text-gray-400 hover:text-white">ES</span> <span class="text-gray-600 font-normal mx-1">/</span> EN</button>
+                        <button type="submit" class="text-white font-bold text-[10px] xl:text-xs tracking-widest hover:text-[#4781B3] transition-colors">
+                            <span class="text-gray-400 hover:text-white">ES</span> <span class="text-gray-600 font-normal mx-1">/</span> EN
+                        </button>
                     {% endif %}
                 </form>
             </div>
@@ -139,18 +140,17 @@
             </button>
         </div>
         
-        {# Contenedor del Menú Móvil (Oculto por defecto) #}
+        {# Contenedor Menú Móvil #}
         <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-[#0a0a0a]/95 backdrop-blur-xl border-b border-white/10 flex-col items-center py-8 space-y-6 shadow-2xl transition-all">
-            <a href="/" class="text-white hover:text-[#4781B3] font-bold tracking-widest uppercase transition-colors">{% trans "INICIO" %}</a>
-            <a href="{% url 'calendario' %}" class="text-white hover:text-[#4781B3] font-bold tracking-widest uppercase transition-colors">{% trans "CARRERAS" %}</a>
-            {# <a href="{% url 'equipo' %}" class="text-white hover:text-[#4781B3] font-bold tracking-widest uppercase transition-colors">{% trans "EL EQUIPO" %}</a> #}
-            <a href="{% url 'galeria' %}" class="text-white hover:text-[#4781B3] font-bold tracking-widest uppercase transition-colors">{% trans "MEDIA" %}</a>
-            <a href="{% url 'patrocinadores' %}" class="text-white hover:text-[#4781B3] font-bold tracking-widest uppercase transition-colors">{% trans "PATROCINADORES" %}</a>
-            <a href="{% url 'todoterreno' %}" class="text-white hover:text-[#4781B3] font-bold tracking-widest uppercase transition-colors">{% trans "EQUIPO TODOTERRENO" %}</a>
-            <a href="{% url 'contacto' %}" class="text-white hover:text-[#4781B3] font-bold tracking-widest uppercase transition-colors">{% trans "CONTACTO" %}</a>
+           {# <a href="{% url 'home' %}" class="text-white hover:text-[#4781B3] font-bold tracking-widest uppercase transition-colors">{% trans "Home" %}</a> #}
+            <a href="{% url 'calendario' %}" class="text-white hover:text-[#4781B3] font-bold tracking-widest uppercase transition-colors">{% trans "Races" %}</a>
+           {# <a href="{% url 'equipo' %}" class="text-white hover:text-[#4781B3] font-bold tracking-widest uppercase transition-colors">{% trans "The Team" %}</a> #}
+            <a href="{% url 'galeria' %}" class="text-white hover:text-[#4781B3] font-bold tracking-widest uppercase transition-colors">{% trans "Gallery" %}</a>
+            <a href="{% url 'patrocinadores' %}" class="text-white hover:text-[#4781B3] font-bold tracking-widest uppercase transition-colors">{% trans "Sponsors" %}</a>
+            <a href="{% url 'todoterreno' %}" class="text-white hover:text-[#4781B3] font-bold tracking-widest uppercase transition-colors">{% trans "The Car" %}</a>
+            <a href="{% url 'contacto' %}" class="text-white hover:text-[#4781B3] font-bold tracking-widest uppercase transition-colors">{% trans "Contact" %}</a>
             
-            {# Autenticación en el menú móvil #}
-            <div class="w-full border-t border-white/10 pt-6 flex flex-col items-center gap-4">
+            <div class="w-full border-t border-white/10 pt-6 flex flex-col items-center gap-4 px-6">
                 {% if user.is_authenticated %}
                     <a href="{% url 'perfil' %}" class="text-[#4781B3] font-bold tracking-widest uppercase flex items-center gap-2">
                         {% if user.perfil.avatar %}
@@ -162,90 +162,101 @@
                     </a>
                     {% if user.is_staff %}
                     <a href="{% url 'panel_home' %}" class="text-white bg-[#4781B3]/20 border border-[#4781B3] px-6 py-2 rounded-full font-bold tracking-widest uppercase transition-colors flex items-center gap-2">
-                        <i class="fas fa-cogs"></i> {% trans "Panel de Control" %}
+                        <i class="fas fa-cogs"></i> {% trans "Panel" %}
                     </a>
                     {% endif %}
-                    <a href="{% url 'logout' %}" class="text-gray-500 hover:text-red-500 font-bold tracking-widest uppercase transition-colors">{% trans "Salir" %}</a>
+                    <a href="{% url 'logout' %}" class="text-gray-500 hover:text-red-500 font-bold tracking-widest uppercase transition-colors">{% trans "Logout" %}</a>
                 {% else %}
-                    <a href="{% url 'login' %}" class="text-white hover:text-[#4781B3] font-bold tracking-widest uppercase transition-colors">{% trans "Iniciar Sesión" %}</a>
-                    <a href="{% url 'registro' %}" class="bg-[#4781B3] px-8 py-2.5 rounded-full text-white font-bold tracking-widest uppercase transition-colors">{% trans "Registrarse" %}</a>
+                    <a href="{% url 'login' %}" class="text-white hover:text-[#4781B3] font-bold tracking-widest uppercase transition-colors">{% trans "Login" %}</a>
+                    <a href="{% url 'registro' %}" class="bg-[#4781B3] px-8 py-2.5 rounded-full text-white font-bold tracking-widest uppercase transition-colors">{% trans "Sign Up" %}</a>
                 {% endif %}
+
+                {# Selector de Idioma (Móvil) CORREGIDO #}
+                <form action="{% url 'set_language' %}" method="post" class="w-full mt-2">
+                    {% csrf_token %}
+                    <input name="next" type="hidden" value="{{ request.get_full_path }}">
+                    {% if LANGUAGE_CODE == 'es' %}
+                        <input type="hidden" name="language" value="en">
+                        <button type="submit" class="w-full text-xs font-bold uppercase tracking-widest py-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+                            {% trans "Switch to" %} English (EN)
+                        </button>
+                    {% else %}
+                        <input type="hidden" name="language" value="es">
+                        <button type="submit" class="w-full text-xs font-bold uppercase tracking-widest py-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
+                            {% trans "Switch to" %} Español (ES)
+                        </button>
+                    {% endif %}
+                </form>
             </div>
         </div>
     </header>
 
-    {# Contenedor Principal #}
-    <main>
-        {# block content: EL BLOQUE MÁS IMPORTANTE. Aquí es donde home.html inyectará todo su diseño visual. #}
-        {% block content %}
-        {% endblock %}
+    {# CONTENIDO PRINCIPAL #}
+    <main class="flex-grow">
+        {% block content %}{% endblock %}
     </main>
 
-    {# ================================================================= #}
-    {# FOOTER TIPO "TALENT NETWORK" ADAPTADO A CG MOTORSPORTS          #}
-    {# ================================================================= #}
+    {# FOOTER #}
     <footer class="bg-[#050505] border-t border-white/5 pt-16 pb-8 relative z-40 mt-auto">
         <div class="max-w-[1200px] mx-auto px-4 md:px-8">
             
-            {# 1. Logo Principal Central #}
             <div class="flex justify-center mb-10">
                 <img src="{% static 'main_app/images/LogoCGMS-2.png' %}" alt="CG Motorsports" class="h-20 object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:scale-105 transition-transform duration-500">
             </div>
 
             <div class="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-10"></div>
 
-            {# 2. Tres Columnas de Enlaces (Estilo Talent Network) #}
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center md:text-left">
                 <div>
-                    <h4 class="text-white font-display uppercase tracking-widest text-lg mb-6 flex items-center justify-center md:justify-start gap-2"><i class="fas fa-flag-checkered text-[#4781B3] text-sm"></i> {% trans "El Equipo" %}</h4>
+                    <h4 class="text-white font-display uppercase tracking-widest text-lg mb-6 flex items-center justify-center md:justify-start gap-2"><i class="fas fa-flag-checkered text-[#4781B3] text-sm"></i> {% trans "The Team" %}</h4>
                     <ul class="space-y-4 text-sm text-gray-400 font-light">
-                        <li><a href="{% url 'galeria' %}" class="hover:text-[#4781B3] transition-colors">+ {% trans "Media & Galería" %}</a></li>
-                        <li><a href="{% url 'todoterreno' %}" class="hover:text-[#4781B3] transition-colors">+ {% trans "El Monstruo AWD" %}</a></li>
-                        <li><a href="{% url 'equipo' %}" class="hover:text-[#4781B3] transition-colors">+ {% trans "Pilotos y Familia" %}</a></li>
+                        <li><a href="{% url 'galeria' %}" class="hover:text-[#4781B3] transition-colors">+ {% trans "Media & Gallery" %}</a></li>
+                        <li><a href="{% url 'todoterreno' %}" class="hover:text-[#4781B3] transition-colors">+ {% trans "The Car" %}</a></li>
+                        <li><a href="{% url 'equipo' %}" class="hover:text-[#4781B3] transition-colors">+ {% trans "Pilots and Family" %}</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-white font-display uppercase tracking-widest text-lg mb-6 flex items-center justify-center md:justify-start gap-2"><i class="fas fa-calendar-alt text-[#4781B3] text-sm"></i> {% trans "La Temporada" %}</h4>
+                    <h4 class="text-white font-display uppercase tracking-widest text-lg mb-6 flex items-center justify-center md:justify-start gap-2"><i class="fas fa-calendar-alt text-[#4781B3] text-sm"></i> {% trans "The Season" %}</h4>
                     <ul class="space-y-4 text-sm text-gray-400 font-light">
-                        <li><a href="{% url 'calendario' %}" class="hover:text-[#4781B3] transition-colors">+ {% trans "Calendario Oficial" %}</a></li>
+                        <li><a href="{% url 'calendario' %}" class="hover:text-[#4781B3] transition-colors">+ {% trans "Official Calendar" %}</a></li>
                         <li><a href="https://score-international.com/" target="_blank" rel="noopener noreferrer" class="hover:text-[#4781B3] transition-colors">+ {% trans "SCORE International" %}</a></li>
                         <li><a href="http://www.codeoffroad.com.mx/" target="_blank" rel="noopener noreferrer" class="hover:text-[#4781B3] transition-colors">+ {% trans "CODE Off-Road" %}</a></li>
                         <li><a href="http://www.recordoffroad.com/" target="_blank" rel="noopener noreferrer" class="hover:text-[#4781B3] transition-colors">+ {% trans "RECORD Off-Road" %}</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-white font-display uppercase tracking-widest text-lg mb-6 flex items-center justify-center md:justify-start gap-2"><i class="fas fa-globe-americas text-[#4781B3] text-sm"></i> {% trans "Ecosistema Off-Road" %}</h4>
+                    <h4 class="text-white font-display uppercase tracking-widest text-lg mb-6 flex items-center justify-center md:justify-start gap-2"><i class="fas fa-globe-americas text-[#4781B3] text-sm"></i> {% trans "Off-Road Ecosystem" %}</h4>
                     <ul class="space-y-4 text-sm text-gray-400 font-light">
-                        <li><a href="{% url 'patrocinadores' %}" class="hover:text-[#4781B3] transition-colors">+ {% trans "Nuestros Patrocinadores" %}</a></li>
-                        <li><a href="{% url 'patrocinadores' %}#contacto-form" class="hover:text-[#4781B3] transition-colors">+ {% trans "Únete como Aliado" %}</a></li>
-                        <li><a href="{% url 'contacto' %}" class="hover:text-[#4781B3] transition-colors">+ {% trans "Prensa y Medios" %}</a></li>
-                        <li><a href="{% url 'contacto' %}" class="hover:text-[#4781B3] transition-colors">+ {% trans "Contacto Directo" %}</a></li>
+                        <li><a href="{% url 'patrocinadores' %}" class="hover:text-[#4781B3] transition-colors">+ {% trans "Our Sponsors" %}</a></li>
+                        <li><a href="{% url 'patrocinadores' %}#contacto-form" class="hover:text-[#4781B3] transition-colors">+ {% trans "Join as a Partner" %}</a></li>
+                        <li><a href="{% url 'contacto' %}" class="hover:text-[#4781B3] transition-colors">+ {% trans "Press and Media" %}</a></li>
+                        <li><a href="{% url 'contacto' %}" class="hover:text-[#4781B3] transition-colors">+ {% trans "Direct Contact" %}</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-10"></div>
 
-            {# 3. Suscripción Newsletter #}
+            {# Newsletter #}
             <div class="flex flex-col md:flex-row items-center justify-center gap-6 mb-8">
                 <i class="fas fa-envelope-open-text text-4xl text-[#4781B3]"></i>
                 <p class="text-gray-300 text-sm md:text-base text-center md:text-left max-w-lg leading-relaxed">
-                    {% trans "Suscríbete a nuestro newsletter y no te pierdas el polvo de la Baja. Recibe actualizaciones, noticias y próximos eventos." %}
+                    {% trans "Subscribe to our newsletter and don't miss the dust of Baja. Receive updates, news, and upcoming events." %}
                 </p>
             </div>
             <div class="max-w-xl mx-auto mb-10">
                 <form action="{% url 'suscribir_newsletter' %}" method="POST" class="relative flex items-center shadow-2xl">
                     {% csrf_token %}
-                    <input type="email" name="email" required placeholder="{% trans 'Ingresa tu correo electrónico...' %}" class="w-full bg-[#111] border border-white/10 rounded-full pl-6 pr-32 py-4 text-sm text-white focus:outline-none focus:border-[#4781B3] transition-colors">
+                    <input type="email" name="email" required placeholder="{% trans 'Enter your email...' %}" class="w-full bg-[#111] border border-white/10 rounded-full pl-6 pr-32 py-4 text-sm text-white focus:outline-none focus:border-[#4781B3] transition-colors">
                     <button type="submit" class="absolute right-1.5 top-1.5 bottom-1.5 bg-[#4781B3] text-white font-bold uppercase tracking-widest text-[10px] px-6 rounded-full hover:bg-white hover:text-black transition-colors shadow-lg">
-                        {% trans "Suscribir" %}
+                        {% trans "Subscribe" %}
                     </button>
                 </form>
             </div>
 
             <div class="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-10"></div>
 
-            {# 4. Redes Sociales Extendidas (Ícono + Texto) #}
+            {# Redes Sociales #}
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
                 <a href="https://www.facebook.com/people/CG-Motorsports/100091862370170/?mibextid=LQQJ4d" target="_blank" class="flex flex-col items-center gap-3 group cursor-pointer p-4 rounded-xl hover:bg-white/5 transition-colors">
                     <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#1877F2] transition-colors border border-white/10"><i class="fab fa-facebook-f text-xl text-white"></i></div>
@@ -265,37 +276,46 @@
                 </a>
             </div>
 
-            {# 5. Copyright y Legales #}
+            {# Copyright & Legales #}
             <div class="text-center flex flex-col gap-4">
                 <p class="text-gray-500 text-[11px] uppercase tracking-widest">
-                    &copy; {% now "Y" %} | <a href="{% url 'home' %}" class="text-white font-bold hover:text-[#4781B3] transition-colors">CG Motorsports.</a> {% trans "Todos los derechos reservados." %}
+                    &copy; {% now "Y" %} | <a href="{% url 'home' %}" class="text-white font-bold hover:text-[#4781B3] transition-colors">CG Motorsports.</a> {% trans "All rights reserved." %}
                 </p>
                 <div class="flex flex-wrap justify-center gap-x-4 gap-y-2 text-[10px] text-gray-600 uppercase tracking-widest">
-                    <a href="{% url 'contacto' %}" class="hover:text-white transition-colors">{% trans "Contacto" %}</a>
+                    <a href="{% url 'contacto' %}" class="hover:text-white transition-colors">{% trans "Contact" %}</a>
                     <span class="hidden sm:inline">|</span>
-                    <a href="#" class="hover:text-white transition-colors">{% trans "Términos y Condiciones" %}</a>
+                    <a href="#" class="hover:text-white transition-colors">{% trans "Terms and Conditions" %}</a>
                     <span class="hidden sm:inline">|</span>
-                    <a href="#" class="hover:text-white transition-colors">{% trans "Aviso de Privacidad" %}</a>
+                    <a href="#" class="hover:text-white transition-colors">{% trans "Privacy Notice" %}</a>
                     <span class="hidden sm:inline">|</span>
-                    <a href="#" class="hover:text-white transition-colors">{% trans "Política de Cookies" %}</a>
+                    <a href="#" class="hover:text-white transition-colors">{% trans "Cookie Policy" %}</a>
                 </div>
             </div>
 
         </div>
     </footer>
 
-    {# block extra_js: Hueco para inyectar código JavaScript antes de cerrar el body. #}
     {% block extra_js %}{% endblock %}
-    
-    {# Script para el Menú Móvil #}
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const btn = document.getElementById('mobile-menu-btn');
             const menu = document.getElementById('mobile-menu');
             
-            btn.addEventListener('click', () => {
-                menu.classList.toggle('hidden');
-                menu.classList.toggle('flex');
+            if (btn && menu) {
+                btn.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                    menu.classList.toggle('flex');
+                });
+            }
+
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('bg-[#0a0a0a]/95', 'shadow-2xl');
+                } else {
+                    header.classList.remove('bg-[#0a0a0a]/95', 'shadow-2xl');
+                }
             });
         });
     </script>

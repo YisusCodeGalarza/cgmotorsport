@@ -19,11 +19,11 @@
     {# Contenedor del texto central #}
     <div class="relative z-20 text-center flex flex-col items-center px-4 mt-16 md:mt-0">
         <p class="text-xs md:text-sm font-bold tracking-[0.25em] uppercase text-white mb-2">
-            {% trans "Bienvenidos al equipo" %}
+            {% trans "Welcome to the team" %}
         </p>
         
         <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-black uppercase text-center text-white mt-1 drop-shadow-lg tracking-wide">
-            {% trans "CG" %} <span class="text-[#4781B3]">{% trans "Motorsports" %}</span>
+            CG <span class="text-[#4781B3]">Motorsports</span>
         </h1>
     </div>
 
@@ -31,7 +31,7 @@
     <div class="absolute bottom-24 z-20 flex justify-center w-full">
         <a href="{% url 'calendario' %}" class="group rounded-full border border-white text-white px-8 py-3.5 text-sm font-bold uppercase flex items-center justify-center space-x-3 transition-all hover:bg-white hover:text-black bg-black/40 backdrop-blur-md shadow-2xl">
             <svg class="w-5 h-5 group-hover:text-black transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-            <span>{% translate "VER CALENDARIO" %}</span>
+            <span>{% trans "VIEW CALENDAR" %}</span>
         </a>
     </div>
 </section>
@@ -49,13 +49,13 @@
         {# Cabecera de la Sección #}
         <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 border-b border-white/10 pb-8">
             <div>
-                <p class="text-[#4781B3] font-bold tracking-[0.2em] uppercase text-xs md:text-sm mb-2">{% trans "Calendario Oficial SCORE" %}</p>
+                <p class="text-[#4781B3] font-bold tracking-[0.2em] uppercase text-xs md:text-sm mb-2">{% trans "Official SCORE Calendar" %}</p>
                 <h2 class="font-display text-4xl md:text-5xl font-black text-white uppercase tracking-wide">
-                    {% trans "próximas " %} <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">{% trans "carreras de la temporada." %}</span>
+                    {% trans "upcoming " %} <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">{% trans "races of the season" %}</span>
                 </h2>
             </div>
             <a href="{% url 'calendario' %}" class="group hidden md:flex items-center gap-3 text-sm font-bold tracking-widest text-white hover:text-[#4781B3] uppercase transition-colors">
-                {% trans "Ver todo el calendario" %} 
+                {% trans "View full calendar" %} 
                 <svg class="w-5 h-5 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
             </a>
         </div>
@@ -67,17 +67,17 @@
             <article class="bg-[#111] border border-white/5 rounded-2xl overflow-hidden shadow-2xl group hover:border-[#4781B3]/50 transition-all duration-300 flex flex-col hover:-translate-y-2">
                 <div class="relative overflow-hidden">
                     <img src="{% static 'main_app/images/baja_500.webp' %}" alt="Baja 500" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-700">
-                    <div class="absolute top-3 left-3 bg-gray-900/80 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">{% trans "Mayo - Junio 2023" %}</div>
+                    <div class="absolute top-3 left-3 bg-gray-900/80 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">{% trans "May - June 2023" %}</div>
                 </div>
                 <div class="p-6 flex flex-col flex-grow">
                     <h3 class="font-display text-xl font-black text-white uppercase tracking-wide mb-2 group-hover:text-[#4781B3] transition-colors">
                         {% trans "55th SCORE Baja 500" %}
                     </h3>
                     <p class="text-gray-400 text-sm leading-relaxed flex-grow mb-4">
-                        {% trans "La clásica y brutal carrera de verano. Temperaturas extremas y rutas que castigan el vehículo. Una guerra de desgaste." %}
+                        {% trans "The classic and brutal summer race. Extreme temperatures and routes that punish the vehicle. A war of attrition." %}
                     </p>
                     <div class="mt-auto flex items-center justify-between text-xs text-gray-500 uppercase tracking-widest font-semibold border-t border-white/10 pt-3">
-                        <span><i class="far fa-calendar-alt text-[#4781B3] mr-1.5"></i> {% trans "31 May - 4 Jun" %}</span>
+                        <span><i class="far fa-calendar-alt text-[#4781B3] mr-1.5"></i> {% trans "May 31 - Jun 4" %}</span>
                         <span><i class="fas fa-map-marker-alt text-red-500 mr-1.5"></i> {% trans "Ensenada, B.C." %}</span>
                     </div>
                 </div>
@@ -87,17 +87,17 @@
             <article class="bg-[#111] border border-white/5 rounded-2xl overflow-hidden shadow-2xl group hover:border-[#4781B3]/50 transition-all duration-300 flex flex-col hover:-translate-y-2">
                 <div class="relative overflow-hidden">
                     <img src="{% static 'main_app/images/baja_400.webp' %}" alt="Baja 400" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-700">
-                    <div class="absolute top-3 left-3 bg-gray-900/80 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">{% trans "Septiembre 2023" %}</div>
+                    <div class="absolute top-3 left-3 bg-gray-900/80 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">{% trans "September 2023" %}</div>
                 </div>
                 <div class="p-6 flex flex-col flex-grow">
                     <h3 class="font-display text-xl font-black text-white uppercase tracking-wide mb-2 group-hover:text-[#4781B3] transition-colors">
                         {% trans "4th SCORE Baja 400" %}
                     </h3>
                     <p class="text-gray-400 text-sm leading-relaxed flex-grow mb-4">
-                        {% trans "El desafío perfecto de media distancia. 400 millas de terreno súper técnico que pondrán a prueba la estrategia del equipo." %}
+                        {% trans "The perfect mid-distance challenge. 400 miles of super technical terrain that will test the team's strategy." %}
                     </p>
                     <div class="mt-auto flex items-center justify-between text-xs text-gray-500 uppercase tracking-widest font-semibold border-t border-white/10 pt-3">
-                        <span><i class="far fa-calendar-alt text-[#4781B3] mr-1.5"></i> {% trans "12 - 17 Sep" %}</span>
+                        <span><i class="far fa-calendar-alt text-[#4781B3] mr-1.5"></i> {% trans "Sep 12 - 17" %}</span>
                         <span><i class="fas fa-map-marker-alt text-red-500 mr-1.5"></i> {% trans "Ensenada, B.C." %}</span>
                     </div>
                 </div>
@@ -107,17 +107,17 @@
             <article class="bg-[#111] border border-white/5 rounded-2xl overflow-hidden shadow-2xl group hover:border-red-600/50 transition-all duration-300 flex flex-col hover:-translate-y-2">
                 <div class="relative overflow-hidden">
                     <img src="{% static 'main_app/images/baja_1000.webp' %}" alt="Baja 1000" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-700">
-                    <div class="absolute top-3 left-3 bg-gray-900/80 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">{% trans "Noviembre 2023" %}</div>
+                    <div class="absolute top-3 left-3 bg-gray-900/80 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">{% trans "November 2023" %}</div>
                 </div>
                 <div class="p-6 flex flex-col flex-grow">
                     <h3 class="font-display text-xl font-black text-white uppercase tracking-wide mb-2 group-hover:text-red-500 transition-colors">
                         {% trans "56th SCORE Baja 1000" %}
                     </h3>
                     <p class="text-gray-400 text-sm leading-relaxed flex-grow mb-4">
-                        {% trans "La madre de todas las batallas off-road. Mil millas de polvo, oscuridad, fatiga extrema y adrenalina pura." %}
+                        {% trans "The mother of all off-road battles. A thousand miles of dust, darkness, extreme fatigue, and pure adrenaline." %}
                     </p>
                     <div class="mt-auto flex items-center justify-between text-xs text-gray-500 uppercase tracking-widest font-semibold border-t border-white/10 pt-3">
-                        <span><i class="far fa-calendar-alt text-[#4781B3] mr-1.5"></i> {% trans "13 - 18 Nov" %}</span>
+                        <span><i class="far fa-calendar-alt text-[#4781B3] mr-1.5"></i> {% trans "Nov 13 - 18" %}</span>
                         <span><i class="fas fa-map-marker-alt text-red-500 mr-1.5"></i> {% trans "Ensenada - La Paz" %}</span>
                     </div>
                 </div>
@@ -128,7 +128,7 @@
         {# Botón Móvil #}
         <div class="mt-12 text-center md:hidden">
             <a href="{% url 'calendario' %}" class="inline-flex items-center gap-3 text-xs font-bold tracking-widest text-white bg-[#4781B3] px-8 py-4 rounded-full uppercase hover:bg-white hover:text-black transition-colors shadow-lg">
-                {% trans "Ver todo el calendario" %} 
+                {% trans "View full calendar" %} 
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
             </a>
         </div>
@@ -140,7 +140,7 @@
     <div class="absolute inset-0 bg-black/90 z-0"></div>
     <div class="relative z-10 max-w-7xl mx-auto px-4 text-center">
         <h3 class="font-oswald text-2xl font-bold uppercase tracking-[0.2em] mb-12 text-gray-300">
-            {% blocktrans %}Nuestros patrocinadores <span class="text-[#4781B3]">Gracias a nuestros increíbles patrocinadores que ayudan a nuestro equipo a mejorar y ser mejores en lo que hacemos.</span>{% endblocktrans %}
+            {% blocktrans %}Our Sponsors <span class="text-[#4781B3]">Thanks to our incredible sponsors who help our team improve and be better at what we do</span>{% endblocktrans %}
         </h3>
         
         <div class="flex flex-wrap justify-center gap-6">
@@ -154,13 +154,13 @@
                 </a>
             {% empty %}
                 <p class="text-gray-500 text-sm tracking-widest uppercase">
-                    {% trans "Aún no hay patrocinadores registrados." %}
+                    {% trans "No sponsors registered yet." %}
                 </p>
             {% endfor %}
         </div>
         
         <div class="mt-12 text-center">
-            <a href="{% url 'patrocinadores' %}" class="inline-block border border-[#4781B3] text-[#4781B3] hover:bg-[#4781B3] hover:text-white px-8 py-3 text-sm font-bold uppercase tracking-widest transition-colors duration-300">{% trans "Ver todos los patrocinadores" %}</a>
+            <a href="{% url 'patrocinadores' %}" class="inline-block border border-[#4781B3] text-[#4781B3] hover:bg-[#4781B3] hover:text-white px-8 py-3 text-sm font-bold uppercase tracking-widest transition-colors duration-300">{% trans "View all sponsors" %}</a>
         </div>
     </div>
     </div>

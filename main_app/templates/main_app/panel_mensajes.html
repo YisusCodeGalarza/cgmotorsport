@@ -1,12 +1,13 @@
 {% extends 'main_app/panel_base.html' %}
+{% load i18n %}
 
-{% block title %}Mensajes de Contacto | Panel{% endblock %}
+{% block title %}{% trans "Contact Messages" %} | {% trans "Panel" %}{% endblock %}
 
 {% block content %}
 <div class="mb-8 flex justify-between items-end">
     <div>
-        <h1 class="font-display text-3xl font-black text-white uppercase tracking-wide">Mensajes de Contacto</h1>
-        <p class="text-gray-400 text-sm mt-1">Bandeja de entrada del formulario de contacto.</p>
+        <h1 class="font-display text-3xl font-black text-white uppercase tracking-wide">{% trans "Contact Messages" %}</h1>
+        <p class="text-gray-400 text-sm mt-1">{% trans "Inbox for the contact form." %}</p>
     </div>
 </div>
 
@@ -15,11 +16,11 @@
         <table class="w-full text-left text-sm text-gray-400">
             <thead class="text-xs uppercase bg-black/50 text-gray-300 font-bold tracking-widest">
                 <tr>
-                    <th scope="col" class="px-6 py-4">Remitente</th>
-                    <th scope="col" class="px-6 py-4">Asunto / Área</th>
-                    <th scope="col" class="px-6 py-4">Mensaje</th>
-                    <th scope="col" class="px-6 py-4 text-center">Estado</th>
-                    <th scope="col" class="px-6 py-4 text-right">Acciones</th>
+                    <th scope="col" class="px-6 py-4">{% trans "Sender" %}</th>
+                    <th scope="col" class="px-6 py-4">{% trans "Subject / Area" %}</th>
+                    <th scope="col" class="px-6 py-4">{% trans "Message" %}</th>
+                    <th scope="col" class="px-6 py-4 text-center">{% trans "Status" %}</th>
+                    <th scope="col" class="px-6 py-4 text-right">{% trans "Actions" %}</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,15 +40,15 @@
                         <p class="text-xs max-w-xs truncate" title="{{ m.mensaje }}">{{ m.mensaje }}</p>
                     </td>
                     <td class="px-6 py-4 text-center">
-                        {% if m.leido %}<span class="bg-gray-800 text-gray-400 font-bold px-2 py-1 rounded text-xs">Leído</span>{% else %}<span class="bg-[#4781B3] text-white font-bold px-2 py-1 rounded text-xs shadow">Nuevo</span>{% endif %}
+                        {% if m.leido %}<span class="bg-gray-800 text-gray-400 font-bold px-2 py-1 rounded text-xs">{% trans "Read" %}</span>{% else %}<span class="bg-[#4781B3] text-white font-bold px-2 py-1 rounded text-xs shadow">{% trans "New" %}</span>{% endif %}
                     </td>
                     <td class="px-6 py-4 text-right space-x-2 whitespace-nowrap">
-                        <a href="{% url 'panel_mensaje_leer' m.id %}" class="text-gray-400 hover:text-white p-2" title="Marcar como {% if m.leido %}No Leído{% else %}Leído{% endif %}"><i class="fas {% if m.leido %}fa-envelope{% else %}fa-envelope-open{% endif %}"></i></a>
-                        <a href="{% url 'panel_mensaje_eliminar' m.id %}" onclick="return confirm('¿Eliminar este mensaje?')" class="text-red-500 hover:text-red-400 p-2"><i class="fas fa-trash"></i></a>
+                        <a href="{% url 'panel_mensaje_leer' m.id %}" class="text-gray-400 hover:text-white p-2" title="{% trans 'Mark as' %} {% if m.leido %}{% trans 'Unread' %}{% else %}{% trans 'Read' %}{% endif %}"><i class="fas {% if m.leido %}fa-envelope{% else %}fa-envelope-open{% endif %}"></i></a>
+                        <a href="{% url 'panel_mensaje_eliminar' m.id %}" onclick="return confirm('{% trans 'Delete this message?' %}')" class="text-red-500 hover:text-red-400 p-2"><i class="fas fa-trash"></i></a>
                     </td>
                 </tr>
                 {% empty %}
-                <tr><td colspan="5" class="px-6 py-8 text-center text-gray-500">No hay mensajes recibidos.</td></tr>
+                <tr><td colspan="5" class="px-6 py-8 text-center text-gray-500">{% trans "No messages received." %}</td></tr>
                 {% endfor %}
             </tbody>
         </table>

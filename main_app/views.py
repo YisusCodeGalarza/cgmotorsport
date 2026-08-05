@@ -12,7 +12,7 @@ from django.core.paginator import Paginator
 from django.urls import reverse
 from django.contrib.admin.views.decorators import staff_member_required
 from .models import Patrocinador, Perfil, SeccionInteractiva, ComentarioSeccion, ComentarioPatrocinador, Album, Fotografia, ComentarioFoto, Evento, MensajeContacto, PropuestaPatrocinio, SuscripcionNewsletter
-from .forms import LoginForm, RegistroForm, PerfilForm, EventoForm, PatrocinadorForm, AlbumForm
+from .forms import LoginForm, RegistroForm, PerfilForm, EventoForm, PatrocinadorForm, AlbumForm, PropuestaForm, ContactoForm
 
 # Función 'home': Es llamada por urls.py cuando alguien entra a la página principal.
 def home(request):
@@ -25,25 +25,22 @@ def home(request):
 # Función 'patrocinadores_view': Es llamada cuando se visita /patrocinadores/
 def patrocinadores_view(request):
     if request.method == 'POST':
-        nombre = request.POST.get('nombre')
-        puesto = request.POST.get('puesto')
-        email = request.POST.get('email')
-        telefono = request.POST.get('telefono')
-        organizacion = request.POST.get('organizacion')
-        sitio_web = request.POST.get('sitio_web')
-        mensaje = request.POST.get('mensaje')
-        
-        if nombre and email and organizacion and mensaje:
-            PropuestaPatrocinio.objects.create(
-                nombre=nombre, puesto=puesto, email=email, telefono=telefono,
-                organizacion=organizacion, sitio_web=sitio_web, mensaje=mensaje
-            )
+        # [MEJORA DE SEGURIDAD] Usamos el formulario para validar y limpiar los datos.
+        form = PropuestaForm(request.POST)
+        if form.is_valid():
+            form.save()
             messages.success(request, "¡Propuesta enviada! Nuestro equipo comercial la revisará y se pondrá en contacto pronto.")
             return redirect('patrocinadores')
+        else:
+            messages.error(request, "Hubo un error en el formulario. Por favor, revisa los datos.")
+    else:
+        form = PropuestaForm()
             
     patrocinadores_activos = Patrocinador.objects.filter(es_activo=True)
+    # Pasamos el formulario a la plantilla para que lo renderice.
+    # Nota: Deberás ajustar patrocinadores.html para renderizar los campos del formulario.
     # Se conecta con: El nuevo archivo patrocinadores.html que crearemos a continuación.
-    return render(request, 'main_app/patrocinadores.html', {'patrocinadores': patrocinadores_activos})
+    return render(request, 'main_app/patrocinadores.html', {'patrocinadores': patrocinadores_activos, 'form': form})
 
 # Función 'galeria_view': Muestra todos los álbumes y sus fotos/videos
 def galeria_view(request):
@@ -101,23 +98,19 @@ def todoterreno_view(request):
 # Función 'contacto_view': Es llamada cuando se visita /contacto/
 def contacto_view(request):
     if request.method == 'POST':
-        nombre = request.POST.get('nombre')
-        email = request.POST.get('email')
-        telefono = request.POST.get('telefono')
-        area_interes = request.POST.get('area_interes')
-        asunto = request.POST.get('asunto')
-        mensaje = request.POST.get('mensaje')
-        
-        if nombre and email and mensaje:
-            MensajeContacto.objects.create(
-                nombre=nombre, email=email, telefono=telefono,
-                area_interes=area_interes, asunto=asunto, mensaje=mensaje
-            )
+        # [MEJORA DE SEGURIDAD] Usamos el formulario para validar y limpiar los datos.
+        form = ContactoForm(request.POST)
+        if form.is_valid():
+            form.save()
             messages.success(request, "¡Gracias! Tu mensaje ha sido recibido exitosamente en nuestro panel.")
             return redirect('contacto')
+        else:
+            messages.error(request, "Hubo un error en el formulario. Por favor, revisa los datos.")
+    else:
+        form = ContactoForm()
             
     # Se conecta con: El nuevo archivo contacto.html.
-    return render(request, 'main_app/contacto.html')
+    return render(request, 'main_app/contacto.html', {'form': form})
 
 # NUEVA Función 'suscribir_newsletter'
 def suscribir_newsletter(request):
@@ -140,6 +133,8 @@ def login_view(request):
             password = form.cleaned_data.get('password')
             
             # Intentamos autenticar
+            # Django espera que el primer parámetro para la autenticación se llame 'username'.
+            # Al renombrar el parámetro en la llamada a la función, Django sabe que debe buscar ese valor en el campo 'username' de la base de datos.
             user = authenticate(request, username=email, password=password)
             
             if user is not None:
@@ -147,9 +142,13 @@ def login_view(request):
                 messages.success(request, f"¡Bienvenido de vuelta al Paddock, {user.first_name or user.username}!")
                 return redirect('home')
             else:
-                messages.error(request, "Credenciales incorrectas. Verifica tu correo y contraseña.")
+                # Este mensaje es más preciso, ya que el formulario era válido pero la autenticación falló.
+                messages.error(request, "Credenciales incorrectas. Por favor, verifica tu correo y contraseña.")
         else:
-            messages.error(request, "Por favor ingresa un correo válido y tu contraseña.")
+            # Mostramos los errores específicos que detectó el formulario.
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"{form.fields[field].label}: {error}")
             
     # Se conecta con: El nuevo archivo login.html
     return render(request, 'main_app/login.html')
@@ -431,29 +430,32 @@ def panel_album_eliminar(request, id):
 def panel_album_fotos(request, id):
     album = get_object_or_404(Album, id=id)
     if request.method == 'POST':
-        # Manejar subida de imágenes
-        imagenes = request.FILES.getlist('imagenes')
-        for img in imagenes:
-            Fotografia.objects.create(album=album, imagen=img, es_video=False)
-        if imagenes:
-            messages.success(request, f"Se subieron {len(imagenes)} imágen(es) exitosamente.")
+        archivos = request.FILES.getlist('fotos')
+        
+        subidos_count = 0
+        for f in archivos:
+            nombre_lower = f.name.lower()
+            if nombre_lower.endswith(('.mp4', '.mov', '.avi', '.mkv', '.webm')):
+                Fotografia.objects.create(
+                    album=album,
+                    archivo_video=f,
+                    es_video=True
+                )
+            else:
+                Fotografia.objects.create(
+                    album=album,
+                    imagen=f,
+                    es_video=False
+                )
+            subidos_count += 1
 
-        # Manejar subida de video con su miniatura
-        video_file = request.FILES.get('video')
-        thumbnail_file = request.FILES.get('miniatura')
-
-        if video_file and thumbnail_file:
-            Fotografia.objects.create(
-                album=album,
-                archivo_video=video_file,
-                imagen=thumbnail_file, # Esta es la miniatura
-                es_video=True
-            )
-            messages.success(request, "Video y su miniatura subidos exitosamente.")
+        if subidos_count > 0:
+            messages.success(request, f"Se subieron {subidos_count} archivo(s) exitosamente.")
 
         return redirect('panel_album_fotos', id=album.id)
     
-    fotos = album.fotos.all()
+    # CAMBIO AQUÍ: Forzar la consulta directa por el ID del álbum
+    fotos = Fotografia.objects.filter(album=album).order_by('-id')
     return render(request, 'main_app/panel_album_fotos.html', {'album': album, 'fotos': fotos})
 
 @staff_member_required(login_url='login')

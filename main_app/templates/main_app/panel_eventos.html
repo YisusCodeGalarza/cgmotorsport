@@ -6,15 +6,15 @@
 {% block content %}
 <div class="mb-8 flex justify-between items-end">
     <div>
-        <h1 class="font-display text-3xl font-black text-white uppercase tracking-wide">{% trans "Calendario de Carreras" %}</h1>
-        <p class="text-gray-400 text-sm mt-1">{% trans "Agrega, edita o elimina las carreras que aparecen en el buscador y el calendario público." %}</p>
+        <h1 class="font-display text-3xl font-black text-white uppercase tracking-wide">{% trans "Race Calendar" %}</h1>
+        <p class="text-gray-400 text-sm mt-1">{% trans "Add, edit, or delete races that appear in the search and public calendar." %}</p>
     </div>
 </div>
 
 <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
     <!-- Formulario Agregar Nuevo -->
     <div class="bg-[#111] border border-white/10 rounded-2xl p-6 h-fit">
-        <h2 class="text-lg font-bold text-white uppercase tracking-widest mb-4 border-b border-white/10 pb-2">{% trans "Agregar Nueva Carrera" %}</h2>
+        <h2 class="text-lg font-bold text-white uppercase tracking-widest mb-4 border-b border-white/10 pb-2">{% trans "Add New Race" %}</h2>
         <form method="POST" enctype="multipart/form-data" class="space-y-4">
             {% csrf_token %}
             {% for field in form %}
@@ -27,7 +27,7 @@
                 </div>
             {% endfor %}
             <button type="submit" class="w-full bg-[#4781B3] text-white font-bold uppercase tracking-widest text-xs py-3 rounded-lg hover:bg-white hover:text-black transition-colors mt-4">
-                {% trans "Guardar Carrera" %}
+                {% trans "Save Race" %}
             </button>
         </form>
     </div>
@@ -38,9 +38,9 @@
             <table class="w-full text-left text-sm text-gray-400">
                 <thead class="text-xs uppercase bg-black/50 text-gray-300 font-bold tracking-widest">
                     <tr>
-                        <th scope="col" class="px-6 py-4">{% trans "Carrera" %}</th>
-                        <th scope="col" class="px-6 py-4">{% trans "Fecha" %}</th>
-                        <th scope="col" class="px-6 py-4">{% trans "Ubicación" %}</th>
+                        <th scope="col" class="px-6 py-4">{% trans "Race" %}</th>
+                        <th scope="col" class="px-6 py-4">{% trans "Date" %}</th>
+                        <th scope="col" class="px-6 py-4">{% trans "Location" %}</th>
                         <th scope="col" class="px-6 py-4 text-right">{% trans "Acciones" %}</th>
                     </tr>
                 </thead>
@@ -56,7 +56,7 @@
                         </td>
                     </tr>
                     {% empty %}
-                    <tr><td colspan="4" class="px-6 py-8 text-center text-gray-500">{% trans "No hay carreras registradas." %}</td></tr>
+                    <tr><td colspan="4" class="px-6 py-8 text-center text-gray-500">{% trans "No races registered." %}</td></tr>
                     {% endfor %}
                 </tbody>
             </table>

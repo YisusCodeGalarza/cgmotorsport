@@ -6,4 +6,6 @@ db.sqlite3
 .env
 core_project/settings.py
 __pycache__/
-*.pyc
+*.pycbackups/
+*.tar.gz
+*.json

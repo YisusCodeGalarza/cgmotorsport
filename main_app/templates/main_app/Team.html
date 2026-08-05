@@ -1,8 +1,7 @@
 {# Extendemos el diseño de base.html #}
 {% extends 'main_app/base.html' %}
 {% load static i18n %}
-
-{% block title %}{% trans "El Equipo" %} | CG Motorsports{% endblock %}
+{% block title %}{% trans "The Team" %} | CG Motorsports{% endblock %}
 
 {% block content %}
 <div class="relative min-h-screen pt-32 pb-20 px-4 flex flex-col items-center bg-cover bg-center bg-fixed" style="background-image: url('{% static 'main_app/images/sf-5.bmp' %}');">
@@ -14,8 +13,8 @@
         
         {# Encabezado #}
         <div class="mb-12 text-center md:text-left">
-            <h1 class="font-display text-4xl md:text-5xl font-black text-white tracking-wide uppercase">{% trans "El" %} <span class="text-[#4781B3]">{% trans "Equipo" %}</span></h1>
-            <p class="text-[#4781B3] text-sm md:text-base uppercase tracking-widest font-bold mt-2">{% trans "La familia detrás de la máquina." %}</p>
+            <h1 class="font-display text-4xl md:text-5xl font-black text-white tracking-wide uppercase">{% trans "The" %} <span class="text-[#4781B3]">{% trans "Team" %}</span></h1>
+            <p class="text-[#4781B3] text-sm md:text-base uppercase tracking-widest font-bold mt-2">{% trans "The family behind the machine." %}</p>
         </div>
 
         {# Contenedor Principal (Tarjeta Dividida 50/50) #}
@@ -27,7 +26,7 @@
                 <div class="w-16 h-1 bg-[#4781B3] mb-8"></div>
                 
                 <div class="space-y-4 text-gray-300 text-sm md:text-base leading-relaxed flex-grow">
-                    <p>{% trans "CG Motorsports es más que un equipo de carreras; es una familia unida por la adrenalina, la gasolina y el polvo de la Baja. Nacidos en San Felipe, llevamos el Off-Road en la sangre." %}</p>
+                    <p>{% trans "CG Motorsports is more than a racing team; it's a family united by adrenaline, gasoline, and the dust of Baja. Born in San Felipe, we have Off-Road in our blood." %}</p>
                     <p class="italic text-[#4781B3] font-bold">{% trans "“Alone we can do so little, together we can do so much”" %}</p>
                     <p class="text-xs text-gray-500 uppercase tracking-widest mt-4">#allumicraft #mirageraceprep #airsupport #baja #offroad #class10 #family</p>
                 </div>
@@ -83,14 +82,14 @@
                             <p class="text-sm text-gray-300 ml-8">{{ comentario.texto }}</p>
                         </div>
                         {% empty %}
-                        <p class="text-xs text-gray-500 italic text-center">{% trans "Sé el primero en comentar." %}</p>
+                        <p class="text-xs text-gray-500 italic text-center">{% trans "Be the first to comment." %}</p>
                         {% endfor %}
                     </div>
                     
                     {% if user.is_authenticated %}
                     <form action="{% url 'comentar_seccion' seccion.nombre %}" method="POST" class="relative">
                         {% csrf_token %}
-                        <input type="text" name="comentario" required placeholder="{% trans 'Escribe un comentario...' %}" class="w-full bg-black/50 border border-white/10 rounded-full pl-4 pr-12 py-3 text-sm text-white focus:outline-none focus:border-[#4781B3] transition-colors">
+                        <input type="text" name="comentario" required placeholder="{% trans 'Write a comment...' %}" class="w-full bg-black/50 border border-white/10 rounded-full pl-4 pr-12 py-3 text-sm text-white focus:outline-none focus:border-[#4781B3] transition-colors">
                         <button type="submit" class="absolute right-2 top-2 bottom-2 bg-[#4781B3] w-9 rounded-full flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors shadow-lg"><i class="fas fa-paper-plane text-xs"></i></button>
                     </form>
                     {% else %}

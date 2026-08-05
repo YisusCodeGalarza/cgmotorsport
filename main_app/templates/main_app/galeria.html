@@ -7,14 +7,14 @@
 <div class="min-h-screen pt-32 pb-20 px-4 max-w-[1440px] mx-auto relative">
     
     <div class="text-center mb-16">
-        <h1 class="font-display text-4xl md:text-5xl font-black text-white tracking-wide uppercase mb-2">{% trans "Galería" %}</h1>
-        <p class="text-gray-400 text-sm uppercase tracking-widest">{% trans "Toda la acción del Off-Road" %}</p>
+        <h1 class="font-display text-4xl md:text-5xl font-black text-white tracking-wide uppercase mb-2">{% trans "Gallery" %}</h1>
+        <p class="text-gray-400 text-sm uppercase tracking-widest">{% trans "All the Off-Road Action" %}</p>
         
         {# Botón para Administradores: Crear Álbum #}
         {% if user.is_staff %}
         <div class="mt-6 flex justify-center">
             <a href="{% url 'admin:main_app_album_add' %}" target="_blank" class="inline-flex items-center justify-center bg-[#4781B3] text-white font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-full hover:bg-white hover:text-black transition-colors shadow-lg">
-                <i class="fas fa-plus mr-2"></i> {% trans "Crear Nuevo Álbum" %}
+                <i class="fas fa-plus mr-2"></i> {% trans "Create New Album" %}
             </a>
         </div>
         {% endif %}
@@ -24,36 +24,41 @@
         <div class="mb-16">
             <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-white/10 pb-4 mb-8 gap-4">
                 <h2 class="font-display text-2xl md:text-3xl text-white uppercase">
-                    {{ album.titulo }} <span class="text-[#4781B3] text-sm ml-4">{{ album.fotos.count }} Archivos</span>
+                    {{ album.titulo }} <span class="text-[#4781B3] text-sm ml-4">{{ album.fotos.count }} {% trans "Files" %}</span>
                 </h2>
                 
                 {# Botón para Administradores: Editar Álbum #}
                 {% if user.is_staff %}
                     <a href="{% url 'admin:main_app_album_change' album.id %}" target="_blank" class="text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-white transition-colors bg-white/5 px-4 py-2 rounded-lg border border-white/10 hover:border-white/30 flex items-center w-fit">
-                        <i class="fas fa-edit mr-2"></i> {% trans "Subir Fotos / Editar Álbum" %}
+                        <i class="fas fa-edit mr-2"></i> {% trans "Upload Photos / Edit Album" %}
                     </a>
                 {% endif %}
             </div>
             
-            {# Grid Estilo Masonry #}
-            <div class="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
+            {# Grid Homogéneo (Tarjetas del mismo tamaño exacto 16:9) #}
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {% for foto in album.fotos.all %}
-                    <div class="break-inside-avoid relative group cursor-pointer rounded-xl overflow-hidden bg-black shadow-xl border border-white/5 transition-transform duration-300 hover:-translate-y-1" onclick="openModal('{{ foto.id }}')">
+                    <div class="relative group cursor-pointer rounded-xl overflow-hidden bg-black shadow-xl border border-white/5 transition-transform duration-300 hover:-translate-y-1 aspect-video w-full" onclick="openModal('{{ foto.id }}')">
                         
                         {% if foto.es_video %}
-                            <div class="absolute inset-0 flex items-center justify-center z-10 bg-black/30 group-hover:bg-black/10 transition-colors">
+                            <div class="absolute inset-0 flex items-center justify-center z-10 bg-black/30 group-hover:bg-black/10 transition-colors pointer-events-none">
                                 <i class="fas fa-play-circle text-white/80 text-5xl drop-shadow-lg"></i>
                             </div>
-                            {# Si tiene miniatura la usa, si no asume un cuadro negro representativo #}
-                            <img src="{% if foto.imagen %}{{ foto.imagen.url }}{% else %}{% static 'main_app/images/sf-6.bmp' %}{% endif %}" class="w-full object-cover opacity-70" alt="Video">
+                            {% if foto.imagen %}
+                                <img src="{{ foto.imagen.url }}" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" alt="Video">
+                            {% elif foto.archivo_video %}
+                                <video src="{{ foto.archivo_video.url }}#t=0.1" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700 pointer-events-none" preload="metadata" muted></video>
+                            {% else %}
+                                <div class="w-full h-full bg-gray-900 flex items-center justify-center"><i class="fas fa-video text-gray-600 text-3xl"></i></div>
+                            {% endif %}
                         {% else %}
                             {% if foto.imagen %}
-                                <img src="{{ foto.imagen.url }}" class="w-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" alt="Foto">
+                                <img src="{{ foto.imagen.url }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" alt="Foto">
                             {% endif %}
                         {% endif %}
 
                         {# Contador rápido de Likes al hacer hover #}
-                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex gap-4 text-white">
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex gap-4 text-white z-20">
                             <span><i class="fas fa-heart text-[#4781B3]"></i> {{ foto.likes.count }}</span>
                             <span><i class="fas fa-comment text-gray-400"></i> {{ foto.comentarios.count }}</span>
                         </div>
@@ -81,15 +86,15 @@
                                             </button>
                                             <div class="galeria-menu hidden absolute right-0 mt-1 w-32 bg-[#1A1C20] rounded-lg shadow-xl border border-white/10 overflow-hidden z-[120]">
                                                 {% if request.user == c.usuario %}
-                                                    <button type="button" onclick="editGaleriaComment(this)" class="w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors">{% trans "Editar" %}</button>
+                                                    <button type="button" onclick="editGaleriaComment(this)" class="w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors">{% trans "Edit" %}</button>
                                                     <form action="{% url 'eliminar_comentario' c.id %}" method="POST" class="m-0 border-t border-white/5">
                                                         {% csrf_token %}
-                                                        <button type="submit" class="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-white/10 transition-colors" onclick="return confirm('{% trans "¿Seguro que deseas eliminar tu comentario?" %}')">{% trans "Eliminar" %}</button>
+                                                        <button type="submit" class="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-white/10 transition-colors" onclick="return confirm('{% trans "Are you sure you want to delete your comment?" %}')">{% trans "Delete" %}</button>
                                                     </form>
                                                 {% else %}
                                                     <form action="{% url 'reportar_comentario' c.id %}" method="POST" class="m-0">
                                                         {% csrf_token %}
-                                                        <button type="submit" class="w-full text-left px-4 py-2 text-sm text-yellow-500 hover:bg-white/10 transition-colors" onclick="return confirm('{% trans "¿Seguro que deseas reportar este comentario?" %}')">{% trans "Reportar" %}</button>
+                                                        <button type="submit" class="w-full text-left px-4 py-2 text-sm text-yellow-500 hover:bg-white/10 transition-colors" onclick="return confirm('{% trans "Are you sure you want to report this comment?" %}')">{% trans "Report" %}</button>
                                                     </form>
                                                 {% endif %}
                                             </div>
@@ -103,14 +108,14 @@
                                         {% csrf_token %}
                                         <textarea name="texto" class="w-full bg-black/50 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-[#4781B3]" rows="2" required>{{ c.texto }}</textarea>
                                         <div class="flex gap-3">
-                                            <button type="submit" class="bg-[#4781B3] text-white font-bold text-xs uppercase px-3 py-1 rounded hover:bg-white hover:text-black transition-colors">{% trans "Guardar" %}</button>
-                                            <button type="button" onclick="cancelEditGaleria(this)" class="text-gray-500 font-bold text-xs uppercase px-3 py-1 hover:text-white transition-colors">{% trans "Cancelar" %}</button>
+                                            <button type="submit" class="bg-[#4781B3] text-white font-bold text-xs uppercase px-3 py-1 rounded hover:bg-white hover:text-black transition-colors">{% trans "Save" %}</button>
+                                            <button type="button" onclick="cancelEditGaleria(this)" class="text-gray-500 font-bold text-xs uppercase px-3 py-1 hover:text-white transition-colors">{% trans "Cancel" %}</button>
                                         </div>
                                     </form>
                                     {% endif %}
                                     </div>
                                 {% empty %}
-                                <p class="text-gray-500 text-sm italic text-center py-4">{% trans "Aún no hay comentarios. ¡Sé el primero en comentar!" %}</p>
+                                <p class="text-gray-500 text-sm italic text-center py-4">{% trans "No comments yet. Be the first to comment!" %}</p>
                                 {% endfor %}
                             </div>
                         </div>
@@ -119,7 +124,7 @@
             </div>
         </div>
     {% empty %}
-        <div class="text-center text-gray-500 py-20">{% trans "Aún no hay álbumes publicados." %}</div>
+        <div class="text-center text-gray-500 py-20">{% trans "No albums published yet." %}</div>
     {% endfor %}
 
 </div>
@@ -147,7 +152,7 @@
         <div class="p-6 border-b border-white/10 flex items-center gap-4 bg-[#0a0a0a]">
             <img src="{% static 'main_app/images/LogoCGMS-2.png' %}" class="h-8 object-contain">
             <div>
-                <h3 class="text-white font-bold tracking-widest uppercase text-sm">CG Motorsports</h3>
+                <h3 class="text-white font-bold tracking-widest uppercase text-sm">{% trans "CG Motorsports" %}</h3>
                 <p class="text-xs text-[#4781B3]">Baja Official Media</p>
             </div>
         </div>
@@ -167,7 +172,7 @@
             <form id="commentForm" method="POST" action="">
                 {% csrf_token %}
                 <div class="relative">
-                    <input type="text" name="comentario" required placeholder="{% trans 'Escribe un comentario...' %}" class="w-full bg-white/5 border border-white/10 rounded-full px-5 py-3 text-sm text-white focus:outline-none focus:border-[#4781B3] transition-colors">
+                    <input type="text" name="comentario" required placeholder="{% trans 'Write a comment...' %}" class="w-full bg-white/5 border border-white/10 rounded-full px-5 py-3 text-sm text-white focus:outline-none focus:border-[#4781B3] transition-colors">
                     <button type="submit" class="absolute right-2 top-1.5 bottom-1.5 px-4 bg-[#4781B3] rounded-full text-white text-xs font-bold hover:bg-white hover:text-black transition-colors"><i class="fas fa-paper-plane"></i></button>
                 </div>
             </form>

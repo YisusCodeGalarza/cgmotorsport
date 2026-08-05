@@ -2,7 +2,7 @@
 {% extends 'main_app/base.html' %}
 {% load static i18n %}
 
-{% block title %}{% trans "Iniciar Sesión" %} | CG Motorsports{% endblock %}
+{% block title %}{% trans "Login" %} | CG Motorsports{% endblock %}
 
 {% block content %}
 <div class="relative min-h-screen pt-32 pb-20 px-4 bg-[#0a0a0a] flex items-center justify-center">
@@ -15,23 +15,23 @@
         
         <div class="text-center mb-8">
             <img src="{% static 'main_app/images/LogoCGMS-1.png' %}" alt="Logo" class="h-48 mx-auto mb-4 object-contain">
-            <h1 class="font-display text-3xl font-black text-white uppercase tracking-wider">{% trans "Bienvenido" %} <span class="text-[#4781B3]">{% trans "Piloto" %}</span></h1>
-            <p class="text-[#4781B3] text-xs uppercase tracking-widest font-bold mt-2">{% trans "Ingresa tus credenciales para acceder al Paddock." %}</p>
+            <h1 class="font-display text-3xl font-black text-white uppercase tracking-wider">{% trans "Welcome" %} <span class="text-[#4781B3]">{% trans "Driver" %}</span></h1>
+            <p class="text-[#4781B3] text-xs uppercase tracking-widest font-bold mt-2">{% trans "Enter your credentials to access the Paddock" %}</p>
             <div class="w-16 h-1 bg-[#4781B3] mt-6 mx-auto"></div>
         </div>
 
         <form method="POST" action="{% url 'login' %}" class="space-y-6">
             {% csrf_token %}
             <div>
-                <label class="block text-gray-400 text-xs font-bold uppercase tracking-widest mb-2">{% trans "Usuario o Correo" %}</label>
+                <label class="block text-gray-400 text-xs font-bold uppercase tracking-widest mb-2">{% trans "User or Email" %}</label>
                 <div class="relative">
                     <i class="fas fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"></i>
-                    <input type="email" name="email" required class="w-full bg-black/50 border border-white/10 rounded-lg pl-11 pr-4 py-3 text-sm text-white focus:outline-none focus:border-[#4781B3] transition-colors" placeholder="{% trans 'piloto@ejemplo.com' %}">
+                    <input type="email" name="email" required class="w-full bg-black/50 border border-white/10 rounded-lg pl-11 pr-4 py-3 text-sm text-white focus:outline-none focus:border-[#4781B3] transition-colors" placeholder="{% trans 'driver@example.com' %}">
                 </div>
             </div>
             
             <div>
-                <label class="block text-gray-400 text-xs font-bold uppercase tracking-widest mb-2">{% trans "Contraseña" %}</label>
+                <label class="block text-gray-400 text-xs font-bold uppercase tracking-widest mb-2">{% trans "Password" %}</label>
                 <div class="relative">
                     <i class="fas fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"></i>
                     <input type="password" name="password" required class="w-full bg-black/50 border border-white/10 rounded-lg pl-11 pr-4 py-3 text-sm text-white focus:outline-none focus:border-[#4781B3] transition-colors" placeholder="{% trans '••••••••' %}">
@@ -39,12 +39,12 @@
             </div>
 
             <button type="submit" class="w-full bg-[#4781B3] text-white font-bold uppercase tracking-widest py-3 rounded-lg hover:bg-white hover:text-black transition-colors shadow-lg shadow-[#4781B3]/20 mt-4">
-                {% trans "Entrar a la cuenta" %}
+                {% trans "Login to account" %}
             </button>
         </form>
         
         <p class="text-center text-gray-500 text-sm mt-8">
-            {% trans "¿No tienes cuenta?" %} <a href="{% url 'registro' %}" class="text-white hover:text-[#4781B3] font-bold transition-colors">{% trans "Regístrate aquí" %}</a>
+            {% trans "Don't have an account?" %} <a href="{% url 'registro' %}" class="text-white hover:text-[#4781B3] font-bold transition-colors">{% trans "Sign up here" %}</a>
         </p>
     </div>
 </div>

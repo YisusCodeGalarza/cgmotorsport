@@ -1,12 +1,13 @@
 {% extends 'main_app/panel_base.html' %}
+{% load i18n %}
 
-{% block title %}Propuestas de Patrocinio | Panel{% endblock %}
+{% block title %}{% trans "Sponsorship Proposals" %} | {% trans "Panel" %}{% endblock %}
 
 {% block content %}
 <div class="mb-8 flex justify-between items-end">
     <div>
-        <h1 class="font-display text-3xl font-black text-white uppercase tracking-wide">Propuestas de Patrocinio</h1>
-        <p class="text-gray-400 text-sm mt-1">Interesados en formar parte del equipo.</p>
+        <h1 class="font-display text-3xl font-black text-white uppercase tracking-wide">{% trans "Sponsorship Proposals" %}</h1>
+        <p class="text-gray-400 text-sm mt-1">{% trans "Those interested in joining the team." %}</p>
     </div>
 </div>
 
@@ -15,11 +16,11 @@
         <table class="w-full text-left text-sm text-gray-400">
             <thead class="text-xs uppercase bg-black/50 text-gray-300 font-bold tracking-widest">
                 <tr>
-                    <th scope="col" class="px-6 py-4">Empresa / Contacto</th>
-                    <th scope="col" class="px-6 py-4">Datos de Contacto</th>
-                    <th scope="col" class="px-6 py-4">Motivo</th>
-                    <th scope="col" class="px-6 py-4 text-center">Estado</th>
-                    <th scope="col" class="px-6 py-4 text-right">Acciones</th>
+                    <th scope="col" class="px-6 py-4">{% trans "Company / Contact" %}</th>
+                    <th scope="col" class="px-6 py-4">{% trans "Contact Info" %}</th>
+                    <th scope="col" class="px-6 py-4">{% trans "Reason" %}</th>
+                    <th scope="col" class="px-6 py-4 text-center">{% trans "Status" %}</th>
+                    <th scope="col" class="px-6 py-4 text-right">{% trans "Actions" %}</th>
                 </tr>
             </thead>
             <tbody>
@@ -40,15 +41,15 @@
                         <span class="text-xs text-gray-500">{{ p.fecha_envio|date:"d M Y" }}</span>
                     </td>
                     <td class="px-6 py-4 text-center">
-                        {% if p.revisado %}<span class="bg-gray-800 text-gray-400 font-bold px-2 py-1 rounded text-xs">Revisado</span>{% else %}<span class="bg-green-600 text-white font-bold px-2 py-1 rounded text-xs shadow">Nuevo</span>{% endif %}
+                        {% if p.revisado %}<span class="bg-gray-800 text-gray-400 font-bold px-2 py-1 rounded text-xs">{% trans "Reviewed" %}</span>{% else %}<span class="bg-green-600 text-white font-bold px-2 py-1 rounded text-xs shadow">{% trans "New" %}</span>{% endif %}
                     </td>
                     <td class="px-6 py-4 text-right space-x-2 whitespace-nowrap">
-                        <a href="{% url 'panel_propuesta_revisar' p.id %}" class="text-gray-400 hover:text-white p-2" title="Marcar como {% if p.revisado %}No Revisado{% else %}Revisado{% endif %}"><i class="fas {% if p.revisado %}fa-times-circle{% else %}fa-check-circle{% endif %}"></i></a>
-                        <a href="{% url 'panel_propuesta_eliminar' p.id %}" onclick="return confirm('¿Eliminar esta propuesta?')" class="text-red-500 hover:text-red-400 p-2"><i class="fas fa-trash"></i></a>
+                        <a href="{% url 'panel_propuesta_revisar' p.id %}" class="text-gray-400 hover:text-white p-2" title="{% trans 'Mark as' %} {% if p.revisado %}{% trans 'Not Reviewed' %}{% else %}{% trans 'Reviewed' %}{% endif %}"><i class="fas {% if p.revisado %}fa-times-circle{% else %}fa-check-circle{% endif %}"></i></a>
+                        <a href="{% url 'panel_propuesta_eliminar' p.id %}" onclick="return confirm('{% trans 'Delete this proposal?' %}')" class="text-red-500 hover:text-red-400 p-2"><i class="fas fa-trash"></i></a>
                     </td>
                 </tr>
                 {% empty %}
-                <tr><td colspan="5" class="px-6 py-8 text-center text-gray-500">No hay propuestas recibidas.</td></tr>
+                <tr><td colspan="5" class="px-6 py-8 text-center text-gray-500">{% trans "No proposals received." %}</td></tr>
                 {% endfor %}
             </tbody>
         </table>
